@@ -31,13 +31,14 @@
         </div>
         <ul class="nav">
           <li class="active ">
-            <a href="../login.jsp">
+            <a href="Main.EMP">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>게시판</p>
             </a>
           </li>
           <li>
           <li>
+            <li class="active ">
             <a href="EmpSearch.EMP">
               <i class="tim-icons icon-single-02"></i>
               <p>회원 리스트</p>
@@ -47,5 +48,16 @@
       </div>
     </div>
     <div class="main-panel">
+    
+      <div class="wrapper">
+
+    <div class="main-panel">
+
+      <div class="content">
+        <div class="row">
+          <div class="col-12">
+    
+    
+    
 </body>
 </html>

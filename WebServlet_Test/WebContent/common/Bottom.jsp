@@ -18,17 +18,11 @@
 </head>
 <body>
 
-  <div class="wrapper">
 
-    <div class="main-panel">
+          
+          
+          
 
-      <div class="content">
-        <div class="row">
-          <div class="col-12">
-          
-          
-          
-<jsp:include page="Center.jsp"></jsp:include>
 
 
 

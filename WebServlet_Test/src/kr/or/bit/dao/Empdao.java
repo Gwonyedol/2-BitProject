@@ -1,6 +1,7 @@
 package kr.or.bit.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,17 +25,14 @@ public class Empdao {
 		 ds = (DataSource)context.lookup("java:comp/env/jdbc/oracle"); ///jdbc/oracle pool 검색
 	}
 	
-	//Read : 한건 데이터 (반드시 테이블에 primary key 컬럼 대상)
+	//EMP 직원 리스트 (한건)
 	public Empdto getEmpListByEmpno(String id) {
 		return null;
 	}
 	
-	//Read : 여러건 데이터(where 조건이 없어요)
+	//EMP 직원 리스트 (여러건)
 	public List<Empdto> getEmpList() throws SQLException{
-		//select id,email,content from memo
-		//Class.forName("oracle.jdbc.OracleDriver");
-		//conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","kosta","1004");
-		//위 코드 생략
+
 		
 		PreparedStatement pstmt = null;
 		String sql = "select EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO from emp";
@@ -51,9 +49,10 @@ public class Empdao {
 			Empdto m = new Empdto();
 			m.setEname(rs.getString("ENAME"));
 			m.setJob(rs.getString("JOB"));
-			m.setHiredate(rs.getDate("HIREDATE"));
+			m.setHiredate(rs.getString("HIREDATE"));
 			m.setSal(rs.getInt("SAL"));
 			m.setComm(rs.getInt("COMM"));
+			m.setMgr(rs.getInt("MGR"));
 			m.setEmpno(rs.getInt("EMPNO"));
 			m.setDeptno(rs.getInt("DEPTNO"));
 			emplist.add(m);
@@ -61,13 +60,142 @@ public class Empdao {
 		
 		SingletonHelper.close(rs);
 		SingletonHelper.close(pstmt);
-		//POINT
-		conn.close(); //반환하기
+		conn.close();
 		return emplist;
 	}
 	
-	
 	// List 요청에대한 서비스 
+	
+	
+	
+	
+	//EMP 직원 INSERT
+	public int insertEmp(String ename, String job, int empno, int mgr, String hiredate, int sal, int comm, int deptno)  {
+		int resultrow=0;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		try { 
+			
+				String sql = "insert into EMP(ENAME,JOB,EMPNO,MGR,HIREDATE,SAL,COMM,DEPTNO) values(?,?,?,?,?,?,?,?)";
+				conn = ds.getConnection();
+				
+
+			   pstmt = conn.prepareStatement(sql);
+			   pstmt.setString(1, ename);
+			   pstmt.setString(2, job);
+			   pstmt.setInt(3, empno);
+			   pstmt.setInt(4, mgr);
+			   pstmt.setString(5, hiredate);
+			   pstmt.setInt(6, sal);
+			   pstmt.setInt(7, comm);
+			   pstmt.setInt(8, deptno);
+			   
+
+			   
+			   resultrow = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("Insert :" + e.getMessage());
+			//executeUpdate(); 예외발생  (제약 위반, 컬럼 길이)
+			resultrow = -1;
+		}finally {
+			SingletonHelper.close(pstmt);
+			//POINT //반환하기
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} 
+		}
+ 
+		return resultrow;
+	}
+	
+	
+	
+	public int updateEmp(String job, int empno, int mgr, String hiredate, int sal, int comm, int deptno, String ename) {
+		//update memo set email=? , content=? where id=?
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result=0;
+		
+		
+		try { 
+			
+			   String sql = "update EMP set JOB=?, EMPNO=?, MGR=?, HIREDATE=?, COMM=?, SAL=?, DEPTNO=? where Ename=?";
+			   conn = ds.getConnection();			
+
+			   pstmt = conn.prepareStatement(sql);
+			   pstmt.setString(1, job);
+			   pstmt.setInt(2, empno);
+			   pstmt.setInt(3, mgr);
+			   pstmt.setString(4, hiredate);
+			   pstmt.setInt(5, sal);
+			   pstmt.setInt(6, comm);
+			   pstmt.setInt(7, deptno);
+			   pstmt.setString(8, ename);
+			   
+			   result = pstmt.executeUpdate();
+			   
+			
+		}catch(Exception e1) {
+			System.out.println("Insert :" + e1.getMessage());
+			//executeUpdate(); 예외발생  (제약 위반, 컬럼 길이)
+			result = -1;
+		}finally {
+			SingletonHelper.close(pstmt);
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			} 
+		}
+ 
+		return result;
+		
+		
+	}
+	
+	
+	public int deleteEmp(int empno) {
+		//delete from memo where id=?
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result=0;
+		
+		
+		try { 
+			
+			   String sql = "delete from EMP where empno=?";
+			   conn = ds.getConnection();			
+
+			   pstmt = conn.prepareStatement(sql);
+			   pstmt.setInt(1, empno);
+			   
+			   result = pstmt.executeUpdate();
+			   
+			
+		}catch(Exception e1) {
+			System.out.println("Insert :" + e1.getMessage());
+			//executeUpdate(); 예외발생  (제약 위반, 컬럼 길이)
+			result = -1;
+		}finally {
+			SingletonHelper.close(pstmt);
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			} 
+		}
+ 
+		return result;
+		
+	}
 	
 	
 }

@@ -7,13 +7,13 @@ public class Empdto {
 	private String ename;
 	private String job;
 	private int mgr;
-	private Date hiredate;
+	private String hiredate;
 	private int sal;
 	private int comm;
 	private int deptno;
 	
 	public Empdto() {}
-	public Empdto(int empno, String ename, String job, int mgr, Date hiredate, int sal, int comm, int deptno) {
+	public Empdto(int empno, String ename, String job, int mgr, String hiredate, int sal, int comm, int deptno) {
 		super();
 		this.empno = empno;
 		this.ename = ename;
@@ -24,6 +24,7 @@ public class Empdto {
 		this.comm = comm;
 		this.deptno = deptno;
 	}
+	
 	
 	public int getEmpno() {
 		return empno;
@@ -49,10 +50,10 @@ public class Empdto {
 	public void setMgr(int mgr) {
 		this.mgr = mgr;
 	}
-	public java.util.Date getHiredate() {
+	public String getHiredate() {
 		return hiredate;
 	}
-	public void setHiredate(java.util.Date hiredate) {
+	public void setHiredate(String hiredate) {
 		this.hiredate = hiredate;
 	}
 	public int getSal() {
@@ -73,5 +74,6 @@ public class Empdto {
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
+
 	
 }

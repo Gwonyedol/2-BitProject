@@ -61,7 +61,7 @@ public class FrontMemoController extends HttpServlet {
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	}else if(url_Command.equals("/MemoView.memo")) {
+    	}else if(url_Command.equals("/MemoView.memo")) { //ID 추가
     		//UI 제공  //지금은 없는 서비스 .... 만약 ...
     		forward = new ActionForward();
     		forward.setRedirect(false);

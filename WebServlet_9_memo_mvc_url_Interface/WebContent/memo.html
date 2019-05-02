@@ -6,42 +6,13 @@
 	<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			//id="message" 클릭하면 $.ajax 사용해서 
-			//요청 @WebServlet("/MemoId")
-			
-			//http://192.168.0.3:8090/WebServlet_4_memo_mvc/MemoId
-			//url:"MemoId"
-			//"true" 사용가능
-			//"false" 사용불가 다시입력 ...
+
 			$('#message').click(function(){
 				if($('#id').val() == ""){
 					alert("ID 입력");
 					$('#id').focus();
 				}else{
-					/*
-					$.ajax(
-						{
-						   url:"MemoId", //Ex10_ok.jsp	
-						   data:{id:$('#id').val()}, //MemoId?id=aa
-						   dataType:"html", //xml , json , script , html , text
-						   success:function(responsedata){
-							   console.log(">" + responsedata + "<");
-							   if(responsedata == "true"){
-								   alert("사용가능");
-								   $('#email').focus();
-							   }else{
-								   alert("사용불가능");
-								   $('#id').val("");
-								   $('#id').focus();
-							   }
-						   },
-						   error:function(){
-							   
-						   }
-						}		
-					);
-					*/
-				  //비동기 (controller -> service -> view -> 전달)
+					
 				  $.ajax(
 					 {
 						url:"MemoId.memo",

@@ -23,8 +23,8 @@ public class EmpListService implements Action {
 	  		  
 	  		  forward = new ActionForward();
 		  	  forward.setRedirect(false); //forward 방식
-		  	  forward.setPath("/WEB-INF/views/Emplist.jsp");
-
+		  	  forward.setPath("/WEB-INF/view/Emplist.jsp");
+		  	  System.out.println("조회완료");
 	  	}catch(Exception e){
 	  		System.out.println(e.getMessage());
 	  	}

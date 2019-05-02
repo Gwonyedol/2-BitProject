@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="WebServlet_Test" path="/WebServlet_Test" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_Test"/><Context docBase="WebJSP_JDBC" path="/WebJSP_JDBC" reloadable="true" source="org.eclipse.jst.jee.server:WebJSP_JDBC"/><Context docBase="Sample_Emp_Dept_Crud_Modal" path="/Sample_Emp_Dept_Crud_Modal" reloadable="true" source="org.eclipse.jst.jee.server:Sample_Emp_Dept_Crud_Modal"/><Context docBase="Sample_Emp_Servlet_Command" path="/Sample_Emp_Servlet_Command" reloadable="true" source="org.eclipse.jst.jee.server:Sample_Emp_Servlet_Command"/><Context docBase="Result" path="/Result" reloadable="true" source="org.eclipse.jst.jee.server:Result"/><Context docBase="WebServlet_9_memo_mvc_url_Interface" path="/WebServlet_9_memo_mvc_url_Interface" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_9_memo_mvc_url_Interface"/></Host>
+      <Context docBase="WebServlet_Test" path="/WebServlet_Test" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_Test"/></Host>
     </Engine>
   </Service>
 </Server>
