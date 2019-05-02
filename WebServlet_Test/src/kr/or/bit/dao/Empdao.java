@@ -112,9 +112,49 @@ public class Empdao {
 		return resultrow;
 	}
 	
+	public Empdto updatefromEmp(int empno) { // Update 할때 해당 사원의 정보를 저장해오는 부분
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		Empdto m = new Empdto();
+
+		try {
+			
+			String sql = "select ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO from EMP where EMPNO=?";
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			System.out.println("이거안뜨면오바야 ㅠ..:" + rs.getString("ENAME"));
+			
+				m.setEname(rs.getString("ENAME"));
+				m.setJob(rs.getString("JOB"));
+				m.setMgr(rs.getInt("MGR"));
+				m.setHiredate(rs.getString("HIREDATE"));
+				m.setSal(rs.getInt("SAL"));
+				m.setComm(rs.getInt("COMM"));
+				m.setDeptno(rs.getInt("DEPTNO"));
+				m.setEmpno(rs.getInt("EMPNO"));
+			
+				SingletonHelper.close(rs);
+				conn.close();
+				
+		} catch (Exception e) {
+			System.out.println("Insert :" + e.getMessage());
+		} finally {
+			SingletonHelper.close(pstmt);
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} 
+		}
+		return m;
+	}
 	
 	
-	public int updateEmp(String job, int empno, int mgr, String hiredate, int sal, int comm, int deptno, String ename) {
+	public int updateEmp(String ename, String job, int mgr, String hiredate, int comm, int sal, int deptno, int empno) {
 		//update memo set email=? , content=? where id=?
 		
 		Connection conn = null;
@@ -124,18 +164,18 @@ public class Empdao {
 		
 		try { 
 			
-			   String sql = "update EMP set JOB=?, EMPNO=?, MGR=?, HIREDATE=?, COMM=?, SAL=?, DEPTNO=? where Ename=?";
+			   String sql = "update EMP set ENAME=?, JOB=?, MGR=?, HIREDATE=?, COMM=?, SAL=?, DEPTNO=? where EMPNO=?";
 			   conn = ds.getConnection();			
 
 			   pstmt = conn.prepareStatement(sql);
-			   pstmt.setString(1, job);
-			   pstmt.setInt(2, empno);
+			   pstmt.setString(1, ename);
+			   pstmt.setString(2, job);
 			   pstmt.setInt(3, mgr);
 			   pstmt.setString(4, hiredate);
-			   pstmt.setInt(5, sal);
-			   pstmt.setInt(6, comm);
+			   pstmt.setInt(5, comm);
+			   pstmt.setInt(6, sal);
 			   pstmt.setInt(7, deptno);
-			   pstmt.setString(8, ename);
+			   pstmt.setInt(8, empno);
 			   
 			   result = pstmt.executeUpdate();
 			   

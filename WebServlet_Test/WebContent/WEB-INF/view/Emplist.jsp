@@ -32,9 +32,8 @@
 
 <jsp:include page="/common/Top_Header.jsp"></jsp:include>
 <jsp:include page="/common/Left_Navi.jsp"></jsp:include>
-<button type="submit" class="btn btn-fill btn-primary" onclick="location.href='EmpAddPage.EMP'">회원등록</button>
-<button type="submit" class="btn btn-fill btn-primary" onclick="location.href='EmpUpdatePage.EMP'">회원수정</button>
 
+<button type="submit" class="btn btn-fill btn-primary" onclick="location.href='EmpAddPage.EMP'">회원등록</button>
                 <c:set var="emplist" value="${requestScope.emplist}" />
                 <h2 style="text-align: center;"> EMP LIST </h2>
                   <table class="table tablesorter " id="">
@@ -48,7 +47,7 @@
 	 	<th>MGR</th>
 	 	<th>Comm</th>
 	 	<th>Deptno</th>
-	 	<th>삭제</th>
+	 	<th>나는야...</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -62,6 +61,11 @@
 	 		<td>${emp.mgr}</td>
 	 		<td>${emp.comm}</td>
 	 		<td>${emp.deptno}</td>
+	 		<td>
+	 		<a href="EmpUpdatePage.EMP?empno=${emp.empno}">수정</a>
+	 		&ensp;&ensp;<a href="EmpDelete.EMP?empno=${emp.empno}">삭제</a> 
+	 		</td>
+	 		</tr>
   	</c:forEach>
                     </tbody>
                   </table>

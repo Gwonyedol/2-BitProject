@@ -14,12 +14,12 @@ public class EmpDeleteService implements Action {
 		  ActionForward	forward = null;
 		  try {
 			  
-			  	  System.out.println("회원 삭재까진 왔음");
+			  	  System.out.println("사원 삭제 서비스");
 				  request.setCharacterEncoding("UTF-8");
 				  
-
+				  System.out.println(request.getParameter("empno"));
 			  	  int empno = Integer.parseInt(request.getParameter("empno"));
-
+			  	  System.out.println(empno);
 			  	  
 			  	  Empdao dao = new Empdao();
 			  	  int result = dao.deleteEmp(empno);
@@ -28,11 +28,11 @@ public class EmpDeleteService implements Action {
 			  	  String url="";
 			  	  
 			  	  if(result > 0) {
-			  		  msg ="수정성공";
+			  		  msg ="삭제성공";
 			  		  url ="EmpSearch.EMP";
 			  	  }else { //-1 (제약, 컬럼길이 문제)
 			  		  msg ="수정실패";
-			  		  url ="/index.html";
+			  		  url ="index.html";
 			  	  }
 			  	  request.setAttribute("board_msg", msg);
 			  	  request.setAttribute("board_url", url);

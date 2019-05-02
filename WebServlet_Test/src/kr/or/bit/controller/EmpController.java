@@ -14,6 +14,7 @@ import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.EmpAddService;
 import kr.or.bit.service.EmpDeleteService;
 import kr.or.bit.service.EmpListService;
+import kr.or.bit.service.EmpUpdatePageService;
 import kr.or.bit.service.EmpUpdateService;
 
 @WebServlet("*.EMP")
@@ -45,30 +46,28 @@ public class EmpController extends HttpServlet {
 				forward = new ActionForward();
 				forward.setRedirect(false);
 				forward.setPath("/WEB-INF/view/EmpAddPage.jsp");
-				System.out.println("forward 회원등록페이지 이동");
+				System.out.println("Controller forward Add Page");
 		}else if (url_Command.equals("/EmpAdd.EMP")) { // 회원 등록
 			try {
-				System.out.println("forward 회원등록하러 가자");
 				action = new EmpAddService();
 				forward = action.execute(request, response);
-				System.out.println("회원등록끝!");
+				System.out.println("Controller forward Add");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (url_Command.equals("/EmpUpdatePage.EMP")) { // 회원 수정페이지로 이동
+		} else if (url_Command.equals("/EmpUpdatePage.EMP")) { // 회원 수정페이지로 이동 하면서 파라메터 보내준다
 			try { 
-				forward = new ActionForward();
-				forward.setRedirect(false);
-				forward.setPath("/WEB-INF/view/EmpUpdatePage.jsp");
-				System.out.println("forward Update페이지로 이동");
+				action = new EmpUpdatePageService();
+				forward = action.execute(request, response);
+				System.out.println("Controller forward Update Page");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (url_Command.equals("/EmpUpdate.EMP")) { // 회원 수정
+		}else if (url_Command.equals("/EmpUpdate.EMP")) { // 회원 수정 버튼 
 			try { 
 				action = new EmpUpdateService();
 				forward = action.execute(request, response);
-				System.out.println("forward Update 완료");
+				System.out.println("Controller forward Update");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -76,7 +75,7 @@ public class EmpController extends HttpServlet {
 			try { 
 				action = new EmpDeleteService();
 				forward = action.execute(request, response);
-				System.out.println("forward delete 완료");
+				System.out.println("Controller forward delete");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -29,7 +29,7 @@ public class EmpUpdateService implements Action {
 			  	  
 			  	  
 			  	  Empdao dao = new Empdao();
-			  	  int result = dao.updateEmp(job, empno, mgr, hiredate, sal, comm, deptno, ename );
+			  	  int result = dao.updateEmp(ename, job, mgr, hiredate, comm, sal, deptno, empno);
 			  	  
 			  	  String msg="";
 			  	  String url="";
