@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax(
+				{
+					url:"xmlData",
+					type:"post",     //전송 method="post"
+					dataType:"xml", //서버가 응답하는 데이터 형식
+					//contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success:function(data){
+						//정상응답
+						console.log(data);
+					
+					  },
+					error:function(xhr){ //XmlHttpRequeset 객체주소
+						//비정상응답
+						alert(xhr.status);//200, 404 , 500
+					}
+				}		
+			);
+		});
+	
+	</script>
+</head>
+<body>
+<!--  
+$.getJSON() 함수 말고
+$.ajax() 함수를 사용해서 json 파일을 read 해서  (Ex07_Ajax_board.json)
+table 과 함께 출력하세요
+
+-->
+	<table id="treedata" border="1">
+	</table>
+</body>
+</html>

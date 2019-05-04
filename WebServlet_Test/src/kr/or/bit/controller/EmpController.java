@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
+import kr.or.bit.member.EmpRegisterService;
 import kr.or.bit.service.EmpAddService;
 import kr.or.bit.service.EmpDeleteService;
 import kr.or.bit.service.EmpListService;
@@ -84,6 +85,13 @@ public class EmpController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/view/Main.jsp");
+		} else if (url_Command.equals("/Register.EMP")) { // 회원가입 페이지로 이동
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/view/Register.jsp");
+		} else if (url_Command.equals("/RegisterOk.EMP")) { // 회원가입 처리
+			action = new EmpRegisterService();
+			forward = action.execute(request, response);
 		}
 		
 		

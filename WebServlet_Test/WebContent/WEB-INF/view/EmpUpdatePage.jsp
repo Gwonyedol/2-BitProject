@@ -2,6 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %> 
+<%  
+       String ename = (String)request.getAttribute("ename");
+	   String job = (String)request.getAttribute("job");
+       int mgr = (Integer)request.getAttribute("mgr");
+       String hiredate = (String)request.getAttribute("hiredate");
+       int comm = (Integer)request.getAttribute("comm");
+       int deptno = (Integer)request.getAttribute("deptno");
+       int empno = (Integer)request.getAttribute("empno");
+       int sal = (Integer)request.getAttribute("sal");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +37,16 @@
 <body>
 <jsp:include page="/common/Top_Header.jsp"></jsp:include>
 <jsp:include page="/common/Left_Navi.jsp"></jsp:include>
-<c:set var="emp" value="${requestScope.result}" />
+
+	<c:set var="ename" value="<%=ename%>" />
+	<c:set var="job" value="<%=job%>" />
+	<c:set var="mgr" value="<%=mgr%>" />
+	<c:set var="hiredate" value="<%=hiredate%>"/>
+	<c:set var="comm" value="<%=comm%>"/>
+	<c:set var="deptno" value="<%=deptno%>"/>
+	<c:set var="empno" value="<%=empno%>"/>
+		<c:set var="sal" value="<%=sal%>"/>
+	
 
       <div class="content">
         <div class="row">
@@ -47,13 +67,13 @@
                     <div class="col-md-3 px-md-1">
                       <div class="form-group">
                         <label>이름</label>
-                        <input type="text" class="form-control" value="${emp.ename}" id = "ename" name = "ename">
+                        <input type="text" class="form-control" value="${ename}" id = "ename" name = "ename">
                       </div> 
                     </div>
                     <div class="col-md-4 pl-md-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">직업</label>
-                        <input type="text" class="form-control" value="${emp.job}" id="job" name="job">
+                        <input type="text" class="form-control" value="${job}" id="job" name="job">
                       </div>
                     </div>
                   </div>
@@ -61,13 +81,13 @@
                     <div class="col-md-6 pr-md-1">
                       <div class="form-group">
                         <label>고용일</label>
-                        <input type="text" class="form-control" value="${emp.hiredate}" id="hiredate" name="hiredate">
+                        <input type="text" class="form-control" value="${hiredate}" id="hiredate" name="hiredate">
                       </div>
                     </div>
                     <div class="col-md-6 pl-md-1">
                       <div class="form-group">
                         <label>연봉</label>
-                        <input type="text" class="form-control" value="${emp.sal}" id="sal" name="sal">
+                        <input type="text" class="form-control" value="${sal}" id="sal" name="sal">
                       </div>
                     </div>
                   </div>                    
@@ -75,13 +95,13 @@
                     <div class="col-md-6 pr-md-1">
                       <div class="form-group">
                         <label>사원번호</label>
-                        <input type="text" class="form-control" disabled="" value="${emp.empno}" id="empno" name="empno">
+                        <input type="text" class="form-control" value="${empno}" id="empno" name="empno">
                       </div>
                     </div>
                     <div class="col-md-6 pl-md-1">
                       <div class="form-group">
                         <label>부서번호</label>
-                        <input type="text" class="form-control" value="${emp.deptno}" id="deptno" name="deptno">
+                        <input type="text" class="form-control" value="${deptno}" id="deptno" name="deptno">
                       </div>
                     </div>
                   </div>
@@ -89,13 +109,13 @@
                     <div class="col-md-6 pr-md-1">
                       <div class="form-group">
                         <label>사수번호</label>
-                        <input type="text" class="form-control" value="${emp.mgr}" id="mgr" name="mgr">
+                        <input type="text" class="form-control" value="${mgr}" id="mgr" name="mgr">
                       </div>
                     </div>
                     <div class="col-md-6 pl-md-1">
                       <div class="form-group">
                         <label>상여금</label>
-                        <input type="text" class="form-control" value="${emp.comm}" id="comm" name="comm">
+                        <input type="text" class="form-control" value="${comm}" id="comm" name="comm">
                       </div>
                     </div>
                   </div>

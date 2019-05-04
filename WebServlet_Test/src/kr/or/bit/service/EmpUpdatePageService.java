@@ -20,25 +20,24 @@ public class EmpUpdatePageService implements Action{
 			  
 			  request.setCharacterEncoding("UTF-8");
 			  
-		  	  int empno = Integer.parseInt(request.getParameter("empno"));
-		  	  
-		  	  
-		  	  Empdao dao = new Empdao();
-		  	  Empdto result = dao.updatefromEmp(empno);
-		  	  
-			/*
-			 * String ename = result.getEname(); String job = result.getJob(); int mgr =
-			 * result.getMgr(); String hiredate = result.getHiredate(); int sal =
-			 * result.getSal(); int comm = result.getComm(); int deptno =
-			 * result.getDeptno();
-			 * 
-			 * 
-			 * request.setAttribute("ename", ename); request.setAttribute("job", job);
-			 * request.setAttribute("mgr", mgr); request.setAttribute("hiredate", hiredate);
-			 * request.setAttribute("sal", sal); request.setAttribute("comm", comm);
-			 * request.setAttribute("deptno", deptno); request.setAttribute("empno", empno);
-			 */
-		  	  request.setAttribute("result", result);
+			  	 int empno = Integer.parseInt(request.getParameter("empno"));
+		  	  	 int sal = Integer.parseInt(request.getParameter("sal"));
+		  	  	 String ename = request.getParameter("ename");
+				 String job =request.getParameter("job");
+				 int mgr = Integer.parseInt(request.getParameter("mgr"));
+				 String hiredate = request.getParameter("hiredate");
+				 int comm = Integer.parseInt(request.getParameter("comm"));
+				 int deptno = Integer.parseInt(request.getParameter("deptno"));
+  
+			  request.setAttribute("ename", ename); 
+			  request.setAttribute("job", job);
+			  request.setAttribute("mgr", mgr); 
+			  request.setAttribute("hiredate", hiredate);
+			  request.setAttribute("sal", sal); 
+			  request.setAttribute("comm", comm);
+			  request.setAttribute("deptno", deptno); 
+			  request.setAttribute("empno", empno);
+
 			  forward = new ActionForward();
 			  forward.setRedirect(false);
 			  forward.setPath("/WEB-INF/view/EmpUpdatePage.jsp");

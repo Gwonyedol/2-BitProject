@@ -115,6 +115,7 @@ public class Empdao {
 	public Empdto updatefromEmp(int empno) { // Update 할때 해당 사원의 정보를 저장해오는 부분
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		Empdto m = new Empdto();
 
 		try {
@@ -124,7 +125,7 @@ public class Empdao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, empno);
 			
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
 			System.out.println("이거안뜨면오바야 ㅠ..:" + rs.getString("ENAME"));
 			
@@ -137,12 +138,12 @@ public class Empdao {
 				m.setDeptno(rs.getInt("DEPTNO"));
 				m.setEmpno(rs.getInt("EMPNO"));
 			
-				SingletonHelper.close(rs);
-				conn.close();
+				
 				
 		} catch (Exception e) {
 			System.out.println("Insert :" + e.getMessage());
 		} finally {
+			SingletonHelper.close(rs);
 			SingletonHelper.close(pstmt);
 			try {
 				conn.close();
@@ -199,7 +200,7 @@ public class Empdao {
 		
 	}
 	
-	
+	//직원삭제
 	public int deleteEmp(int empno) {
 		//delete from memo where id=?
 		

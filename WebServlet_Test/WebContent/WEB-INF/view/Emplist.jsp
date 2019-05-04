@@ -62,7 +62,7 @@
 	 		<td>${emp.comm}</td>
 	 		<td>${emp.deptno}</td>
 	 		<td>
-	 		<a href="EmpUpdatePage.EMP?empno=${emp.empno}">수정</a>
+	 		<a href="EmpUpdatePage.EMP?empno=${emp.empno}&sal=${emp.sal}&job=${emp.job}&hiredate=${emp.hiredate}&mgr=${emp.mgr}&comm=${emp.comm}&deptno=${emp.deptno}&ename=${emp.ename}">수정</a>
 	 		&ensp;&ensp;<a href="EmpDelete.EMP?empno=${emp.empno}">삭제</a> 
 	 		</td>
 	 		</tr>
