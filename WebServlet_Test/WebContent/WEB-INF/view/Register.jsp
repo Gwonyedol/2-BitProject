@@ -19,34 +19,36 @@
   or demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
   
+  <style type="text/css">
+  body {
+  margin-left: 33%;
+  margin-right: 10%;
+  }
+  </style>
   
 </head>
 <body>
 
 
-
-
-<br><br><br><br>
       <div class="content">
+      <br><br><br><br><br><br><br><br><br>
         <div class="row">
           <div class="col-md-8">
           
             <div class="card">
               <div class="card-header">
-                <h2 class="title">Register Form</h2>
+                <h2 class="title" style="text-align: center;">Register Form</h2>
               </div>
               <div class="card-body">
-                <form action="RegisterOk.EMP" method="post">
+                <form action="RegisterOk.MEMBER" method="post">
                   <div class="row">
                     <div class="col-md-6 pr-md-1">
                       <div class="form-group">
-                        <label>ID</label>
                         <input type="text" class="form-control" placeholder="ID" name="Mid">
                       </div>
                     </div>
                     <div class="col-md-6 pl-md-1">
                       <div class="form-group">
-                        <label>PASSWORD</label>
                         <input type="text" class="form-control" placeholder="PASSWORD" name="Mpwd">
                       </div>
                     </div>
@@ -54,21 +56,20 @@
                   <div class="row">
                     <div class="col-md-8">
                       <div class="form-group">
-                        <label>About Me</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" ></textarea>
+                        <textarea rows="4" cols="80" class="form-control" name="etc" placeholder="Here can be your description" ></textarea>
                       </div>
                     </div>
                   </div>
+              <center><div class="card-footer">
+                <button type="submit" class="btn btn-fill btn-primary">Submit</button>
+              </center></div>
                 </form>
-              </div>
-              <div class="card-footer">
-                <button type="submit" class="btn btn-fill btn-primary">Save</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </center>
+
 
 
 

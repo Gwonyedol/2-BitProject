@@ -33,9 +33,10 @@
 <jsp:include page="/common/Top_Header.jsp"></jsp:include>
 <jsp:include page="/common/Left_Navi.jsp"></jsp:include>
 
-<button type="submit" class="btn btn-fill btn-primary" onclick="location.href='EmpAddPage.EMP'">회원등록</button>
+
                 <c:set var="emplist" value="${requestScope.emplist}" />
                 <h2 style="text-align: center;"> EMP LIST </h2>
+                <a href="EmpAddPage.com" style="float: right;">[회원등록] &ensp;</a>
                   <table class="table tablesorter " id="">
                     <thead class=" text-primary">
                       <tr>
@@ -62,8 +63,8 @@
 	 		<td>${emp.comm}</td>
 	 		<td>${emp.deptno}</td>
 	 		<td>
-	 		<a href="EmpUpdatePage.EMP?empno=${emp.empno}&sal=${emp.sal}&job=${emp.job}&hiredate=${emp.hiredate}&mgr=${emp.mgr}&comm=${emp.comm}&deptno=${emp.deptno}&ename=${emp.ename}">수정</a>
-	 		&ensp;&ensp;<a href="EmpDelete.EMP?empno=${emp.empno}">삭제</a> 
+	 		<a href="EmpUpdatePage.com?empno=${emp.empno}&sal=${emp.sal}&job=${emp.job}&hiredate=${emp.hiredate}&mgr=${emp.mgr}&comm=${emp.comm}&deptno=${emp.deptno}&ename=${emp.ename}">[수정]</a>
+	 		<a href="EmpDelete.com?empno=${emp.empno}">[삭제]</a> 
 	 		</td>
 	 		</tr>
   	</c:forEach>

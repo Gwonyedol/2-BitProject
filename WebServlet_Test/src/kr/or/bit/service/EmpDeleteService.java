@@ -29,10 +29,10 @@ public class EmpDeleteService implements Action {
 			  	  
 			  	  if(result > 0) {
 			  		  msg ="삭제성공";
-			  		  url ="EmpSearch.EMP";
+			  		  url ="EmpList.com";
 			  	  }else { //-1 (제약, 컬럼길이 문제)
 			  		  msg ="수정실패";
-			  		  url ="index.html";
+			  		  url ="EmpList.com";
 			  	  }
 			  	  request.setAttribute("board_msg", msg);
 			  	  request.setAttribute("board_url", url);

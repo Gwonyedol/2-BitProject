@@ -21,15 +21,9 @@
   
   
 
-
-<style> div { position:relative; } #cm { position:absolute; } .hc { width:200px; left:0; right:0; margin-left:auto; margin-right:auto; } /* 가로 중앙 정렬 */ .vc { height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto; } /* 세로 중앙 정렬 */ </style>
-
-
-
 </head>
 
 <body>
-
 
 <center>
           <div class="col-md-4">
@@ -50,11 +44,11 @@
                   </div>
                 </p>
                 <div class="card-description"> <!-- 로그인폼 -->
-                		<form action="LoginOk.EMP" method="post">
-                  		<input type="text" name="id" placeholder="ID"><br>
-						<input type="password" name="pwd" placeholder="PWD"><br><br>
+                		<form action="LoginOk.com" method="post">
+                  		<input type="text" name="Mid" placeholder="ID"><br>
+						<input type="password" name="Mpwd" placeholder="PWD"><br><br>
 						<input type ="submit" value = "Go" class="btn btn-icon btn-round btn-facebook">
-						<input type ="button" onclick="location.href='Register.EMP'" value = "Join" class="btn btn-icon btn-round btn-facebook">
+						<input type ="button" onclick="location.href='Register.com'" value = "Join" class="btn btn-icon btn-round btn-facebook">
 						</form>
 						
                 </div>
@@ -62,7 +56,9 @@
 
             </div>
           </div>
+          
           </center>
+          
 	      <footer class="footer">
         <div class="container-fluid">
           <div class="copyright">

@@ -37,7 +37,7 @@
                 <h5 class="title">사원 등록</h5>
               </div>
               <div class="card-body">
-                <form action="EmpAdd.EMP" method="get">
+                <form action="EmpAdd.com" method="get">
                   <div class="row">
                     <div class="col-md-5 pr-md-1">
                       <div class="form-group">

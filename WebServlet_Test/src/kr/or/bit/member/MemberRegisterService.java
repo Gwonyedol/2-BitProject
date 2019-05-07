@@ -1,6 +1,4 @@
-package kr.or.bit.service;
-
-import java.sql.Date;
+package kr.or.bit.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +7,7 @@ import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.Empdao;
 
-public class EmpAddService implements Action {
+public class MemberRegisterService implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
@@ -17,32 +15,25 @@ public class EmpAddService implements Action {
 		  try {
 			  
 			  
-			  	  System.out.println("add서비스까진 왔다.");
 				  request.setCharacterEncoding("UTF-8");
-				  System.out.println(request.getParameter("empno")); 
 				  
-				  String ename = request.getParameter("ename");
-			  	  String job = request.getParameter("job");
-			  	  int empno = Integer.parseInt(request.getParameter("empno"));
-			  	  int mgr = Integer.parseInt(request.getParameter("mgr"));
-			  	  String hiredate = request.getParameter("hiredate");
-			  	  int sal = Integer.parseInt(request.getParameter("sal"));
-			      int comm = Integer.parseInt(request.getParameter("comm"));
-			  	  int deptno = Integer.parseInt(request.getParameter("deptno"));
+				  String Mid = request.getParameter("Mid");
+			  	  String Mpwd = request.getParameter("Mpwd");
+			  	  String etc = request.getParameter("etc");
 			  	  
 			  	  
-			  	  Empdao dao = new Empdao();
-			  	  int result = dao.insertEmp(ename, job, empno, mgr, hiredate, sal, comm, deptno);
+			  	  MemberDAO dao = new MemberDAO();
+			  	  int result = dao.MemberAdd(Mid, Mpwd, etc);
 			  	  
 			  	  String msg="";
 			  	  String url="";
 			  	  
 			  	  if(result > 0) {
 			  		  msg ="등록성공";
-			  		  url ="EmpList.com";
+			  		  url ="index.com";
 			  	  }else { //-1 (제약, 컬럼길이 문제)
 			  		  msg ="등록실패";
-			  		  url ="Main.com";
+			  		  url ="index.com";
 			  	  }
 			  	  request.setAttribute("board_msg", msg);
 			  	  request.setAttribute("board_url", url);
@@ -58,5 +49,6 @@ public class EmpAddService implements Action {
 		
 			return forward;
 	}
+	
+	}
 
-}

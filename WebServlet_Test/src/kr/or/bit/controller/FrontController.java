@@ -11,18 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
-import kr.or.bit.member.EmpRegisterService;
+import kr.or.bit.board.BoardListService;
+import kr.or.bit.member.MemberLoginService;
+import kr.or.bit.member.MemberLogout;
+import kr.or.bit.member.MemberRegisterService;
 import kr.or.bit.service.EmpAddService;
 import kr.or.bit.service.EmpDeleteService;
 import kr.or.bit.service.EmpListService;
 import kr.or.bit.service.EmpUpdatePageService;
 import kr.or.bit.service.EmpUpdateService;
 
-@WebServlet("*.EMP")
-public class EmpController extends HttpServlet {
+@WebServlet("*.com")
+public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public EmpController() {
+	public FrontController() {
 		super();
 	}
 
@@ -35,7 +38,7 @@ public class EmpController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 
-		if (url_Command.equals("/EmpSearch.EMP")) { // 회원조회(리스트)
+		if (url_Command.equals("/EmpList.com")) { // EMP조회리스트로 이동
 			try {
 				action = new EmpListService();
 				forward = action.execute(request, response);
@@ -43,12 +46,12 @@ public class EmpController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (url_Command.equals("/EmpAddPage.EMP")) { // 회원 등록 페이지 이동
+		}else if (url_Command.equals("/EmpAddPage.com")) { // EMP등록 페이지 이동
 				forward = new ActionForward();
 				forward.setRedirect(false);
 				forward.setPath("/WEB-INF/view/EmpAddPage.jsp");
 				System.out.println("Controller forward Add Page");
-		}else if (url_Command.equals("/EmpAdd.EMP")) { // 회원 등록
+		}else if (url_Command.equals("/EmpAdd.com")) { // EMP등록
 			try {
 				action = new EmpAddService();
 				forward = action.execute(request, response);
@@ -56,7 +59,7 @@ public class EmpController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (url_Command.equals("/EmpUpdatePage.EMP")) { // 회원 수정페이지로 이동 하면서 파라메터 보내준다
+		} else if (url_Command.equals("/EmpUpdatePage.com")) { // EMP 수정페이지로 이동 하면서 파라메터 보내준다
 			try { 
 				action = new EmpUpdatePageService();
 				forward = action.execute(request, response);
@@ -64,7 +67,7 @@ public class EmpController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (url_Command.equals("/EmpUpdate.EMP")) { // 회원 수정 버튼 
+		}else if (url_Command.equals("/EmpUpdate.com")) { // EMP 수정 버튼 
 			try { 
 				action = new EmpUpdateService();
 				forward = action.execute(request, response);
@@ -72,7 +75,7 @@ public class EmpController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (url_Command.equals("/EmpDelete.EMP")) { // 회원 삭제
+		} else if (url_Command.equals("/EmpDelete.com")) { // EMP 삭제
 			try { 
 				action = new EmpDeleteService();
 				forward = action.execute(request, response);
@@ -81,18 +84,64 @@ public class EmpController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		} else if (url_Command.equals("/Main.EMP")) { // 메인으로 이동
+			
+			
+			
+		} else if (url_Command.equals("/Main.com")) { // 메인이자 게시판으로 이동
+			action = new BoardListService();
+			forward = action.execute(request, response);
+		} 
+		
+		else if (url_Command.equals("/Index.com")) { // 로그인페이지(첫화면)으로 이동
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/view/Main.jsp");
-		} else if (url_Command.equals("/Register.EMP")) { // 회원가입 페이지로 이동
+			forward.setPath("index.jsp");
+		}
+		
+		
+		
+		
+		
+		else if (url_Command.equals("/Register.com")) { // 회원가입 페이지로 이동
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/view/Register.jsp");
-		} else if (url_Command.equals("/RegisterOk.EMP")) { // 회원가입 처리
-			action = new EmpRegisterService();
+		} else if (url_Command.equals("/RegisterOk.com")) { // 회원가입 처리
+			action = new MemberRegisterService();
 			forward = action.execute(request, response);
-		}
+		} else if (url_Command.equals("/LoginOk.com")) { // 회원가입 처리
+			action = new  MemberLoginService(); 
+			forward = action.execute(request, response);
+		} else if (url_Command.equals("/Logout.com")) { // 회원가입 처리
+			action = new  MemberLogout();
+			forward = action.execute(request, response);
+		} 
+		
+		
+		
+		
+		
+		else if (url_Command.equals("/boardWrite.com")) { // 게시판에 글쓰기 화면으로 이동시켜줌
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/board/boardwrtie.jsp");
+		} else if (url_Command.equals("/boardWriteOk.com")) { // 글쓰기 확인 버튼
+			action = new  MemberLogout();
+			forward = action.execute(request, response);
+		} else if (url_Command.equals("/boardEdit.com")) { // 글쓴거 수정하는 화면으로 이동
+			action = new  MemberLogout();
+			forward = action.execute(request, response);
+		} else if (url_Command.equals("/boardEdit.com")) { // 글쓴거 수정완료 버튼
+			action = new  MemberLogout();
+			forward = action.execute(request, response);
+		} else if (url_Command.equals("/boardEdit.com")) { // 글쓴거 삭제하는 화면으로 이동
+			action = new  MemberLogout();
+			forward = action.execute(request, response);
+		} else if (url_Command.equals("/Logout.com")) { // 글쓴거 삭제완료 버튼
+			action = new  MemberLogout();
+			forward = action.execute(request, response);
+		} 
+		
 		
 		
 

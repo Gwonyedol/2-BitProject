@@ -31,17 +31,15 @@
         </div>
         <ul class="nav">
           <li class="active ">
-            <a href="Main.EMP">
+            <a href="Main.com">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>게시판</p>
             </a>
           </li>
-          <li>
-          <li>
             <li class="active ">
-            <a href="EmpSearch.EMP">
+            <a href="EmpList.com">
               <i class="tim-icons icon-single-02"></i>
-              <p>회원 리스트</p>
+              <p>사원 리스트</p>
             </a>
           </li>
         </ul>
