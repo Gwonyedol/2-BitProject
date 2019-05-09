@@ -1,0 +1,51 @@
+.widget-reminder {
+	& .widget-reminder-header {
+		background: darken($widget-default-bg, 5%);
+		padding: rem(12px) rem(15px) rem(8px);
+		font-size: rem(10px);
+		font-weight: bold;
+		color: darken($widget-default-bg, 50%);
+		border-radius: rem($border-radius) rem($border-radius) 0 0;
+	}
+	& div + .widget-reminder-header {
+		border-radius: 0;
+	}
+	& .widget-reminder-item {
+		position: relative;
+		@include display-flex();
+	}
+	& .widget-reminder-header + .widget-reminder-item,
+	& .widget-reminder-item + .widget-reminder-header,
+	& .widget-reminder-item + .widget-reminder-item {
+		border-top: 1px solid darken($widget-default-bg, 10%);
+	}
+	& .widget-reminder-time,
+	& .widget-reminder-content {
+		padding: rem(10px);
+	}
+	& .widget-reminder-content {
+		@include flex(1);
+	}
+	& .widget-reminder-time {
+		width: rem(80px);
+		text-align: right;
+		font-size: rem(12px);
+	}
+	& .widget-reminder-divider {
+		width: rem(2px);
+		background: darken($widget-default-bg, 10%);
+	}
+	&.widget-reminder-inverse {
+		color: $white;
+	
+		& .widget-reminder-header + .widget-reminder-item,
+		& .widget-reminder-item + .widget-reminder-header,
+		& .widget-reminder-item + .widget-reminder-item {
+			border-color: lighten($widget-inverse-bg, 10%);
+		}
+		& .widget-reminder-header {
+			background: lighten($widget-inverse-bg, 10%);
+			color: lighten($widget-inverse-bg, 50%);
+		}
+	}
+}

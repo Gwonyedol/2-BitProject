@@ -1,0 +1,33 @@
+.progress {
+	@include display-flex();
+	border-radius: rem(30px);
+	
+	& .progress-bar {
+		border-radius: rem(30px);
+		
+		@include display-flex();
+		@include flex-direction-column();
+		@include flex-justify-content(center);
+	}
+	&.without-rounded-corner {
+		& .progress-bar {
+			border-radius: 0;
+		}
+	}
+	&.progress-sm {
+		height: rem(12px);
+		
+		& .progress-bar {
+			height: rem(12px);
+			line-height: rem(12px);
+			font-size: rem(9px);
+		}
+		&.progress-xs {
+			height: rem(4px);
+			
+			& .progress-bar {
+				height: rem(4px);
+			}
+		}
+	}
+}

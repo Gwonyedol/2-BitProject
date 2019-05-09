@@ -1,0 +1,33 @@
+.vbox {
+	@include display-flex();
+	@include flex-direction-column();
+	height: 100%;
+	
+	@include media-breakpoint-down(md) {
+		display: block;
+	}
+	
+	& .vbox-col {
+		@include flex-direction-column();
+	}
+	& .vbox-stretch {
+		@include display-flex();
+		@include flex(1);
+		
+		@include media-breakpoint-down(md) {
+			display: block;
+		}
+	}
+	&.vbox-bordered {
+		& .vbox-row {
+			& + .vbox-row {
+				border-top: 1px solid darken($white, 20%);
+			}
+		}
+		& .vbox-col {
+			& + .vbox-col {
+				border-left: 1px solid darken($white, 20%);
+			}
+		}
+	}
+}

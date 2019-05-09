@@ -1,0 +1,35 @@
+.app-content {
+	margin-left: rem($app-sidebar-width);
+	padding: rem(30px);
+	position: relative;
+	height: 100%;
+	
+	@include media-breakpoint-down(md) {
+		margin-left: 0;
+		padding: rem(15px);
+	}
+	& .app-content-container {
+		position: relative;
+		z-index: 10;
+	}
+	& .app-content-cover {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+.app-content-full-width {
+	& .app-content {
+		margin: 0;
+	}
+}
+.app-content-full-height {
+	height: 100%;
+	
+	& .app-content {
+		height: 100%;
+		border-top: 1px solid darken($white, 20%);
+	}
+}

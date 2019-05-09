@@ -1,0 +1,150 @@
+.nav-tabs {
+	border-bottom: 1px solid darken($white, 20%);
+		
+	& .nav-item {
+		margin-right: rem(2px);
+		
+		& .nav-link {
+			&:hover,
+			&:focus {
+				border-color: darken($white, 10%);
+				border-bottom-color: darken($white, 20%);
+			}
+		}
+		&.show .nav-link,
+		& .nav-link.active {
+			border-color: darken($white, 20%);
+			background: $white;
+			border-bottom-color: $white;
+		}
+	}
+}
+.tab-content{
+	&.tab-content-bordered {
+		padding: rem(15px);
+		border: 1px solid darken($white, 20%);
+		border-top: none;
+		border-radius: 0 0 rem($border-radius) rem($border-radius);
+		background: $white;
+	}
+}
+
+.nav-tabs-left {
+	@include display-flex();
+	
+	& .nav-tabs {
+		display: block;
+		border-bottom: none;
+		border-right: 1px solid darken($white, 20%);
+		
+		& .nav-item {
+			margin-right: -1px;
+			margin-bottom: 0;
+			
+			& .nav-link {
+				margin-bottom: rem(2px);
+				margin-right: 0;
+				border-radius: rem($border-radius) 0 0 rem($border-radius);
+				white-space: nowrap;
+				
+				&:hover,
+				&:focus {
+					border-color: darken($white, 10%);
+					border-right-color: darken($white, 20%);
+				}
+			}
+			&.show .nav-link,
+			& .nav-link.active {
+				border-color: darken($white, 20%);
+				border-right-color: $white;
+			}
+		}
+	}
+	& .tab-content {
+		@include flex(1);
+		
+		&.tab-content-bordered {
+			border: 1px solid darken($white, 20%);
+			border-left: none;
+			border-radius: 0 rem($border-radius) rem($border-radius) 0;
+		}
+	}
+}
+
+.nav-tabs-right {
+	@include display-flex();
+	
+	& .nav-tabs {
+		display: block;
+		border-bottom: none;
+		border-left: 1px solid darken($white, 20%);
+		
+		& .nav-item {
+			margin-left: -1px;
+			margin-bottom: 0;
+			
+			& .nav-link {
+				margin-bottom: rem(2px);
+				margin-left: 0;
+				border-radius: 0 rem($border-radius) rem($border-radius) 0;
+				white-space: nowrap;
+				
+				&:hover,
+				&:focus {
+					border-color: darken($white, 10%);
+					border-left-color: darken($white, 20%);
+				}
+			}
+			&.show .nav-link,
+			& .nav-link.active {
+				border-color: darken($white, 20%);
+				border-left-color: $white;
+			}
+		}
+	}
+	& .tab-content {
+		@include flex(1);
+		
+		&.tab-content-bordered {
+			border: 1px solid darken($white, 20%);
+			border-right: none;
+			border-radius: rem($border-radius) 0 0 rem($border-radius);
+		}
+	}
+}
+
+.nav-tabs-bottom {
+	& .nav-tabs {
+		border-top: 1px solid darken($white, 20%);
+		border-bottom: none;
+		
+		& .nav-item {
+			margin-top: -1px;
+			margin-bottom: 0;
+			margin-right: rem(2px);
+			
+			& .nav-link {
+				border-radius: 0 0 rem($border-radius) rem($border-radius);
+				
+				&:hover,
+				&:focus {
+					border-color: darken($white, 10%);
+					border-top-color: darken($white, 20%);
+				}
+			}
+			&.show .nav-link,
+			& .nav-link.active {
+				border-color: darken($white, 20%);
+				border-top-color: $white;
+			}
+		}
+	}
+	& .tab-content{
+		&.tab-content-bordered {
+			padding: rem(15px);
+			border: 1px solid darken($white, 20%);
+			border-bottom: none;
+			border-radius: rem($border-radius) rem($border-radius) 0 0;
+		}
+	}
+}

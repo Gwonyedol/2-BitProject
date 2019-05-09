@@ -1,0 +1,25 @@
+.bootstrap-tagsinput {
+	box-shadow: none !important;
+	display: block !important;
+	border-color: $input-border-color !important;
+	color: $black !important;
+	position: relative !important;
+	@include transition(all .15s ease-in-out);
+  
+	& .tag {
+		font-size: rem(12px) !important;
+		font-weight: 600;
+		padding: rem(1px) rem(4px) rem(1px) rem(6px) !important;
+		border-radius: rem($border-radius-sm) !important;
+		
+		&.label-info {
+			background: lighten($black, 50%) !important;
+		}
+		& [data-role="remove"] {
+			&:hover {
+				box-shadow: none !important;
+				color: rgba($white,0.5) !important;
+			}
+		}
+	}
+}

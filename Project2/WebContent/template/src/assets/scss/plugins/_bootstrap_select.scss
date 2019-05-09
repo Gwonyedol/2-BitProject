@@ -1,0 +1,11 @@
+.bootstrap-select {
+	& .btn.dropdown-toggle {
+		@include transition(all .15s ease-in-out);
+		
+		&:focus {
+			border-color: $input-focus-border-color !important;
+			box-shadow: $input-btn-focus-box-shadow !important;
+			outline: none !important;
+		}
+	}
+}

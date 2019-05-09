@@ -1,0 +1,85 @@
+.login {
+	color: $white;
+	@include display-flex();
+	@include flex-align(center);
+	height: 100%;
+	
+	& a {
+		color: $white;
+		text-decoration: underline;
+		
+		&:hover,
+		&:focus {
+			color: rgba($white, .75);
+		}	
+	}
+	& .login-cover {
+		background: url('img/login-cover.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center;
+		position: fixed;
+		right: 0;
+		top: 0;
+		left: 0;
+		bottom: 0;
+	
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(to bottom, rgba($black, .3) 0%, rgba($black, 1) 100%);
+		}
+	}
+	& .login-content {
+		max-width: rem(480px);
+		margin: 0 auto;
+		position: relative;
+		@include flex(1);
+		
+		& h3 {
+			& span {
+				border-bottom: rem(2px) solid rgba($white ,0.5);
+				padding-bottom: rem(5px);
+			}
+		}
+	}
+	& .login-brand {
+		font-size: rem(16px);
+		margin-bottom: rem(30px);
+		
+		& a {
+			text-decoration: none;
+			color: $white;
+		}
+		& b {
+			background: $white;
+			color: $black;
+			padding: 0 rem(6px);
+			margin-right: rem(5px);
+			border-radius: $border-radius-sm;
+		}
+	}
+	& .form-control {
+		background: rgba($white, .35);
+		border-color: transparent;
+		color: #fff;
+		
+		&:focus {
+			box-shadow: 0 0 0 rem(2px) $white;
+		}
+		@include placeholder(rgba($white, .25));
+	}
+	& .login-desc {
+		color: rgba($white ,0.5);
+	}
+	& .checkbox input:not(:checked) + label:before, 
+	& .checkbox-inline input:not(:checked) + label:before {
+		background: none;
+	}
+}

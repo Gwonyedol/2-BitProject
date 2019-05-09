@@ -1,0 +1,373 @@
+.profile-header {
+	position: relative;
+	overflow: hidden;
+	
+	& .profile-header-cover {
+		background: url('img/profile-cover.jpg');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(to bottom, rgba($black, 0) 0%, rgba($black, 1) 100%);
+		}
+	}
+	& .profile-header-content {
+		position: relative;
+		color: $white;
+		padding: rem(20px);
+		
+		@include clearfix();
+	}
+	& .profile-header-tab {
+		position: relative;
+		background: $white;
+		list-style-type: none;
+		margin: rem(-20px) 0 0;
+		padding: 0 0 0 rem(140px);
+		border-bottom: 1px solid darken($white, 20%);
+		white-space: nowrap;
+		
+		@include media-breakpoint-down(md) {
+			overflow: scroll;
+			padding: 0;
+			margin: 0;
+			display: block;
+		}
+		
+		& > li {
+			display: inline-block;
+			margin: 0;
+			
+			& a {
+				display: block;
+				color: $black;
+				line-height: rem(20px);
+				padding: rem(10px) rem(20px);
+				text-decoration: none;
+				font-weight: bold;
+				font-size: rem(13px);
+				border: none;
+				
+				&.active {
+					color: $primary;
+				}
+			}
+		}
+	}
+	& .profile-header-img {
+		float: left;
+		width: rem(120px);
+		height: rem(120px);
+		overflow: hidden;
+		position: relative;
+		z-index: 10;
+		margin: 0 rem(20px) rem(-20px) 0;
+		padding: rem(5px);
+		border-radius: rem($border-radius);
+		background: $white;
+		
+		@include media-breakpoint-down(md) {
+			width: rem(80px);
+			height: rem(80px);
+			margin: 0;
+		}
+		@include media-breakpoint-down(sm) {
+			width: rem(60px);
+			height: rem(60px);
+		}
+		& img {
+			max-width: 100%;
+		}
+	}
+	& .profile-header-info {
+		@include media-breakpoint-down(md) {
+			margin-left: rem(95px);
+		}
+		@include media-breakpoint-down(sm) {
+			margin-left: rem(75px);
+		}
+		& h4 {
+			font-weight: bold;
+			margin-top: rem(10px);
+			margin-bottom: rem(5px);
+			font-size: rem(18px);
+			
+			@include media-breakpoint-down(md) {
+				margin-top: rem(5px);
+			}
+		}
+		& p {
+			color: rgba($white, .75);
+			margin-bottom: rem(10px);
+		}
+	}
+}
+.profile-container {
+	padding: rem(25px);
+	
+	@include media-breakpoint-down(md) {
+		padding: rem(15px);
+	}
+}
+.post {
+	background: $white;
+	padding: rem(15px);
+	border-radius: rem($border-radius);
+	margin: 0 auto rem(15px);
+	
+	@include clearfix();
+	
+	& .post-header {
+		@include display-flex();
+		@include flex-align(center);
+		
+		& .post-header-img {
+			width: rem(36px);
+			height: rem(36px);
+			overflow: hidden;
+			border-radius: rem($border-radius);
+			background: darken($white, 20%);
+			
+			& img {
+				max-width: 100%;
+			}
+			& + .post-header-info {
+				padding-left: rem(10px);
+			}
+		}
+		& .post-header-info {
+			@include flex(1);
+			
+			& h4 {
+				margin: 0;
+				font-size: rem(13px);
+				font-weight: 600;
+			}
+			& .time {
+				font-size: rem(12px);
+				color: lighten($black, 50%);
+				font-weight: 500;
+			}
+		}
+		& + .post-content {
+			margin-top: rem(15px);
+		}
+	}
+	& .post-content {
+		& .img-list {
+			list-style-type: none;
+			margin: -1px;
+			padding: 0;
+			
+			& > li {
+				float: left;
+				width: 25%;
+				padding: 1px;
+				
+				&.main {
+					width: 50%;
+				}
+				& a {
+					display: block;
+					padding-top: 60%;
+					overflow: hidden;
+					position: relative;
+					
+					& img,
+					& .img {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						max-width: 100%;
+						background-size: cover;
+						background-position: center;
+						background-repeat: no-repeat;
+					}
+				}
+				&.with-number {
+					& .number {
+						position: absolute;
+						top: 50%;
+						left: 0;
+						right: 0;
+						color: $white;
+						font-size: rem(26px);
+						font-weight: 500;
+						line-height: rem(26px);
+						margin-top: rem(-13px);
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}
+.profile-info-list {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	
+	& > li {
+		padding: rem(8px) 0;
+		
+		&.title {
+			font-size: rem(12px);
+			font-weight: bold;
+			color: lighten($black, 50%);
+			padding: 0 0 rem(5px);
+		}
+		& + li.title {
+			padding-top: rem(20px);
+		}
+		& .field {
+			font-weight: bold;
+		}
+		& .value {
+			color: lighten($black, 25%);
+		}
+		&.img-list {
+			& a {
+				display: inline-block;
+			
+				& img {
+					max-width: rem(36px);
+					border-radius: rem(36px);
+				}
+				& + a {
+					margin-left: rem(-10px);
+				}
+			}
+		}
+	}
+}
+.friend-list {
+	list-style-type: none;
+	margin: -5px;
+	padding: 0;
+	
+	& > li {
+		float: left;
+		width: 50%;
+		
+		@include media-breakpoint-down(md) {
+			float: none;
+			width: auto;
+		}
+	
+		& > a {
+			@include display-flex();
+			@include flex-align(center);
+			text-decoration: none;
+			color: $black;
+			padding: rem(10px);
+			margin: 5px;
+			background: $white;
+			border-radius: $border-radius;
+		
+			@include clearfix();
+		}
+		& .friend-img {
+			float: left;
+			width: rem(48px);
+			height: rem(48px);
+			overflow: hidden;
+			background: darken($white, 20%);
+			border-radius: rem(48px);
+		
+			& img {
+				max-width: 100%;
+			}
+			& + .friend-info {
+				padding-left: 10px;
+			}
+		}
+		& .friend-info {
+			& h4 {
+				margin: 0;
+				font-size: rem(14px);
+				font-weight: 600;
+			}
+			& p {
+				color: lighten($black, 50%);
+				margin: 0;
+				font-size: rem(12px);
+			}
+		}
+	}
+}
+
+.table.table-profile {
+	& th {
+		border: none;
+		color: $black;
+		padding-bottom: rem(5px);
+		padding-top: 0;
+		padding-left: 0;
+	}
+	& td {
+		border-color: darken($white, 20%);
+	}
+	& tbody {
+		& + thead {
+			& > tr {
+				& > th {
+					padding-top: rem(20px);
+				}
+			}
+		}
+	}
+	& .field {
+		color: lighten($black, 25%);
+		font-weight: 600;
+		width: 25%;
+		text-align: right;
+	}
+	& .value {
+		font-weight: 500;
+	}
+}
+.img-grid-list {
+	list-style-type: none;
+	margin: -1px;
+	padding: 0;
+	
+	& > li {
+		float: left;
+		width: 20%;
+		padding: 1px;
+	
+		& a {
+			position: relative;
+			overflow: hidden;
+			padding-top: 75%;
+			display: block;
+			
+			& img,
+			& .img {
+				position: absolute;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				max-width: 100%;
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+		}
+	}
+}

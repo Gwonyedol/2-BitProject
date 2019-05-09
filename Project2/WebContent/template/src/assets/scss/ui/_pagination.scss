@@ -1,0 +1,90 @@
+.pagination {
+	@include display-flex();
+	@include flex-wrap();
+	
+	& .page-item {
+		& .page-link {
+			color: $black;
+			border-radius: rem($border-radius);
+			padding: rem(8px) rem(12px);
+		}
+		&.disabled {
+			& .page-link {
+				color: lighten($black, 75%);
+			}
+		}
+		&.active {
+			& .page-link {
+				color: $white;
+			}
+		}
+		& + .page-item {
+			margin-left: rem(5px);
+		}
+	}
+	&.pagination-sm {
+		& .page-item {
+			& .page-link {
+				border-radius: rem($border-radius);
+				padding: rem(2px) rem(8px);
+			}
+		}
+	}
+	&.pagination-lg {
+		& .page-item {
+			& .page-link {
+				border-radius: rem($border-radius-lg);
+				padding: rem(8px) rem(16px);
+			}
+		}
+	}
+}
+.pager {
+	padding-left: 0;
+	margin: rem(20px) 0;
+	text-align: center;
+	list-style: none;
+	
+	@include clearfix();
+	
+	
+	& li {
+		display: inline;
+		
+		
+		& > a, 
+		& > span {
+			display: inline-block;
+			padding: rem(6px) rem(15px);
+			background-color: $white;
+			border: 1px solid darken($white, 20%);
+			border-radius: 1rem;
+			
+			&:focus, 
+			&:hover {
+				text-decoration: none;
+				background-color: darken($white, 5%);
+			}
+		}
+		&.disabled {
+			& > a, 
+			& > span {
+				color: lighten($black, 50%);
+				cursor: not-allowed;
+				background-color: $white;
+			}
+		}
+		&.previous {	
+			& > a, 
+			& > span {
+				float: left;
+			}
+		}
+		&.next {
+			& > a, 
+			& > span {
+				float: right;
+			}
+		}
+	}
+}

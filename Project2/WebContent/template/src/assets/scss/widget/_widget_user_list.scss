@@ -1,0 +1,51 @@
+.widget-user-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	
+	& > li {
+		display: inline-block;
+		
+		& + li {
+			margin-left: rem(-18px);
+		}
+		& a {
+			display: block;
+			border: 2px solid $white;
+			overflow: hidden;
+			width: rem(36px);
+			height: rem(36px);
+			line-height: rem(32px);
+			text-align: center;
+			text-decoration: none;
+			border-radius: rem(36px);
+			margin-bottom: rem(-4px);
+			
+			& img {
+				display: block;
+				max-width: 100%;
+			}
+		}
+		&.number {
+			& a {
+				background: darken($white, 30%);
+				color: $white;
+			}
+		}
+	}
+	&.widget-user-list-inverse {
+		& > li {
+			& a {
+				border-color: $widget-inverse-bg;
+			}
+			&.number {
+				& a {
+					background: lighten($black, 30%);
+					color: $white;
+				}
+			}
+		}
+	}
+}

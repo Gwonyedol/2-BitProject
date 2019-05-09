@@ -1,0 +1,17 @@
+.widget-title-link,
+a.widget-title-link {
+	padding: rem(2px) rem(6px);
+	font-size: rem(10px);
+	font-weight: bold;
+	float: right;
+	text-decoration: none;
+	color: $black;
+	background: rgba($black, .25);
+	border-radius: rem(16px);
+	text-decoration: none;
+	
+	&.widget-title-link-inverse {
+		color: $white;
+		background: rgba($white, .25);
+	}
+}

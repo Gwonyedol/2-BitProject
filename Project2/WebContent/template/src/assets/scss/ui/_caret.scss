@@ -1,0 +1,20 @@
+.caret {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: rem(2px);
+	vertical-align: middle;
+	border-top: rem(4px) dashed;
+	border-top: rem(4px) solid\9;
+	border-right: rem(4px) solid transparent;
+	border-left: rem(4px) solid transparent;
+}
+.dropup {
+	&.caret,
+	& .caret {
+		content: '';
+		border-top: 0;
+		border-bottom: 4px dashed;
+		border-bottom: 4px solid\9;
+  }
+}

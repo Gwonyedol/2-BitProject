@@ -1,0 +1,12 @@
+pre {
+	display: block;
+	padding: rem(15px);
+	margin: 0 0 rem(10px);
+	font-size: rem(14px);
+	color: lighten($black, 20%);
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: darken($white, 5%);
+	border: 1px solid darken($white, 20%);
+	border-radius: $border-radius;
+}

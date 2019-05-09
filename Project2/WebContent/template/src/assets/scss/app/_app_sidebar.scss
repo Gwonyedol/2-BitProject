@@ -1,0 +1,500 @@
+/* Sidebar Setting */
+.app-sidebar {
+	background: lighten($black, 10%);
+	position: absolute;
+	left: 0;
+	top: rem($app-header-height);
+	width: rem($app-sidebar-width);
+	color: $white;
+	z-index: 1020;
+	
+	&:before {
+		content: '';
+		position: fixed;
+		top: rem($app-header-height);
+		width: rem($app-sidebar-width);
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: lighten($black, 10%);
+	}
+	& .nav {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		display: block;
+		position: relative;
+		
+		& > li {
+			& a {
+				@include display-flex();
+				@include flex-align(center);
+				color: darken($white, 50%);
+				padding: rem(3px) rem(15px);
+				font-size: rem(12px);
+				line-height: rem(20px);
+				text-decoration: none;
+				
+				&:hover {
+					color: darken($white, 20%);
+				}
+			}
+			&.active {
+				& > a {
+					color: $white;
+					background: rgba($white, 0.2);
+					
+					& .nav-icon i {
+						background: rgba($black,0.5);
+						color: $white;
+					}
+				}
+				& > .nav-submenu {
+					display: block;
+				}
+			}
+		}
+		& .nav-icon,
+		& .nav-text,
+		& .nav-caret {
+			@include display-inline-flex();
+		}
+		& .nav-icon {
+			font-size: rem(12px);
+			text-align: center;
+			color: $white;
+			width: rem(22px);
+			@include display-flex();
+			@include flex-align(center);
+			
+			& i {
+				display: block;
+				margin: 0 auto;
+				width: 100%;
+				height: rem(22px);
+				line-height: rem(22px);
+				border-radius: rem(6px);
+				background: rgba($white, .15);
+				color: rgba($white,0.5);
+			}
+		}
+		& .nav-label {
+			font-size: rem(9px);
+			font-weight: bold;
+			border-radius: rem(6px);
+			border: 1px solid rgba($white, .25);
+			padding: rem(1px) rem(4px);
+			margin-left: rem(8px);
+			line-height: rem(16px);
+		}
+		& .nav-text {
+			@include flex(1);
+		}
+		& span + .nav-text {
+			padding-left: rem(8px);
+		}
+		& .nav-submenu {
+			display: none;
+			list-style-type: none;
+			padding: 0;
+			margin: rem(3px) 0 rem(10px) rem(30px);
+			
+			& > li {
+				& a {
+					padding: rem(1px) rem(15px);
+				}
+				&.active {
+					& > a {
+						color: $white;
+					}
+				}
+			}
+		}
+		& .nav-profile {
+			margin: rem(15px);
+			@include display-flex();
+			@include flex-align(center);
+			
+			&:before,
+			&:after {
+				@include clearfix();
+			}
+			& .profile-img {
+				@include display-inline-flex();
+				width: rem(34px);
+				height: rem(34px);
+				border-radius: rem(18px);
+				overflow: hidden;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				
+				& img {
+					max-width: 100%;
+				}
+				& + .profile-info {
+					padding-left: rem(15px);
+				}
+			}
+			& .profile-info {
+				@include flex(1);
+				
+				& h4 {
+					margin: 0;
+					font-size: rem(14px);
+					line-height: rem(18px);
+					font-weight: 600;
+					color: darken($white, 25%);
+				}
+				& p {
+					margin: 0;
+					font-size: rem(12px);
+					line-height: rem(16px);
+					color: darken($white, 50%);
+				}
+			}
+		}
+		& .nav-header {
+			margin: rem(15px) rem(15px) rem(10px);
+			font-size: rem(10px);
+			font-weight: bold;
+			color: lighten($black, 50%);
+		}
+		& .nav-project {
+			padding: rem(10px) rem(15px);
+			@include display-flex();
+			@include flex-align(center);
+			@include flex(1);
+			
+			& > a {
+				@include display-flex();
+				@include flex-align(center);
+				@include flex(1);
+				padding: rem(10px) rem(15px);
+				margin: rem(-10px) rem(-15px);
+				text-decoration: none;
+				
+				& > div {
+					& + div {
+						padding-left: rem(10px);
+					}
+				}
+			}
+			& > div {
+				& + div {
+					padding-left: rem(10px);
+				}
+			}
+			& .project-icon {
+				font-size: rem(14px);
+				text-align: center;
+				height: rem(20px);
+				width: rem(20px);
+				line-height: rem(20px);
+				border-radius: rem(6px);
+				background: rgba($white, .15);
+				color: rgba($white,0.5);
+			}
+			& .project-info {
+				@include flex(1);
+			}
+			& .project-title {
+				font-size: rem(12px);
+				margin: 0 0 rem(5px);
+				font-weight: normal;
+			}
+			& .project-percentage {
+				font-size: rem(12px);
+			}
+			& .progress {
+				margin: 0;
+				background: rgba($black, .5);
+				height: rem(5px);
+			}
+		}
+		& .nav-divider {
+			height: 1px;
+			background: lighten($black, 25%);
+			margin: 15px 0;
+		}
+		& .nav-copyright {
+			font-size: rem(12px);
+			margin: rem(10px) rem(15px);
+			color: darken($white, 25%);
+		}
+	}
+	& .sidebar-minify-btn {
+		position: absolute;
+		right: rem(-15px);
+		text-decoration: none;
+		background: lighten($black, 50%);
+		color: $white;
+		bottom: rem(30px);
+		z-index: 1040;
+		width: rem(30px);
+		height: rem(30px);
+		border-radius: rem(30px);
+		text-align: center;
+		line-height: rem(30px);
+		
+		& i {
+			display: block;
+			line-height: rem(30px);
+		}
+		&:hover {
+			background: lighten($black, 35%);
+		}
+	}
+	@include media-breakpoint-down(md) {
+		top: 0;
+		left: rem(-$app-sidebar-width);
+		z-index: 1070;
+		@include transition(all .2s ease);
+		
+		&:before {
+			left: rem(-$app-sidebar-width);
+			@include transition(all .2s ease);
+		}
+	}
+}
+
+/* Sidebar Options Setting */
+.app-full-width {
+	.app-sidebar {
+		left: rem(-$app-sidebar-width);
+		z-index: 1020;
+		@include transition(all .2s ease);
+	}
+}
+.app-sidebar-right {
+	& .app-sidebar {
+		left: auto;
+		right: 0;
+	
+		& .app-content {
+			margin-left: 0;
+			margin-right: rem($app-sidebar-width);
+		}
+	}
+	&.app-sidebar-minified {
+		& .app-content {
+			margin-right: rem($app-sidebar-minify-width);
+		}
+	}
+}
+.app-sidebar-fixed {
+	& .app-sidebar {
+		position: fixed;
+		bottom: 0;
+	}
+}
+.app-sidebar-toggled {
+	& .app-sidebar,
+	&.app-full-width .app-sidebar {
+		left: 0;
+		right: 0;
+		
+		&:before {
+			left: 0;
+			right: 0;
+		}
+	}
+}
+.app-sidebar-minified {
+	& .app-sidebar {
+		width: rem($app-sidebar-minify-width);
+		
+		&:before {
+			width: rem($app-sidebar-minify-width);
+		}
+		
+		& .sidebar-minify-btn {
+			font-size: rem(16px);
+			
+			& i:before {
+				content: '\f061';
+			}
+		}
+		& .nav > li > a {
+			position: relative;
+			padding: rem(3px) rem(0px);
+		}
+		& .nav-copyright,
+		& .nav-text,
+		& .nav-profile .profile-info,
+		& .nav-project .project-percentage,
+		& .nav-project .project-info,
+		& .slimScrollBar,
+		& .nav-submenu {
+			display: none !important;
+		}
+		& .nav-profile {
+			margin: rem(15px) rem(10px);
+			
+			& .profile-img {
+				margin: 0 auto;
+			}
+		}
+		& .nav-header {
+			margin-left: rem(5px);
+			margin-right: rem(5px);
+			text-align: center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		& .nav-icon,
+		& .nav-project .project-icon {
+			text-align: center;
+			margin: 0 auto;
+			width: rem(26px);
+			height: rem(26px);
+			
+			& i {
+				margin: 0 auto;
+				font-size: rem(16px);
+				width: rem(26px);
+				height: rem(26px);
+				line-height: rem(26px);
+			}
+		}
+		& .nav-caret {
+			position: absolute;
+			right: rem(4px);
+			top: 50%;
+			margin-top: rem(-1px);
+			@include transform(rotate(-90deg));
+		}
+	}
+	& .app-content {
+		margin-left: rem($app-sidebar-minify-width);
+		
+		@include media-breakpoint-down(md) {
+			margin-left: 0;
+		}
+	}
+}
+.app-sidebar-light {
+	& .app-sidebar {
+		background: $white;
+		color: $black;
+		
+		&:before {
+			background: $white !important;
+		}
+		
+		& .nav {
+			& > li {
+				& a {
+					color: lighten($black, 50%);
+					
+					&:hover {
+						color: lighten($black, 20%);
+					}
+				}
+				&.active {
+					& > a {
+						color: $black;
+						background: rgba($black, 0.2);
+					
+						& .nav-icon i {
+							background: rgba($black,0.5);
+							color: $white;
+						}
+					}
+				}
+			}
+			& .nav-icon {
+				color: $black;
+			
+				& i {
+					background: rgba($black, .15);
+					color: rgba($black,0.5);
+				}
+			}
+			& .nav-label {
+				border: 1px solid rgba($black, .25);
+			}
+			& .nav-submenu {
+				& > li {
+					&.active {
+						& > a {
+							color: $black;
+						}
+					}
+				}
+			}
+			& .nav-profile {
+				& .profile-info {
+					& h4 {
+						color: lighten($black, 25%);
+					}
+					& p {
+						color: lighten($black, 50%);
+					}
+				}
+			}
+			& .nav-header {
+				color: darken($white, 50%);
+			}
+			& .nav-project {
+				& .project-icon {
+					background: rgba($black, .15);
+					color: rgba($black,0.5);
+				}
+				& .progress {
+					background: rgba($black, .15);
+				}
+			}
+			& .nav-divider {
+				background: darken($white, 25%);
+			}
+			& .nav-copyright {
+				color: lighten($black, 25%);
+			}
+		}
+	}
+}
+
+
+/* Sidebar Float Menu */
+.app-float-submenu {
+	position: fixed;
+	width: rem(230px);
+	background: lighten($black, 15%);
+	margin: 0;
+	padding: rem(10px) 0;
+	list-style-type: none;
+	font-size: rem(12px);
+	z-index: 1030;
+	
+	& a {
+		@include display-flex();
+		@include flex-align(center);
+		color: darken($white, 20%);
+		padding-right: rem(15px);
+		padding-left: rem(15px);
+		line-height: rem(24px);
+	}
+	& .active > a,
+	& a:hover,
+	& a:focus,
+	& a:active {
+		color: $white;
+		text-decoration: none;
+	}
+	& .nav-submenu {
+		display: none;
+		list-style-type: none;
+		margin: 0 0 0 rem(15px);
+		padding: rem(2px) 0;
+	}
+	& .nav-icon,
+	& .nav-text,
+	& .nav-caret {
+		@include display-inline-flex();
+	}
+	& .nav-text {
+		@include flex(1);
+	}
+}

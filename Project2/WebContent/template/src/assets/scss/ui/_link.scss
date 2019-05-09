@@ -1,0 +1,15 @@
+a {
+	color: $blue;
+	
+	&:hover {
+		color: darken($blue, 30%);
+	}
+}
+.inverse-mode a,
+a.inverse-mode {
+	color: $white;
+	
+	&:hover {
+		color: darken($white, 30%);
+	}
+}

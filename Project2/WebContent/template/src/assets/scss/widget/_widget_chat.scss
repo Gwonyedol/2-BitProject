@@ -1,0 +1,103 @@
+.widget-chat {
+	list-style-type: none;
+	margin: 0;
+	padding: rem(15px);
+	
+	& .widget-chat-item {
+		@include display-flex();
+		@include flex-align(flex-end);
+		
+		& + .widget-chat-item {
+			margin-top: rem(10px);
+		}
+		& > div + div {
+			padding-left: rem(10px);
+		}
+	}
+	& .widget-chat-date {
+		font-size: rem(10px);
+		font-weight: 600;
+		color: lighten($black, 30%);
+		padding: rem(3px) rem(10px);
+		text-align: center;
+	}
+	& .widget-chat-content {
+		@include flex(1);
+	}
+	& .widget-chat-media {
+		width: rem(24px);
+		
+		& img {
+			max-width: 100%;
+			display: block;
+			border-radius: rem(24px);
+		}
+	}
+	& .widget-chat-message {
+		background: darken($white, 10%);
+		padding: rem(7px) rem(14px);
+		display: inline-block;
+		position: relative;
+		border-radius: rem(20px);
+		
+		& + .widget-chat-message {
+			margin-top: rem(5px);
+		}
+	}
+}
+.widget-chat-message:before,
+.widget-chat-message:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+.widget-chat-name,
+.widget-chat-status {
+	font-size: 0.6875rem;
+	font-weight: 500;
+	color: #8A8A8F;
+	line-height: 1.25rem;
+}
+.reply .widget-chat-content {
+	text-align: right;
+}
+.reply .widget-chat-message {
+	background: #007aff;
+	color: #fff;
+}
+.widget-chat-message.last:before {
+	content: '';
+	border: 0.3125rem solid transparent;
+	border-bottom-color: #eae9ef;
+	border-right-color: #eae9ef;
+	position: absolute;
+	left: -0.25rem;
+	bottom: 0.1875rem;
+}
+.reply .widget-chat-message.last:before {
+	border: 0.3125rem solid transparent;
+	border-top-width: 0.25rem;
+	border-left-width: 0.625rem;
+	border-top-color: #007aff;
+	border-left-color: #007aff;
+	left: auto;
+	right: -0.4375rem;
+}
+
+
+.inverse-mode .widget-chat-message {
+	background: #8a8a8f;
+	color: #fff;
+}
+.inverse-mode .widget-chat-message.last:before {
+	border-bottom-color: #8a8a8f;
+	border-right-color: #8a8a8f;
+}
+.inverse-mode .reply .widget-chat-message {
+	background: #007aff;
+}
+.inverse-mode .reply .widget-chat-message.last:before {
+	border-color: transparent;
+	border-top-color: #007aff;
+	border-left-color: #007aff;
+}

@@ -1,0 +1,10 @@
+#scroll_Banner {
+	position: absolute;
+	width: 200px !important;
+	height: 200px;
+	left: 50px;
+	top: 10px;
+	background-color: #606060;
+	color: #fff;
+	max-width: 100%; 
+}

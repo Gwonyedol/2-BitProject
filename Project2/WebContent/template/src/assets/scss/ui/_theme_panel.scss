@@ -1,0 +1,131 @@
+.theme-panel {
+	position: fixed;
+	right: rem($theme-panel-width * -1);
+	top: 50%;
+	margin-top: rem($theme-panel-height * -1);
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	transition: all .2s linear;
+	width: rem($theme-panel-width);
+	z-index: 1020;
+	
+	
+	@include media-breakpoint-down(md) {
+		top: 0;
+		bottom: 0;
+		margin-top: 0;
+	}
+	
+	&.active {
+		right: 0;
+	}
+	& .theme-list {
+		@include clearfix();
+		margin: rem(2px) rem(-2px);
+		@include display-flex();
+		@include flex-wrap();
+		
+		& .theme-list-item {
+			padding: rem(2px);
+			width: rem(29px);
+			max-width: rem(29px);
+			
+			& a {
+				display: block;
+				text-decoration: none;
+				padding-top: 100%;
+				border-radius: 50%;
+				position: relative;
+				background: rgba($black, .2);
+				
+				&:before {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					border-radius: 50%;
+				}
+				&:after {
+					content: '';
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin: rem(-5px) 0 0 rem(-5px);
+					width: rem(10px);
+					height: rem(10px);
+					border-radius: 50%;
+				}
+				&:hover {
+					&:after {
+						background: rgba($black, .5);
+					}
+				}
+			}
+			&.active {
+				& a,
+				& a:hover {
+					&:after {
+						background: $white;
+						box-shadow: 0 1px 2px rgba($black, .25)
+					}
+				}
+			}
+		}
+	}
+	& .theme-panel-content {
+		background: $white;
+		border-radius: rem(12px) 0 0 rem(12px);
+		box-shadow: 0 rem(6px) rem(40px) 0 rgba($black, .1);
+		
+		@include media-breakpoint-down(md) {
+			height: 100%;
+			overflow: scroll;
+			border-radius: 0;
+		}
+	}
+	& .theme-collapse-btn {
+		position: absolute;
+		top: rem(36px);
+		left: rem(-36px);
+		width: rem(36px);
+		height: rem(36px);
+		line-height: rem(36px);
+		background: #fff;
+		text-align: center;
+		border-radius: rem(4px) 0 0 rem(4px);
+		font-size: rem(18px);
+		color: $black;
+		box-shadow: rem(-10px) rem(2px) rem(24px)c 0 rgba($black, .1);
+		text-decoration: none;
+		
+		@include media-breakpoint-down(md) {
+			top: 50%;
+			margin-top: rem(-18px);
+		}
+		
+		& i {
+			line-height: rem(36px);
+		}
+	}
+}
+
+@media (max-height: $theme-panel-height + 200) {
+	.theme-panel {
+		top: 0;
+		bottom: 0;
+		margin-top: 0;
+		z-index: 1030;
+		
+		& .theme-panel-content {
+			height: 100%;
+			overflow: scroll;
+			border-radius: 0;
+		}
+		& .theme-collapse-btn {
+			top: 50%;
+			margin-top: rem(-18px);
+		}
+	}
+}

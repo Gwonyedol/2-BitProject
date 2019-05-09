@@ -1,0 +1,20 @@
+html {
+	font-size: $base-font-size;
+}
+body, html, #page-container {
+	height: 100%;
+}
+body {
+	font-size: rem($body-font-size);
+	line-height: $body-line-height;
+	color: $body-text-color;
+}
+b {
+	font-weight: bold;
+}
+dl, ol, p, ul {
+	margin-bottom: rem(15px);
+}
+label {
+	font-weight: 600;
+}

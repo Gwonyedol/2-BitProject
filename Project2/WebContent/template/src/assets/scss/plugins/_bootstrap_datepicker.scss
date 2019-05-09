@@ -1,0 +1,194 @@
+.datepicker {
+	&.datepicker-dropdown {
+		width: rem(320px);
+		border-radius: $border-radius-lg;
+		padding: rem(0) 0 0;
+		z-index: 1060 !important;
+		
+		&:before,
+		&:after {
+			display: none;
+		}
+	}
+	& .datepicker-switch,
+	& .prev,
+	& .next {
+		padding: rem(10px);
+		min-width: rem(45px);
+		
+		&:hover {
+			background: none !important;
+			color: $red;
+		}
+	}
+	& .next,
+	& .prev {
+		overflow: hidden;
+		text-indent: -100px;
+		max-width: rem(45px);
+		
+		&:before {
+			font-family: Font Awesome\ 5 Free,Font Awesome\ 5 Pro,FontAwesome !important;
+			font-weight: 900;
+			font-style: normal;
+			font-variant: normal;
+			text-rendering: auto;
+			position: absolute;
+			width: rem(45px);
+			text-indent: 0;
+		}
+	}
+	& .next {
+		&:before {
+			content: '\f061';
+			right: 0;
+    }
+  }
+  & .prev {
+		&:before {
+			content: '\f060';
+			left: 0;
+    }
+	}
+	& .datepicker-switch {
+		font-weight: normal;
+		font-size: rem(16px);
+		color: $red;
+		width: 100% !important;
+	}
+	& .datepicker-days,
+	& .datepicker-months,
+	& .datepicker-years {
+		position: relative;
+	}
+	& .datepicker-days {
+		& table {
+			& thead {
+				& tr {
+					& th {
+						&.dow {
+							color: $black;
+							font-size: rem(10px);
+							font-weight: bold;
+							text-transform: uppercase;
+							border-radius: 0;
+							padding: rem(5px) 0 rem(3px);
+							border-bottom: 1px solid darken($white, 10%);
+							background: darken($white, 5%);
+						}
+					}
+				}
+			}
+			& tbody {
+				& tr {
+					& td {
+						padding: rem(5px) rem(5px) rem(15px);
+						border-radius: 0;
+						font-weight: normal;
+						font-size: rem(13px);
+						
+						&.active,
+						&.selected {
+							background: darken($white, 5%) !important;
+							border-color: darken($white, 10%) !important;
+							color: $red;
+							text-shadow: none;
+							font-weight: 600;
+						}
+						&:hover,
+						&.focused,
+						&.range {
+							background: darken($white, 5%) !important;
+						}
+						& + td {
+							border-left: 1px solid darken($white, 10%);
+						}
+					}
+					& + tr {
+						& td {
+							border-top: 1px solid darken($white, 10%);
+						}
+					}
+					&:last-child {
+						& td {
+							border-bottom: 1px solid darken($white, 15%);
+						}
+					}
+				}
+			}
+		}
+	}
+	& .datepicker-months,
+	& .datepicker-years {
+		& table {
+			margin-bottom: rem(20px);
+			
+			& tbody {
+				& tr {
+					& td {
+						border-bottom: 1px solid darken($white, 10%);
+						
+						& span {
+							width: 25%;
+							margin: 0;
+							border-radius: 0;
+							border-top: 1px solid darken($white, 10%);
+							font-weight: 600;
+							font-size: rem(16px);
+							
+							&.active {
+								color: $red;
+								text-shadow: none;
+							}
+							&:hover,
+							&.active,
+							&.focused {
+								background: darken($white, 5%) !important;
+							}
+							&.focused {
+								color: $red;
+							}
+							& + span {
+								border-left: 1px solid darken($white, 10%);
+							}
+							&:nth-child(5),
+							&:nth-child(9)  {
+								border-left: none;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.input-daterange {
+	& input {
+		&:first-child {
+			border-radius: $border-radius 0 0 $border-radius !important;
+		}
+		&:last-child {
+			border-radius: 0 $border-radius $border-radius 0 !important;
+		}
+	}
+	&.input-group-lg {
+		& input {
+			&:first-child {
+				border-radius: $border-radius-lg 0 0 $border-radius-lg !important;
+			}
+			&:last-child {
+				border-radius: 0 $border-radius-lg $border-radius-lg 0 !important;
+			}
+		}
+	}
+	&.input-group-sm {
+		& input {
+			&:first-child {
+				border-radius: $border-radius-sm 0 0 $border-radius-sm !important;
+			}
+			&:last-child {
+				border-radius: 0 $border-radius-sm $border-radius-sm 0 !important;
+			}
+		}
+	}
+}

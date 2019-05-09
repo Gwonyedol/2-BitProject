@@ -1,0 +1,59 @@
+.switcher {
+	display: inline-block;
+	
+	& label {
+		display: block;
+		margin: 0;
+		width: rem(42px);
+		height: rem(24px);
+		position: relative;
+		
+		
+		&:before {
+			content: '';
+			display: block;
+			width: rem(42px);
+			height: rem(24px);
+			background: darken($white, 20%);
+			border-radius: rem(40px);
+			@include transition(all .2s linear);
+		}
+		&:after {
+			content: '';
+			height: rem(20px);
+			width: rem(20px);
+			position: absolute;
+			left: rem(2px);
+			top: rem(2px);
+			border-radius: rem(42px);
+			background: $white;
+			z-index: 10;
+			@include transition(all .1s linear);
+		}
+	}
+	& input {
+		display: none;
+		
+		&:checked + label {
+			&:before {
+				background: $blue;
+				border: rem(2px) solid $blue;
+			}
+			&:after {
+				left: rem(20px);
+			}
+		}
+	}
+	@each $color, $value in $theme-colors {
+		&.switcher-#{$color} input:checked + label:before {
+			background: $value;
+			border-color: $value;
+		}
+	}
+	@each $color, $value in $colors {
+		&.switcher-#{$color} input:checked + label:before {
+			background: $value;
+			border-color: $value;
+		}
+	}
+}

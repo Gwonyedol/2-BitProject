@@ -1,0 +1,27 @@
+.btn-scroll-top {
+	position: fixed;
+	bottom: rem(25px);
+	right: rem(25px);
+	width: rem(36px);
+	height: rem(36px);
+	border-radius: rem(18px);
+	z-index: 1000;
+	background: lighten($black, 30%);
+	color: $white;
+	text-align: center;
+	line-height: rem(36px);
+	text-decoration: none;
+	
+	@include media-breakpoint-down(md) {
+		bottom: rem(10px);
+		right: rem(10px);
+		z-index: 9999;
+	}
+	
+	&:hover,
+	&:focus {
+		background: $blue;
+		color: $white;
+		text-decoration: none;
+	}
+}

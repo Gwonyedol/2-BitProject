@@ -1,0 +1,51 @@
+.widget-media {
+	display: block;
+	position: relative;
+	border-radius: rem($border-radius-lg);
+	
+	&.widget-media-square {
+		padding-top: 100%;
+		
+		& .icon {
+			position: absolute;
+			top: 50%;
+			font-size: 4rem;
+			text-align: center;
+			left: 0;
+			right: 0;
+			margin-top: -2rem;
+			line-height: 4rem;
+		}
+		& img,
+		& .img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: rem($border-radius);
+		}
+		& img {
+			bottom: auto;
+			max-width: 100%;
+		}
+		& .img {
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+	}
+	& .widget-media-icon {
+		position: absolute;
+		right: rem(10px);
+		bottom: rem(10px);
+		width: rem(24px);
+		height: rem(24px);
+		text-align: center;
+		line-height: rem(24px);
+		background: rgba($black, 0.8);
+		color: $white;
+		z-index: 20;
+		border-radius: rem(24px);
+	}
+}

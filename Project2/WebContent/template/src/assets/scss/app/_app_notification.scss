@@ -1,0 +1,132 @@
+.app-notification-container {
+	position: fixed;
+	top: rem($app-header-height + 20px);
+	right: rem(20px);
+	width: rem(320px);
+	z-index: 1030;
+		
+	@include media-breakpoint-down(md) {
+		top: rem(($app-header-height * 2) + 15px);
+	}
+	@include media-breakpoint-down(xs) {
+		width: rem(300px);
+		right: rem(10px);
+	}
+	
+	& .app-notification {
+		@include display-flex();
+		box-shadow: 0 0 rem(10px) 0 rgba($black, .15);
+		border-radius: $border-radius-lg;
+		background: darken($white, 5%);
+		width: 100%;
+		margin-bottom: rem(10px);
+		
+		& .notification-media {
+			@include display-inline-flex();
+			@include flex-align(center);
+			padding: rem(15px);
+			text-align: center;
+			
+			& img {
+				max-width: rem(36px);
+				max-height: rem(36px);
+				border-radius: rem($border-radius);
+			}
+			& i {
+				text-align: center;
+				display: block;
+				line-height: rem(28px);
+				width: rem(36px);
+				height: rem(36px);
+				border-radius: rem(6px);
+				line-height: rem(36px);
+				text-align: center;
+				overflow: hidden;
+				color: #000;
+				font-size: 1.5rem;
+				background: rgba(0,0,0,0.15);
+				top: 0;
+			}
+			& + .notification-info {
+				padding-left: 0;
+			}
+		}
+		& .notification-info {
+			padding: rem(15px);
+			@include flex(1 1 auto);
+			
+			& .notification-title {
+				font-size: rem(14px);
+				margin: 0;
+			}
+			& .notification-desc {
+				font-size: rem(12px);
+				margin: rem(2px) 0 0;
+				color: lighten($black, 20%);
+			}
+		}
+		& .notification-btn {
+			@include display-inline-flex();
+			@include flex-align(center);
+			@include flex-direction-column();
+			border-left: 1px solid darken($white, 20%);
+			
+			& a {
+				@include display-flex();
+				@include flex-align(center);
+				@include flex-justify-content(center);
+				padding: rem(10px) rem(15px);
+				height: 50%;
+				color: lighten($black, 20%);
+				font-size: rem(13px);
+				font-weight: 600;
+				text-decoration: none;
+				line-height: 1;
+				text-align: center;
+				width: rem(75px);
+				
+				&:hover,
+				&:focus,
+				&:active {
+					color: $blue;
+				}
+				& + a {
+					border-top: 1px solid darken($white, 20%);
+				}
+			}
+			&.single-btn {
+				& a {
+					height: 100%;
+				}
+			}
+		}
+		
+		
+		&.app-notification-inverse {
+			background: lighten($black, 15%);
+			color: $white;
+			
+			& .notification-info {
+				& .notification-desc {
+					color: darken($white, 20%);
+				}
+			}
+			& .notification-btn {
+				border-left-color: lighten($black, 30%);
+				
+				& a {
+					color: darken($white, 20%);
+					
+					&:hover,
+					&:focus,
+					&:active {
+						color: lighten($blue, 20%);
+					}
+					+ a {
+						border-top: 1px solid lighten($black, 30%);
+					}
+				}
+			}
+		}
+	}
+}

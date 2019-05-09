@@ -1,0 +1,14 @@
+.widget-price,
+.widget-price a {
+	padding: 1px rem(5px);
+	font-size: rem(12px);
+	line-height: 1.5;
+	border: 1px solid $blue;
+	color: $blue;
+	border-radius: rem($border-radius / 2);
+	
+	&.widget-price-inverse {
+		color: lighten($blue, 20%);
+		border-color: lighten($blue, 20%);
+	}
+}

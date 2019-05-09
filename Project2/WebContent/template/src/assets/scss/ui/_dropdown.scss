@@ -1,0 +1,165 @@
+.dropdown-menu {
+	border: none;
+	box-shadow: 0 rem(8px) rem(24px) rem(8px) rgba($black ,.15);
+	border-radius: rem(8px);
+	padding: rem(8px) 0;
+	font-size: rem(13px);
+	z-index: 1060;
+	
+	&.show {
+		position: absolute;
+	}
+	&.dropdown-menu-lg {
+		width: rem(320px);
+	}
+	&.dropdown-menu-md {
+		width: rem(260px);
+	}
+	& .dropdown-item {
+		padding: rem(5px) rem(15px);
+		color: $black;
+		
+		&:hover {
+			background: lighten($black, 95%);
+		}
+		&.active,
+		&.active:hover {
+			background: $primary;
+			color: $white;
+		}
+		&:last-child,
+		&:first-child {
+			border-radius: 0;
+		}
+	}
+	& .dropdown-divider {
+		border-top-color: lighten($black, 90%);
+	}
+	& .dropdown-header {
+		border-bottom: 1px solid rgba($black, .1);
+		font-size: rem(12px);
+		color: $black;
+		padding: rem(10px) rem(15px);
+		
+		& .dropdown-close {
+			float: right;
+			background: rgba($black, .3);
+			color: $white;
+			border-radius: rem(10px);
+			padding: 0;
+			font-size: rem(16px);
+			line-height: rem(16px);
+			height: rem(18px);
+			width: rem(18px);
+			text-align: center;
+			font-weight: normal;
+			text-decoration: none;
+			
+			&:hover {
+				background: rgba($black, .5);
+			}
+		}
+	}
+	& .dropdown-setting {
+		@include display-flex();
+		@include flex-direction-row();
+		
+		& .info,
+		& .icon,
+		& .option {
+			display: inline-flex;
+			padding: rem(10px) rem(15px);
+			white-space: initial;
+			align-items: center;
+			
+			& + div {
+				padding-left: 0;
+			}
+		}
+		& .info {
+			@include flex(1);
+		}
+		& .icon {
+			font-size: rem(16px);
+		}
+		& .img {
+			width: rem(24px);
+			height: rem(24px);
+			border-radius: rem(6px);
+			background-position: center;
+			background-size: cover;
+			
+			& img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+		}
+		& + .dropdown-setting .info,
+		& + .dropdown-setting .option {
+			border-top: 1px solid rgba($black, .1);
+		}
+	}
+	& .dropdown-message {
+		@include display-flex();
+		@include flex-align(center);
+		
+		& > a {
+			@include display-flex();
+			@include flex-align(center);
+		}
+		& a {
+			text-decoration: none;
+			color: $black;
+		}
+		& .icon,
+		& .info {
+			padding: rem(10px) rem(15px);
+			white-space: initial;
+			
+			& + div {
+				padding-left: 0;
+			}
+		}
+		& .icon {
+			& i {
+				width: rem(24px);
+				height: rem(24px);
+				line-height: rem(24px);
+				border-radius: rem(6px);
+				font-size: rem(16px);
+				text-align: center;
+				background: rgba($black, .3);
+				color: $white;
+			}
+			& .img {
+				background-position: center;
+				background-size: cover;
+				width: rem(24px);
+				height: rem(24px);
+				border-radius: rem(6px);
+			}
+			& img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+		}
+		& .title {
+			font-size: rem(13px);
+			font-weight: 600;
+			margin-bottom: rem(2px);
+		}
+		& .time {
+			font-size: rem(11px);
+			font-weight: 600;
+			color: rgba($black, .5);
+		}
+		& .desc {
+			font-size: rem(12px);
+			line-height: rem(16px);
+			margin-bottom: 0;
+		}
+		& + .dropdown-message .info {
+			border-top: 1px solid rgba($black, .1);
+		}
+	}
+}

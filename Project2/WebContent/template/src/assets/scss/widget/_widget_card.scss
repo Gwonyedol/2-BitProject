@@ -1,0 +1,80 @@
+.widget-card,
+a.widget-card {
+	@include display-flex();
+	position: relative;
+	background: $widget-default-bg;
+	border-radius: rem($border-radius);
+	overflow: hidden;
+	margin-bottom: rem($widget-margin-bottom);
+	text-decoration: none;
+	
+	@include media-breakpoint-down(md) {
+		display: block;
+	}
+	&.full {
+		margin-bottom: 0;
+		border-radius: 0;
+	}
+	&.dynamic {
+		@include flex-direction-column();
+		
+		& .widget-card-content {
+			position: relative;
+			display: block;
+		}
+	}
+	& .widget-card-col {
+		position: relative;
+		padding: rem(15px);
+		
+		& .widget-card-content {
+			@include media-breakpoint-down(md) {
+				position: relative;
+			}
+		}
+	}
+	& .widget-card-cover {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		overflow: hidden;
+		
+		& .cover-bg {
+			position: absolute;
+			right: 0;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			background: linear-gradient(to bottom, rgba($black, .2) 0%, rgba($black, .8) 100%);
+		}
+	}
+	& .widget-card-content {
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 10;
+		padding: rem(15px);
+		
+		&.bottom {
+			bottom: 0;
+		}
+	}
+	& .widget-hero {
+		& h1 {
+			font-size: rem(36px);
+			font-weight: bold;
+		}
+		& p {
+			font-size: rem(18px);
+		}
+	}
+	&.widget-card-inverse {
+		background: $widget-inverse-bg;
+		color: #fff;
+	}
+}

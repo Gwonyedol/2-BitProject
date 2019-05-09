@@ -1,0 +1,160 @@
+.gallery-menu {
+	list-style-type: none;
+	margin: 0;
+	padding: rem(10px) 0;
+	width: rem(200px);
+	
+	@include media-breakpoint-down(md) {
+		white-space: nowrap;
+		position: relative;
+		width: auto;
+		padding: 0;
+		white-space: nowrap;
+		overflow: scroll;
+	}
+	& > li {
+		@include media-breakpoint-down(md) {
+			display: inline-block;
+		}
+		&.gallery-menu-header {
+			font-size: rem(12px);
+			padding: rem(15px) rem(10px) rem(5px);
+			color: lighten($black, 50%);
+			font-weight: 600;
+			
+			@include media-breakpoint-down(md) {
+				display: none;
+			}
+		}
+		&.active {
+			& > a {
+				color: $black;
+				background: darken($white, 20%);
+				
+				@include media-breakpoint-down(md) {
+					background: $white;
+				}
+			}
+		}
+		& > a {
+			display: block;
+			color: $black;
+			text-decoration: none;
+			padding: rem(5px) rem(15px) rem(5px) rem(15px);
+			font-size: rem(13px);
+			
+			@include media-breakpoint-down(md) {
+				padding: rem(10px) rem(15px);
+			}
+			
+			&:hover {
+				color: $primary;
+				
+				& i {
+					color: $black;
+				}
+			}
+			
+			& i {
+				margin-right: rem(5px);
+			}
+		}
+	}
+}
+.gallery {
+	padding: rem(15px);
+	background: $white;
+	
+	& + .gallery {
+		border-top: 1px solid darken($white, 20%);
+	}
+	& .gallery-title {
+		font-size: rem(14px);
+		color: $black;
+		padding-bottom: rem(10px);
+		font-weight: 600;
+		
+		& a {
+			color: $black;
+			text-decoration: none;
+			
+			& i {
+				font-size: rem(12px);
+				color: lighten($black, 75%);
+				margin-left: rem(5px);
+			}
+		}
+		& small {
+			display: block;
+			color: lighten($black, 25%);
+			font-size: rem(12px);
+		}
+	}
+}
+
+.gallery-image-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	
+	@include clearfix();
+	
+	& > li {
+		float: left;
+		position: relative;
+		padding-top: 8%;
+		width: 10%;
+		
+		@include media-breakpoint-down(md) { 
+			width: 25%;
+			padding-top: 18.75%;
+		}
+		&:hover {
+			z-index: 10;
+		}
+		& a {
+			display: block;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			overflow: hidden;
+			@include transition(all .2s ease-in-out);
+			background: $body-bg;
+			
+			&:hover {
+				left: -20%;
+				right: -20%;
+				top: -20%;
+				bottom: -20%;
+			}
+		}
+		& img,
+		& .img {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			width: 100%;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		& .img-portrait {
+			height: 100%;
+			width: auto;
+			max-height: 100%;
+			max-width: inherit;
+		}
+		& .img-portrait-xs {
+			@include media-breakpoint-down(md) {
+				height: 100%;
+				width: auto;
+				max-height: 100%;
+				max-width: inherit;
+			}
+		}
+	}
+}

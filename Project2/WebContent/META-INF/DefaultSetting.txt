@@ -1,0 +1,148 @@
+create database dbmaster default character set utf8;
+
+use dbmaster;
+
+create table user_auth(
+	id bigint(20) not null,
+    auth varchar(255) not null
+);
+alter table user_auth add constraint pk_id primary key(id);
+alter table user_auth modify column id bigint(20) auto_increment;
+insert into user_auth(auth) values('일반회원');
+insert into user_auth(auth) values('기자회원');
+insert into user_auth(auth) values('관리자');
+select * from user_auth;
+
+create table user(
+	id bigint(20) not null, 
+    email varchar(255) not null,
+    password varchar(255) not null,
+    nick_name varchar(30) not null,
+    phone_number bigint(20) not null,
+    user_name  varchar(15) not null,
+    user_address varchar(255) null,
+    enabled bit(1) not null default 1, -- 1: 정상 0:블라인드처리
+    create_ip varchar(255) null,
+    user_auth bigint(20) not null default 0,
+    user_image_path varchar(255) null,
+    date_created datetime not null default current_timestamp,
+    last_updated datetime not null default 0 on update current_timestamp
+);
+
+alter table user add constraint pk_id primary key(id);
+alter table user modify column id bigint(20) auto_increment;
+alter table user add constraint uq_nick_name unique(nick_name);
+alter table user add constraint uq_user_name unique(user_name);
+alter table user add constraint uq_user_address unique(user_address);
+alter table user add constraint uq_user_image_path unique(user_image_path);
+alter table user add constraint fk_user_auth foreign key(user_auth) references user_auth(id);
+
+
+create table visit(
+	id bigint(20) not null,
+    visit_day datetime not null default current_timestamp,
+    visit_ip varchar(255) not null
+);
+
+alter table visit add constraint pk_id primary key(id);
+alter table visit modify column id bigint(20) auto_increment;
+
+create table category(
+	id bigint(20) not null,
+    category_name varchar(255)
+);
+alter table category add constraint pk_id primary key(id);
+alter table category modify column id bigint(20) auto_increment;
+
+insert into category(category_name) values('질문게시판');
+insert into category(category_name) values('공략게시판');
+insert into category(category_name) values('뉴스게시판');
+insert into category(category_name) values('이미지게시판');
+insert into category(category_name) values('동영상게시판');
+insert into category(category_name) values('게임정보게시판');
+
+create table board_list(
+	id bigint(20) not null,
+    board_name varchar(255),
+    category_id bigint(20) not null
+);
+
+alter table board_list add constraint pk_id primary key(id);
+alter table board_list modify column id bigint(20) auto_increment;
+alter table board_list add constraint fk_category_id foreign key(category_id) references category(id);
+
+
+create table board(
+	id bigint(20) not null,
+    board_list_id bigint(20) not null,
+    nick_name varchar(255) null,
+    anonymity bit(1) not null default 1, -- 1:실명 0:익명
+    create_ip varchar(255) null,
+    enabled bit(1) not null default 1, -- 1:정상 -- 0: 블라인드처리
+    refer int(11) not null default 0,
+    depth int(11) not null default 0,
+    step int(11) not null default 0,
+    date_created datetime not null default current_timestamp,
+    last_updated datetime not null default 0 on update current_timestamp,
+    view_count int(11) not null default 0,
+    vote_count int(11) not null default 0,
+    title varchar(255) not null,
+	content longtext not null
+);
+
+alter table board add constraint pk_id primary key(id);
+alter table board modify column id bigint(20) auto_increment;
+alter table board add constraint fk_nick_name foreign key(nick_name) references user(nick_name) ON UPDATE CASCADE;
+alter table board add constraint fk_board_list_id foreign key(board_list_id) references board_list(id);
+
+create table content_vote(
+	id bigint(20) not null,
+    c_vote_id bigint(20) not null,
+    content_voter varchar(255) not null,
+    date_created datetime not null default current_timestamp
+);
+alter table content_vote add constraint pk_id primary key(id);
+alter table content_vote modify column id bigint(20) auto_increment;
+alter table content_vote add constraint fk_content_vote_content_voter foreign key(content_voter) references user(nick_name) ON UPDATE CASCADE;
+alter table content_vote add constraint fk_content_vote_c_vote_id foreign key(c_vote_id) references board(id);
+
+
+create table reply(
+	id bigint(20) not null,
+    reply_id bigint(20) not null,
+    date_created datetime not null default current_timestamp,
+    last_updated datetime not null on update current_timestamp,
+    reply_content varchar(255) null,
+    r_nick_name varchar(255) not null,
+	vote_count int(11) not null default 0,
+    refer int(11) not null default 0,
+    depth int(11) not null default 0,
+    step int(11) not null default 0,
+    enabled bit(1) not null default 1 -- 1:정상 0:블라인드처리
+);
+
+alter table reply add constraint pk_id primary key(id);
+alter table reply modify column id bigint(20) auto_increment;
+alter table reply add constraint fk_r_nick_name foreign key(r_nick_name) references user(nick_name) ON UPDATE CASCADE;
+alter table reply add constraint fk_reply_id foreign key(reply_id) references board(id);
+
+create table reply_vote(
+	id bigint(20) not null,
+    vote_id bigint(20) not null,
+    reply_voter varchar(255) not null,
+    date_created datetime not null default current_timestamp
+);
+
+alter table reply_vote add constraint pk_id primary key(id);
+alter table reply_vote modify column id bigint(20) auto_increment;
+alter table reply_vote add constraint fk_reply_voter foreign key(reply_voter) references user(nick_name) ON UPDATE CASCADE;
+alter table reply_vote add constraint fk_vote_id foreign key(vote_id) references reply(id);
+
+create table spam_word(
+	id bigint(20) not null,
+    word varchar(255) not null
+);
+
+alter table spam_word add constraint pk_id primary key(id);
+alter table spam_word modify column id bigint(20) auto_increment;
+

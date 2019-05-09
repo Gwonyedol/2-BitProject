@@ -1,0 +1,7 @@
+.media {
+	@include display-flex();
+	@include flex-align(flex-start);
+}
+.media-body {
+	@include flex(1);
+}

@@ -1,0 +1,18 @@
+.widget-desc {
+	font-size: rem(12px);
+	color: lighten($black, 30%);
+	line-height: rem(16px);
+	
+	& a {
+		color: lighten($black, 30%);
+		text-decoration: none;
+	}
+	
+	&.widget-desc-inverse {
+		color: darken($white, 30%);
+		
+		& a {
+			color: darken($white, 30%);
+		}
+	}
+}

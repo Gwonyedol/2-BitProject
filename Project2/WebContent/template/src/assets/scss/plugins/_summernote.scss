@@ -1,0 +1,21 @@
+.note-editor.note-frame {
+	border: none !important;
+	margin: 0 !important;
+	border-radius: 0 !important;
+	
+	& .note-toolbar {
+		padding: rem(5px) rem(15px) rem(10px) !important;
+		background: darken($white, 5%) !important;
+		border-bottom: 1px solid darken($white, 20%);
+		border-top: 1px solid darken($white, 20%);
+		
+		& .btn {
+			background: $white;
+			border-color: darken($white, 20%);
+			
+			&:hover {
+				background: darken($white, 5%);
+			}
+		}
+	}
+}

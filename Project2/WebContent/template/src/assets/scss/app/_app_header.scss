@@ -1,0 +1,405 @@
+@include keyframe(navbarSearchActive) {
+	from { top: rem(-$app-header-height); }
+	to { top: 0;}
+}
+@include keyframe(navbarSearchInactive) {
+	from { top: 0; }
+	to { top: rem(-$app-header-height); }
+}
+.app-header {
+	border: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	padding: 0 rem(10px);
+	z-index: 1030;
+	min-height: rem($app-header-height);
+	height: rem($app-header-height);
+	background: $white;
+	@include display-flex();
+	@include flex-wrap();
+	@include flex-align(center);
+	@include flex-justify-content(space-between);
+	@include transition(box-shadow .2s linear);
+	
+	@include media-breakpoint-down(md) {
+		display: block;
+		min-height: rem($app-header-height * 2 + 1);
+		height: rem($app-header-height * 2 + 1);
+		padding: 0;
+	}
+	
+	& .navbar-header {
+		display: block;
+		
+		@include media-breakpoint-down(md) {
+			@include display-flex();
+		}
+	}
+	& .navbar-brand {
+		color: $black;
+		font-size: rem(20px);
+		font-weight: bold;
+		width: rem(230px);
+		padding: rem(5px);
+		height: rem($app-header-height);
+		margin-right: 0;
+		padding: rem(5px);
+		@include display-flex();
+		@include flex-align(center);
+		
+		@include media-breakpoint-down(md) {
+			width: auto;
+			@include flex(1 0 auto);
+			padding: rem(5px) rem(15px);
+		}
+		
+		& b {
+			margin-right: rem(5px);
+		}
+		& img {
+			max-height: 100%;
+			max-width: 100%;
+		}
+		& .navbar-logo {
+			display: inline-block;
+			font-weight: bold;
+			height: rem(28px);
+			width: rem(30px);
+			margin: 0 rem(8px) 0 0;
+			line-height: rem(24px);
+			text-align: center;
+			position: relative;
+			border-radius: rem(8px);
+			color: $black;
+			font-size: rem(16px);
+			border: 2px solid $black;
+		}
+		& i {
+			font-size: 26px;
+			margin-right: rem(10px);
+		}
+	}
+	& .navbar-nav {
+		@include display-flex();
+		@include flex-direction-row();
+		
+		@include media-breakpoint-down(md) {
+			margin-left: 0;
+			border-top: 1px solid rgba($black, .1);
+		}
+		
+		&.navbar-right {
+			margin-left: auto;
+		
+			@include media-breakpoint-down(md) {
+				margin-left: 0;
+			}
+		}
+		
+		& .nav-divider {
+			width: 1px;
+			background: $gray-200;
+			margin: 0 rem(12px);
+		}
+		
+		& .nav-search {
+			@include display-flex();
+			@include flex-align(center);
+			padding: 0 rem(12px);
+			
+			& .form-group {
+				margin-bottom: 0;
+				position: relative;
+				
+				& .form-control {
+					font-size: rem(12px);
+					background: gray('200');
+					border-color: gray('200');
+					height: rem(32px);
+					border-radius: rem(32px) 0 0 rem(32px);
+					width: rem(200px);
+					
+					&:focus {
+						outline: none;
+						box-shadow: none;
+					}
+				}
+				& .btn {
+					background: gray('200');
+					border-color: gray('200');
+					border-radius: 0 rem(32px) rem(32px) 0;
+					height: rem(32px);
+					padding: 0 rem(10px);
+					font-size: rem(16px);
+				}
+			}
+		}
+		& .nav-item {
+			display: block;
+			height: rem($app-header-height);
+			
+			@include media-breakpoint-down(md) {
+				@include display-inline-flex();
+				@include flex(1 0 auto);
+			}
+			
+			& .nav-link {
+				@include display-flex();
+				@include flex-align(center);
+				height: rem($app-header-height);
+				padding: rem(10px) rem(12px);
+				color: $black;
+				position: relative;
+				font-weight: 500;
+				
+				@include media-breakpoint-down(md) {
+					margin: 0 auto;
+				}
+				
+				&.with-dot {
+					&:before {
+						content: '';
+						position: absolute;
+						top: rem(12px);
+						right: rem(8px);
+						width: rem(8px);
+						height: rem(8px);
+						border-radius: rem(12px);
+						z-index: 10;
+						background: $pink;
+					}
+				}
+				& .nav-label {
+					position: absolute;
+					right: rem(3px);
+					top: rem(6px);
+					color: $white;
+					background: $red;
+					font-size: rem(11px);
+					font-weight: bold;
+					padding: rem(1px) rem(5px) rem(2px);
+					border-radius: rem(10px);
+				}
+				& .nav-icon {
+					font-size: rem(18px);
+				}
+				& .nav-img {
+					height: rem(36px);
+					width: rem(36px);
+					display: inline-block;
+					position: relative;
+					
+					&:before {
+						content: '';
+						position: absolute;
+						right: rem(2px);
+						bottom: rem(2px);
+						border-radius: rem(12px);
+						width: rem(8px);
+						height: rem(8px);
+						border: rem(0px) solid #fff;
+					}
+					&.online:before {
+						background: $green;
+					}
+					&.offline:before {
+						background: $gray-500;
+					}
+					&.busy:before {
+						background: $pink;
+					}
+					&.away:before {
+						background: $orange;
+					}
+					& i {
+						display: block;
+						text-align: center;
+						line-height: rem(32px);
+						height: rem(32px);
+						border-radius: rem(32px);
+						width: rem(32px);
+						font-size: rem(24px);
+						background: rgba($white, .35);
+						color: rgba($white, .35);
+					}
+					& + span {
+						margin-left: rem(8px);
+					}
+					& img {
+						max-width: 100%;
+						max-height: 100%;
+						display: block;
+						border-radius: rem(32px);
+					}
+				}
+				& span + .nav-img {
+					margin-left: rem(8px);
+				}
+			}
+		}
+	}
+	& .navbar-search {
+		display: none;
+		position: absolute;
+		top: rem(-$app-header-height);
+		height: rem($app-header-height);
+		left: 0;
+		right: 0;
+		background: $white;
+		z-index: 10;
+		
+		& .form-group {
+			@include display-flex();
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 960px;
+			
+			& .form-control {
+				background: none;
+				border: none;
+				height: rem(50px);
+				padding: 0;
+				
+				&:focus {
+					box-shadow: none;
+				}
+			}
+			& .icon {
+				font-size: rem(16px);
+				@include display-inline-flex();
+				@include flex-align(center);
+				padding: 0 rem(12px);
+				
+				& a {
+					color: lighten($black, 50%);
+					@include display-flex();
+					margin: 0 rem(-12px);
+					padding: rem(12px);
+					text-decoration: none;
+					
+					&:hover {
+						color: lighten($black, 20%);
+					}
+				}
+			}
+		}
+		&.active {
+			display: block;
+			top: 0;
+			@include animation(navbarSearchActive .2s);
+		}
+		&.inactive {
+			@include animation(navbarSearchInactive .2s);
+		}
+	}
+	& .navbar-toggle {
+		padding: rem(10px) rem(15px);
+		border: none;
+		background: none;
+		outline: none;
+		box-shadow: none;
+		
+		@include media-breakpoint-up(lg) {
+			display: none;
+			&.navbar-toggle-minify {
+				display: block;
+				margin-left: rem(-10px);
+				margin-right: rem(-5px);
+			}
+		}
+		@include media-breakpoint-down(md) {
+			&.navbar-toggle-minify {
+				display: none;
+			}
+		}
+		
+		&:hover,
+		&:focus,
+		&:active {
+			position: relative;
+			padding: rem(18px) rem(15px);
+			outline: 0;
+			background: none;
+			border: none;
+		}
+		& .icon-bar {
+			display: block;
+			width: rem(24px);
+			height: rem(2px);
+			border-radius: rem(2px);
+			background: $black;
+			position: relative;
+			@include transition(all .2s linear);
+			
+			& + .icon-bar {
+				margin-top: rem(4px);
+			}
+		}
+		&.active {
+			& .icon-bar {
+				width: rem(20px);
+				top: rem(3px);
+				@include transform(rotate(45deg));
+				
+				& + .icon-bar {
+					top: auto;
+					bottom: rem(3px);
+					@include transform(rotate(-45deg));
+				}
+			}
+		}
+	}
+}
+.app-header-fixed .app-header {
+	position: fixed;
+}
+.app-header-inverse .app-header {
+	background: lighten($black, 10%);
+	
+	& .navbar-header {
+		& .navbar-brand {
+			color: $white;
+		}
+	}
+	& .navbar-nav {
+		@include media-breakpoint-down(md) {
+			border-top-color: rgba($white, .15);
+		}
+		& .nav-item {
+			& .nav-link {
+				color: darken($white, 35%);
+				
+				&:hover {
+					color: $white;
+				}
+			}
+		}
+	}
+	& .navbar-toggle {
+		& .icon-bar {
+			background: rgba($white, .75);
+		}	
+	}
+}
+.has-scroll {
+	& .app-header {
+		box-shadow: 0 rem(3px) rem(30px) 0 rgba($black, .3);
+	}
+	&.app-header-inverse {
+		& .app-header {
+			box-shadow: none;
+		}
+	}
+}
+.search-bar-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	background: rgba($black, .7);
+	z-index: 1020;
+}

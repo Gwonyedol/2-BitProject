@@ -1,0 +1,20 @@
+.breadcrumb {
+	font-weight: bold;
+	font-size: rem(12px);
+	margin-bottom: rem(10px);
+	padding: 0;
+	border-radius: 0;
+	background: none;
+	@include display-flex();
+	@include flex-wrap();
+	
+	&.breadcrumb-inverse {
+		& .breadcrumb-item {
+			color: $white;
+			
+			& a {
+				color: lighten($blue, 20%);
+			}
+		}
+	}
+}

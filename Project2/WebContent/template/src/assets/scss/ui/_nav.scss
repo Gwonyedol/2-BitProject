@@ -1,0 +1,4 @@
+.nav {
+	@include display-flex();
+	@include flex-wrap();
+}

@@ -1,0 +1,21 @@
+.page-header {
+	color: $black;
+	padding: 0;
+	border: none;
+	margin: 0 0 rem(15px);
+	font-size: rem(24px);
+	font-weight: 700;
+	
+	& small {
+		font-size: rem(14px);
+		color: lighten($black, 30%);
+		font-weight: normal;
+	}
+	&.page-header-inverse {
+		color: $white;
+		
+		& small {
+			color: rgba($white, .5);
+		}
+	}
+}

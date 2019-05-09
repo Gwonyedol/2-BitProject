@@ -1,0 +1,112 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/common/Head_top.jsp"></jsp:include>
+
+<jsp:include page="/WEB-INF/common/Header_top.jsp"></jsp:include>
+<div id="content" class="app-content0 bg-dark">
+
+	<div class="row">
+		<!-- 콘텐츠 row 시작  -->
+		<div class="col-10">
+			<!-- 콘텐츠 컬럼 col-10 시작 -->
+			<!-- 콘텐츠 영역 시작-->
+
+			<div id="content" class="app-content">
+				<div class="register">
+					<!-- BEGIN register-content -->
+					<div class="register-content1">
+						<!-- BEGIN register-brand -->
+						<div class="register-brand">
+							<a href="#"><b>4</b>Team</a>
+						</div>
+						<!-- END register-brand -->
+						<h3 class="m-b-20">
+							<span>Sign Up</span>
+						</h3>
+						<p class="m-b-20">One Admin ID is all you need to access all
+							the Admin services.</p>
+						<!-- BEGIN register-form -->
+						<form action="register.reg" method="POST" name="register_form">
+							<!-- BEGIN row -->
+							<div class="row row-space-20">
+								<!-- BEGIN col12 -->
+								<div class="col-md-8">
+									<div class="form-group">
+										<label>Name <span class="text-danger">*</span></label> <input
+											type="text" class="form-control" value="" id="user_name"
+											name="user_name" />
+									</div>
+									<div class="form-group">
+										<label>Nick Name <span class="text-danger">*</span></label> <input
+											type="text" class="form-control" value="" id="nick_name"
+											name="nick_name" />
+									</div>
+									<div class="form-group">
+										<label>Phone Number <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" value=""
+											id="phone_number" name="phone_number" />
+									</div>
+									<div class="form-group">
+										<label>Email Address <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" value="" id="email"
+											name="email" />
+									</div>
+									<div class="form-group">
+										<label>Password <span class="text-danger">*</span></label> <input
+											type="password" class="form-control" value="" id="password"
+											name="password" />
+									</div>
+								</div>
+								<!-- END col-12 -->
+							</div>
+							<!-- END row -->
+							<div class="m-b-30">
+								<div class="checkbox-inline">
+									<input type="checkbox" id="login-remember-me" value="2">
+									<label for="login-remember-me">I have read and agree to
+										the <a href="#">Terms of Use</a> and <a href="#">Privacy
+											Policy</a>.
+									</label>
+								</div>
+							</div>
+							<div class="d-flex align-items-center">
+								<button type="submit"
+									class="btn btn-primary width-200 btn-rounded">Sign Up</button>
+								<span class="m-l-20 text-white-transparent-5"> Already
+									have an Admin ID? &nbsp; <a href="page_login.html">Sign In</a>
+								</span>
+							</div>
+						</form>
+						<!-- END register-form -->
+					</div>
+					<!-- END register-content -->
+				</div>
+				<!-- END register -->
+			</div>
+
+			<!-- 콘텐츠영역 끝 -->
+		</div>
+		<!-- 콘텐츠 컬럼 col-10 끝 -->
+	</div>
+</div>
+<!-- 콘텐츠 컬럼 col-2 끝 -->
+
+</div>
+<!--콘텐츠 row 끝  -->
+
+
+<div id="footer" class="app-footer0 bw">Copyright &copy;GROUP4
+	Corp. All Rights Reserved.</div>
+<a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i
+	class="fa fa-arrow-up"></i></a>
+<!-- 위로 가기 버튼 -->
+</div>
+<!-- Header_top.jsp에  맨위 app 사이드바 닫는용-->
+
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="${pageContext.request.contextPath}/resource/js/app.min.js"
+	type="text/javascript"></script>
+
+<!-- ================== END BASE JS ================== -->
+</body>
+</html>

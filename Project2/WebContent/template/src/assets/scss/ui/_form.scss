@@ -1,0 +1,20 @@
+.input-group-text {
+	font-size: rem(14px);
+}
+.input-group {
+	@include display-flex();
+	@include flex-wrap();
+	@include flex-align(stretch);
+	
+	& > .form-control {
+		@include flex(1 1 auto);
+	}
+	& .input-group-text {
+		@include display-flex();
+		@include flex-align(center);
+	}
+}
+.input-group-append, 
+.input-group-prepend {
+	@include display-flex();
+}

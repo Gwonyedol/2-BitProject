@@ -1,0 +1,15 @@
+hr {
+	border: none;
+	height: 1px;
+	background-color: darken($white, 10%);
+	
+	&.hr-transparent {
+		background-color: rgba($black, .3);
+	}
+	&.hr-inverse {
+		background-color: lighten($black, 10%);
+	}
+	&.hr-inverse-transparent {
+		background-color: rgba($white, .3);
+	}
+}

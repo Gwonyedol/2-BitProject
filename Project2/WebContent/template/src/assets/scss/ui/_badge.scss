@@ -1,0 +1,42 @@
+.badge {
+	display: inline;
+	background: darken($white, 3%);
+	color: $black;
+	border-radius: rem(16px);
+	padding: rem(3px) rem(7px);
+	
+	&.badge-light {
+		color: $black;;
+	}
+}
+.btn-primary .badge,
+.list-group-item.active > .badge, 
+.nav-pills .nav-link.active .badge {
+	color: $blue;
+}
+@each $color, $value in $theme-colors {
+	.badge-#{$color} {
+		color: $white;
+		background: $value;
+		
+		&[href] {
+			&:focus,
+			&:hover {
+				background: darken($value, 20%);
+			}
+		}
+	}
+}
+@each $color, $value in $colors {
+	.badge-#{$color} {
+		color: $white;
+		background: $value;
+		
+		&[href] {
+			&:focus,
+			&:hover {
+				background: darken($value, 20%);
+			}
+		}
+	}
+}

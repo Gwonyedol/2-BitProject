@@ -1,0 +1,69 @@
+.wizard {
+	& .wizard-header {
+		white-space: nowrap;
+		border-bottom: 1px solid darken($white, 20%);
+		
+		@include media-breakpoint-down(lg) {
+			overflow: scroll;
+			
+			& .nav {
+				display: block;
+				
+				& .nav-item {
+					display: inline-block;
+				}
+			}
+		}
+		
+		& .nav {
+			& .nav-item {
+				& .nav-link {
+					font-size: rem(12px);
+					color: lighten($black, 50%);
+					font-weight: bold;
+					border-radius: $border-radius $border-radius 0 0;
+					border: 1px solid transparent;
+					margin-bottom: -1px;
+					padding: rem(11px) rem(15px) rem(10px);
+					
+					&:hover,
+					&:focus,
+					&:active {
+						color: $black;
+						background: none;
+					}
+					&.active {
+						background: $white;
+						border-color: darken($white, 20%);
+						border-bottom-color: $white;
+						color: $black;
+					}
+				}
+			}
+		}
+	}
+	& .wizard-content {
+		padding: 0;
+		position: relative;
+		border: 1px solid darken($white, 20%);
+		border-top: none;
+		border-radius: 0 0 $border-radius $border-radius;
+		background: $white;
+		
+		& .tab-pane {
+			padding: rem(30px);
+		}
+	}
+	& .wizard-footer {
+		padding: rem(20px) rem(30px);
+		background: darken($white, 5%);
+		border-top: 1px solid darken($white, 20%);
+		border-radius: 0 0 $border-radius $border-radius;
+		@include display-flex();
+		@include flex-align(center);
+		
+		& .btn {
+			min-width: rem(120px);
+		}
+	}
+}

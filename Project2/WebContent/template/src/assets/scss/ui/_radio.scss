@@ -1,0 +1,130 @@
+.radio {
+	display: block;
+	margin-top: rem(10px);
+	margin-bottom: rem(10px);
+	
+	& + .radio {
+		margin-top: rem(-5px);
+	}
+}
+.radio-inline {
+	display: inline-block;
+	
+	& + .radio-inline {
+		margin-top: 0;
+		margin-left: rem(5px);
+	}
+}
+.radio,
+.radio-inline {
+	position: relative;
+	
+	& label {
+		min-height: rem(16px);
+		padding-left: rem(25px);
+		margin: 0;
+		font-weight: normal;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: rem(18px);
+			height: rem(18px);
+			background: $white;
+			border: 1px solid darken($white, 20%);
+			border-radius: rem(18px);
+			@include transition(all .2s linear);
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			width: rem(8px);
+			height: rem(8px);
+			left: rem(5px);
+			top: rem(5px);
+			border-radius: rem(10px);
+			z-index: 10;
+			@include transition(all .2s linear);
+		}
+	}
+	& input {
+		&:checked {
+			& + label {
+				&:before {
+					background: $blue;
+					border-color: $blue;
+				}
+				&:after {
+					background: $white;
+				}
+			}
+		}
+	}
+	& input[type=radio] {
+		display: none;
+		
+		&.disabled,
+		&[disabled] {
+			& + label {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+		}
+	}
+	@each $color, $value in $theme-colors {
+		&.radio-#{$color} input:checked + label:before {
+			background: $value;
+			border-color: $value;
+		}
+	}
+	@each $color, $value in $colors {
+		&.radio-#{$color} input:checked + label:before {
+			background: $value;
+			border-color: $value;
+		}
+	}
+}
+.has-success {
+	& .radio, 
+	& .radio-inline, 
+	&.radio label, 
+	&.radio-inline label {
+		color: darken($green, 10%);
+	}
+	& .radio,
+	& .radio-inline {
+		& input:not(:checked) + label:before {
+			border-color: darken($green, 10%);
+		}
+	}
+}
+.has-warning {
+	& .radio, 
+	& .radio-inline, 
+	&.radio label, 
+	&.radio-inline label {
+		color: darken($orange, 10%);
+	}
+	& .radio,
+	& .radio-inline {
+		& input:not(:checked) + label:before {
+			border-color: darken($orange, 10%);
+		}
+	}
+}
+.has-error {
+	& .radio, 
+	& .radio-inline, 
+	&.radio label, 
+	&.radio-inline label {
+		color: darken($red, 10%);
+	}
+	& .radio,
+	& .radio-inline {
+		& input:not(:checked) + label:before {
+			border-color: darken($red, 10%);
+		}
+	}
+}

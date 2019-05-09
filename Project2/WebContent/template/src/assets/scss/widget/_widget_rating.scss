@@ -1,0 +1,35 @@
+.widget-rating {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: rem(10px);
+	color: lighten($black, 60%);
+	line-height: rem(18px);
+	
+	& > li {
+		display: inline-block;
+		
+		&.active {
+			color: $orange;
+		}
+		&.text {
+			font-weight: 500;
+			margin-left: rem(3px);
+		}
+		& + li {
+			margin-left: -1px;
+		}
+	}
+	&.widget-rating-inverse {
+		color: darken($white, 60%);
+	
+		& > li {
+			&.text {
+				color: darken($white, 30%);
+			}
+		}
+	}
+}

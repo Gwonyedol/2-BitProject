@@ -1,0 +1,331 @@
+.mailbox {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	@include display-flex();
+	background: darken($white, 5%);
+	
+	@include media-breakpoint-down(md) {
+		position: relative;
+		margin: rem(-15px);
+		min-height: 100%;
+		background: $white;
+	}
+	
+	& .slimScrollDiv {
+		@include flex(1);
+	}
+	& .mailbox-sidebar {
+		width: rem(200px);
+		border-right: 1px solid darken($white, 20%);
+		height: 100%;
+		@include display-flex();
+		@include flex-direction-column();
+		
+		@include media-breakpoint-down(md) {
+			display: none;
+		}
+	
+		& .mailbox-title {
+			margin: 0;
+			font-size: rem(12px);
+			color: lighten($black, 30%);
+			padding: rem(15px) rem(15px) rem(5px);
+		}
+		& .mailbox-wrapper {
+			@include display-flex();
+			@include flex(1);
+		}
+		& .mailbox-header {
+			border-bottom: 1px solid darken($white, 20%);
+			background: darken($white, 5%);
+			height: rem(50px);
+		
+			& > a {
+				@include display-flex();
+				@include flex-align(center);
+				color: lighten($black, 25%);
+				padding: rem(15px);
+				text-decoration: none;
+			
+				&:hover,
+				&:focus {
+					color: $black;
+				}
+				& .text {
+					@include flex(1);
+					display: block;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+				& i {
+					margin-right: rem(5px);
+				}
+			}
+		}
+		& .mailbox-menu {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		
+			& > li {
+				& > a {
+					display: block;
+					color: lighten($black, 30%);
+					padding: rem(5px) rem(15px);
+					text-decoration: none;
+				
+					& i {
+						display: inline-block;
+						font-size: rem(14px);
+						margin-right: rem(5px);
+						margin-left: rem(5px);
+						width: rem(20px);
+						text-align: center;
+					}
+					& b {
+						float: right;
+						background: $blue;
+						color: $white;
+						padding: 0 rem(6px) rem(1px);
+						border-radius: $border-radius;
+						font-size: rem(10px);
+						line-height: rem(16px);
+						margin-top: rem(1px);
+					}
+					& .email-label {
+						display: inline-block;
+						width: rem(12px);
+						height: rem(12px);
+						margin-left: rem(9px);
+						margin-right: rem(9px);
+						margin-bottom: rem(-1px);
+						border-radius: rem(12px);
+					}
+				}
+				& > a:hover,
+				& > a:focus {
+					color: #000;
+				}
+				&.active > a,
+				&.active > a:hover,
+				&.active > a:focus {
+					color: #007aff;
+				}
+			}
+		}
+	}
+	& .mailbox-content {
+		@include flex(1);
+		@include display-flex();
+		@include flex-direction-column();
+		background: $white;
+		height: 100%;
+		
+		& .mailbox-container {
+			@include display-flex();
+			@include flex(1);
+		}
+		& .mailbox-toolbar {
+			border-bottom: 1px solid darken($white, 20%);
+			padding: rem(9px) rem(15px);
+			background: darken($white, 5%);
+			height: rem(50px);
+			@include display-flex();
+			@include flex-align(center);
+		
+			@include clearfix();
+		}
+		& .mailbox-form {
+			background: $white;
+			@include flex(1);
+	
+			& .mailbox-form-header {
+				padding: 0.9375rem;
+			}
+		}
+	}
+	& .mailbox-list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		background: $white;
+	
+		& .mailbox-checkbox,
+		& .mailbox-message {
+			padding: rem(15px);
+		}
+		& .mailbox-message {
+			@include flex(1);
+		
+			& > a {
+				display: block;
+				color: $black;
+				margin: rem(-15px);
+				padding: rem(15px);
+				text-decoration: none;
+				position: relative;
+			}
+			& .mailbox-sender {
+				font-size: rem(14px);
+				position: relative;
+				font-weight: 600;
+			}
+			& .mailbox-time {
+				float: right;
+				margin-left: rem(5px);
+				font-weight: normal;
+				font-size: rem(12px);
+				color: lighten($black, 50%);
+			}
+			& .mailbox-desc {
+				position: relative;
+				font-size: rem(12px);
+				color: lighten($black, 50%);
+				margin-top: rem(1px);
+			}
+		}
+		& > li {
+			@include display-flex();
+			@include clearfix();
+		
+			&:hover {
+				background: darken($white, 4%);
+			}
+			&:last-child {
+				border-bottom: 1px solid darken($white, 20%);
+			}
+			& + li {
+				border-top: 1px solid darken($white, 20%);
+			}
+			&.unread a:before {
+				content: '';
+				position: absolute;
+				top: rem(21px);
+				left: 0;
+				width: rem(8px);
+				height: rem(8px);
+				background: $blue;
+				border-radius: rem(8px);
+			}
+			&.has-attachment a:after {
+				content: '\f0c6';
+				position: absolute;
+				top: rem(16px);
+				left: rem(-1px);
+				text-align: center;
+				color: darken($white, 40%);
+				font-size: rem(12px);
+				font-family: Font Awesome\ 5 Free, Font Awesome\ 5 Pro, FontAwesome;
+				font-weight: 900;
+				font-style: normal;
+				font-variant: normal;
+				text-rendering: auto;
+			}
+			&.unread.has-attachment a:after {
+				top: rem(35px);
+			}
+		}
+	}
+	& .mailbox-detail {
+		& .mailbox-detail-header {
+			padding: rem(15px);
+			background: darken($white, 5%);
+		
+			& .mailbox-subject {
+				margin: 0 0 rem(15px);
+				font-size: rem(18px);
+			}
+		}
+		& .mailbox-sender {
+			@include display-flex();
+		
+			& .mailbox-sender-img {
+				width: rem(36px);
+				height: rem(36px);
+				border-radius: rem(36px);
+				overflow: hidden;
+			
+				& img {
+					display: block;
+					max-width: 100%;
+				}
+				& + .mailbox-sender-info {
+					padding-left: 15px;
+				}
+			}
+			& .mailbox-sender-info {
+				@include flex(1);
+			
+				& .title {
+					margin: 0 0 rem(2px);
+					font-size: rem(12px);
+				}
+				& .time {
+					color: lighten($black, 50%);
+					font-size: rem(12px);
+					margin-bottom: rem(5px);
+				}
+				& .to {
+					font-size: rem(12px);
+				}
+			}
+		}
+		& .mailbox-detail-content {
+			padding: rem(15px);
+			border-top: 1px solid darken($white, 20%);
+		}
+		& .mailbox-detail-body {
+			font-size: rem(13px);
+		}
+		& .mailbox-detail-attachment {
+			@include clearfix();
+			
+			& .mailbox-attachment {
+				background: darken($white, 15%);
+				float: left;
+				width: rem(120px);
+				height: rem(80px);
+				overflow: hidden;
+				margin-right: rem(10px);
+				margin-bottom: rem(10px);
+				border-radius: $border-radius;
+				
+				& a {
+					display: block;
+					text-decoration: none;
+				}
+				& .document-file {
+					height: rem(60px);
+					overflow: hidden;
+					text-align: center;
+					background: darken($white, 10%);
+					
+					& i {
+						display: block;
+						line-height: rem(60px);
+						font-size: rem(32px);
+						color: $blue;
+					}
+					& img {
+						max-width: 100%;
+					}
+				}
+				& .document-name {
+					height: rem(20px);
+					line-height: rem(20px);
+					color: $black;
+					padding: 0 rem(10px);
+					font-size: rem(12px);
+					font-weight: 600;
+					text-align: center;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+}

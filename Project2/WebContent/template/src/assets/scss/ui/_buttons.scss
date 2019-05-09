@@ -1,0 +1,55 @@
+.btn {
+	&:hover,
+	&:active,
+	&:focus {
+		outline: none;
+	}
+	&.btn-sm {
+		font-size: rem(13px);
+	}
+	&.btn-xs {
+    padding: rem(1px) rem(5px);
+    font-size: rem(12px);
+    line-height: 1.5;
+    border-radius: rem($border-radius-sm);
+	}
+	&.no-border {
+		border: none;
+	}
+	&.btn-icon,
+	&.btn-rounded {
+		border-radius: rem(100px);
+	}
+}
+.btn-group-vertical, 
+.btn-group {
+	@include display-inline-flex();
+	
+	& > .btn {
+		@include flex(1 1 auto);
+	}
+}
+
+@each $color, $value in $colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+@each $color, $value in $colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+
+.btn.btn-info,
+.btn.btn-warning,
+.btn.btn-cyan {
+	color: $white;
+}
+.btn-default {
+	@include button-variant($white, darken($white, 15%));
+}
+.btn-outline-default {
+	@include button-outline-variant(darken($white, 15%));
+	color: $black;
+}

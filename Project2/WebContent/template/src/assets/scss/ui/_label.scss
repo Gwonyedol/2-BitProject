@@ -1,0 +1,39 @@
+.label {
+	display: inline;
+	padding: rem(3px) rem(7px);
+	font-size: 75%;
+	font-weight: 700;
+	line-height: 1;
+	color: $black;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: rem($border-radius);
+	background: darken($white, 3%);
+}
+@each $color, $value in $theme-colors {
+	.label-#{$color} {
+		color: $white;
+		background: $value;
+		
+		&[href] {
+			&:focus,
+			&:hover {
+				background: darken($value, 20%);
+			}
+		}
+	}
+}
+@each $color, $value in $colors {
+	.label-#{$color} {
+		color: $white;
+		background: $value;
+		
+		&[href] {
+			&:focus,
+			&:hover {
+				background: darken($value, 20%);
+			}
+		}
+	}
+}
