@@ -1,5 +1,0 @@
-package com.dasol.member.service;
-
-public class MemberNotFoundException extends RuntimeException {
-
-}
