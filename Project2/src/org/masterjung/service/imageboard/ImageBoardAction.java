@@ -7,28 +7,32 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.masterjung.action.Action;
 import org.masterjung.action.Actionforward;
+import org.masterjung.dao.BoardDao;
 import org.masterjung.dao.newsboard.NewsDAO;
 import org.masterjung.dto.BoardDto;
-
-
+import org.masterjung.dto.join.BoardReplyDto;
 
 public class ImageBoardAction implements Action {
 
 	@Override
 	public Actionforward execute(HttpServletRequest request, HttpServletResponse response) {
-		Actionforward forward = null;
+		
+		BoardDao dao = new BoardDao();
+		Actionforward forward = new Actionforward();
+		
 		try {
-			forward = new Actionforward();
-			NewsDAO dao = new NewsDAO();		
-			List<BoardDto> boardList = dao.getNewsList();
+			List<BoardDto> imageList = null;
+			imageList = dao.getBoardListById(4);
+		
+			request.setAttribute("imageList", imageList);			
 			
-			request.setAttribute("imageboardList",boardList);
-			
-			forward.setRedirect(false);		
-			forward.setPath("/WEB-INF/imageboard/image.jsp");
-		}catch(Exception e){
-    		System.out.println(e.getMessage());	
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/imageboard/imageboard.jsp");
+		
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		
 		return forward;
 	}
 

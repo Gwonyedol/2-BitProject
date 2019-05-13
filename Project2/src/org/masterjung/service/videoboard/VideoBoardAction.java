@@ -15,23 +15,26 @@ public class VideoBoardAction implements Action {
 
 	@Override
 	public Actionforward execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("비디오 보드 액션");
-		Actionforward forward = null;
-
+		
+		VideoDao dao = new VideoDao(); //비디오 리스트만 비디오 다오 사용함..
+		List<BoardDto> videolist;
+		Actionforward forward = new Actionforward();
+		
+		
 		try {
 			
-			VideoDao dao = new VideoDao(); 
-			List<BoardDto> videolist = dao.getVideoList();
+			videolist = dao.getVideoList();
 			request.setAttribute("videolist", videolist);
-			
-			forward = new Actionforward();
-			forward.setRedirect(false); // forward 방식
-			forward.setPath("/WEB-INF/videoboard/videoboard.jsp");
+			System.out.println(videolist.size());
 
-			System.out.println("조회완료");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/videoboard/videoboard.jsp");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return forward;
 
 	}

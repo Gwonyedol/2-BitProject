@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +14,17 @@ import org.masterjung.action.Action;
 import org.masterjung.action.Actionforward;
 import org.masterjung.service.register.JoinAction;
 import org.masterjung.service.register.LoginAction;
+import org.masterjung.service.register.LogoutAction;
+import org.masterjung.service.register.MemberEditAction;
+import org.masterjung.service.register.MemberEditViewAction;
+import org.masterjung.service.register.MemberinfoAction;
 
-
+@MultipartConfig(
+        location = "C:\\FrontendBackend\\WebJSP\\JSPLab\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\GameCommunityMVC\\uploads",
+        maxFileSize = -1,
+        maxRequestSize = -1,
+        fileSizeThreshold = -1
+)
 
 @WebServlet("*.reg")
 public class RegisterFrontController extends HttpServlet {
@@ -23,11 +33,9 @@ public class RegisterFrontController extends HttpServlet {
 
     public RegisterFrontController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-    	response.setContentType("text/html;charset=UTF-8");
     	String requestURI = request.getRequestURI();
     	String contextPath = request.getContextPath();
     	String url_Command = requestURI.substring(contextPath.length());
@@ -39,31 +47,45 @@ public class RegisterFrontController extends HttpServlet {
     		if(url_Command.equals("/login.reg")){
         		action = new LoginAction();
         		forward = action.execute(request, response);
+        		
     		}else if(url_Command.equals("/registerform.reg")) {
         		forward = new Actionforward();
         		forward.setRedirect(false);
         		forward.setPath("/WEB-INF/register/register.jsp");
+        		
     		}else if(url_Command.equals("/index.reg")) {
         		forward = new Actionforward();
         		forward.setRedirect(false);
         		forward.setPath("/index.jsp");
+        		
     		}else if(url_Command.equals("/register.reg")) {
-    			System.out.println("함수전");
     			action = new JoinAction();
-    			System.out.println("함수후");
         		forward = action.execute(request, response);
+        		
     		}else if(url_Command.equals("/memberinfo.reg")) {
-        		forward = new Actionforward();
+    			action = new MemberinfoAction();
+        		forward = action.execute(request, response);
+        		
+    		}else if(url_Command.equals("/membereditview.reg")) {
+    			action = new MemberEditViewAction();
+        		forward = action.execute(request, response);
+        		
+    		}else if(url_Command.equals("/memberedit.reg")) {
+    			action = new MemberEditAction();
+        		forward = action.execute(request, response);
+        		
+    		}else if(url_Command.equals("/logout.reg")) {
+    			action = new LogoutAction();
+        		forward = action.execute(request, response);
+        		
+    		}else{
+           		forward = new Actionforward();
         		forward.setRedirect(false);
-        		forward.setPath("/WEB-INF/register/memberinfo.jsp");
-    		}else if(url_Command.equals("/gomemberedit.reg")) {
-        		forward = new Actionforward();
-        		forward.setRedirect(false);
-        		forward.setPath("/WEB-INF/register/memberedit.jsp");
-    		}
+        		forward.setPath("/WEB-INF/page_404_error.jsp");
+        	}
     		
         	if(forward != null) {
-        		if(forward.isRedirect()) { //true
+        		if(forward.isRedirect()) {
         			response.sendRedirect(forward.getPath());
         		}else {
         			RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/common/Head_top.jsp"></jsp:include>
 	<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 	<script src="${pageContext.request.contextPath}/resource/js/qaboard.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/qaboard.css"/>
 <jsp:include page="/WEB-INF/common/Header_top.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/common/Sidebar_Left.jsp"></jsp:include>
+
 <!-- 콘텐츠 영역 시작-->
 <form name="qawrite" action="qawriteok.qb" method="POST">
 	<div class="row text-center">

@@ -12,6 +12,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+context.xml
 
 # External tool builders
 .externalToolBuilders/

@@ -1,0 +1,96 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="/WEB-INF/common/Head_top.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resource/css/newsdetail.css" />
+	
+	<script src="${pageContext.request.contextPath}/resource/js/newsdetail.js" type="text/javascript"></script>
+
+	
+<jsp:include page="/WEB-INF/common/Header_top.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/common/Sidebar_Left.jsp"></jsp:include>
+<!-- 콘텐츠 영역 시작-->
+<c:set var="board" value="${requestScope.boardId}" />
+<div class="card m-b-15">
+	<!-- BEGIN card -->
+	<div class="card m-b-15">
+		<!-- BEGIN card-header -->
+		<div class="card-header card-header-inverse">
+			<h4 class="card-header-title">GAME NEWS</h4>
+		</div>
+		<div class="card-body" id="title">
+			<a href="#">${boardId.title}</a>
+		</div>
+		<hr>
+		<div class="card-body" id="board-nav">Steam${boardId.nick_name}
+			| ${boardId.date_created} | 조회 ${boardId.view_count} | 댓글 0</div>
+
+		<div class="card-body" id="board-content">
+			<c:choose>
+				<c:when test="${boardId.file_path=='uploads/'}"></c:when>
+				<c:otherwise>
+					<img src="${boardId.file_path}" id="head-image">
+				</c:otherwise>
+			</c:choose>
+			<br> ${boardId.content}
+		</div>
+
+
+	</div>
+
+</div>
+<p class="button-active">
+	&nbsp;&nbsp;&nbsp;
+	<button type="button" class="btn btn-primary active" id="btn">
+		<a id="anker" href="editboard.nb?id=${boardId.id}">수정</a>
+	</button>
+	<button type="button" class="btn btn-primary active" id="btn">
+		<a id="anker" href="#">삭제</a>
+	</button>
+	<button type="button" class="btn btn-primary active" id="btn">
+		<a id="anker" href="newboard.nb">목록</a>
+	</button>
+</p>
+<div class="card m-b-15">
+	<div class="card-body" id="board-content">
+		<div class="reply-title">댓글</div>
+		<hr>
+		<div id="reply">
+		<c:choose>
+			<c:when test="${empty requestScope.dto2}"><p class="empty">작성된 댓글이 없습니다.</p></c:when>
+			
+			<c:otherwise>
+			
+				<c:forEach var = "reply" items="${requestScope.dto2}">
+					<b>${reply.r_nick_name}</b>&nbsp;<i>${reply.date_created}</i><br>
+					<p id="reply-content">${reply.reply_content} <c:if test="${sessionScope.nick_name == reply.r_nick_name}"><p>
+																				<a class ="update"href="updatereply.nb?id=${reply.id}&boardid=${board.id}">[수정]</a>
+																				 <a class ="update" href="deletereply.nb?id=${reply.id}&boardid=${board.id}">[삭제]</a></p></c:if>
+					</p>
+					
+				</c:forEach>
+			</c:otherwise>
+			
+		</c:choose>
+		</div>
+	</div>
+</div>
+		<div class="card m-b-15">
+			<div class="card-body">
+<c:choose>
+	<c:when test="${sessionScope.nick_name == null}">댓글쓰기 권한이 없습니다.</c:when>
+	<c:otherwise>
+
+			
+				<b class="nick_name" >${sessionScope.nick_name}</b>&nbsp;<input type="text" class="content" name="content" placeholder="댓글...">
+				<button type="submit" id="btn" class="reply-create">댓글작성</button>
+			
+	</c:otherwise>
+</c:choose>
+
+			</div>
+		</div>
+<!-- 콘텐츠영역 끝 -->
+<jsp:include page="/WEB-INF/common/Sidebar_Right.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/common/Footer_bottom.jsp"></jsp:include>

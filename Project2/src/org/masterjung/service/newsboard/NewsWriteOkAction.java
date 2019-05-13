@@ -11,35 +11,37 @@ import org.masterjung.action.Actionforward;
 import org.masterjung.dao.newsboard.NewsDAO;
 import org.masterjung.dto.BoardDto;
 
-public class NewsWriteOkAction implements Action{
+public class NewsWriteOkAction implements Action {
 
 	public Actionforward execute(HttpServletRequest request, HttpServletResponse response) {
     	response.setContentType("text/html;charset=UTF-8");
     	
 		Actionforward forward = null;
 		String fileName ="";
+		String fileName2="";
+		
     	try {
 			Part part = request.getPart("upload");
 			if (part.getHeader("Content-Disposition").contains("filename=")) {
 				 fileName = part.getSubmittedFileName();
 				 
 				System.out.println("filename : " + fileName);
+				fileName2="uploads/"+fileName;
 				fileName = "/uploads/"+fileName;
 				if (part.getSize() > 0) {
-					
 					part.write(request.getSession().getServletContext().getRealPath(fileName));
-					System.out.println(request.getSession().getServletContext().getRealPath(fileName));
 					part.delete();
 				}
 			}	
+    		
 			forward=new Actionforward();
 			NewsDAO dao = new NewsDAO();
 			BoardDto boardDto = new BoardDto();
 			boardDto.setBoard_list_id(3);
 			boardDto.setNick_name(request.getParameter("nick_name"));
 			boardDto.setTitle(request.getParameter("title"));
-			boardDto.setContent(request.getParameter("content"));
-    		boardDto.setFile_path(fileName);
+			boardDto.setContent(request.getParameter("editor1"));
+    		boardDto.setFile_path(fileName2);
 			int result = dao.InsertBoard(boardDto);
 			
 			if(result>0) {
@@ -47,7 +49,8 @@ public class NewsWriteOkAction implements Action{
 			}else {
 				System.out.println("실패");
 			}
-			forward.setPath("/newboard.nb");
+			response.sendRedirect("newboard.nb");
+			
     	}catch(Exception e){
     		System.out.println(e.getMessage());	
     	}

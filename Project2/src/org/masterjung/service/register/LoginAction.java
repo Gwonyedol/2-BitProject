@@ -17,34 +17,28 @@ public class LoginAction implements Action {
 	@Override
 	public Actionforward execute(HttpServletRequest request, HttpServletResponse response) {
 		Actionforward forward = new Actionforward();
-
 		HttpSession session = request.getSession();
-
+		
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		UserDto userdto = new UserDto(email, password);
 		MainDao maindao = new MainDao();
-		UserDto userdto = new UserDto();
-		
-		
-		
-		String id = request.getParameter("email");
-		System.out.println(id);
-		
-		userdto.setEmail(request.getParameter("email"));
-		userdto.setPassword(request.getParameter("password"));
 		int result = maindao.isMember(userdto);
-		System.out.println(result);
+		
 		if (result == 1) {
 			PrintWriter script;
 			try {
 				script = response.getWriter();
-				System.out.println("로그인 성공");
-				//로그인 성공
-				System.out.println(userdto.getEmail());
+				System.out.println("로그인 성공");				
+				UserDto dto = maindao.userDetail(email);
 		   		session.setAttribute("email", userdto.getEmail());
-		   		session.setAttribute("nick_name", userdto.getNick_name());
+		   		session.setAttribute("nick_name", dto.getNick_name());
+		   		session.setAttribute("user_image_path", dto.getUser_image_path());
+		   		session.setAttribute("user_auth", dto.getUser_auth());
+		   		session.setAttribute("user_name", dto.getUser_name());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		} else if (result == 0) {
 			PrintWriter script;
 			try {
@@ -73,8 +67,8 @@ public class LoginAction implements Action {
 			}
 		}
 		
-		forward.setRedirect(false);
-		forward.setPath("/index.jsp");
+		forward.setRedirect(true);
+		forward.setPath(".");
 		return forward;
 	}
 

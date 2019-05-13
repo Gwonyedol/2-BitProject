@@ -27,6 +27,7 @@ public class ImageDAO {
 		Context context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 	}
+	
 	public List<BoardDto> getImageList() throws SQLException {
 		String sql = "select date_created, id, board_list_id, title, view_count, nick_name from board";
 		// POOL 연결 객체 얻어오기

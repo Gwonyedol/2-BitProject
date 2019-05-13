@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 </head>
 
 <!-- BEGIN #app / 이거의 끝(/div)는 Footer_bootem.jsp에 있음. -->
@@ -24,26 +24,47 @@
 			</button>
 		</div>
 		<!-- END navbar-header -->
-		<!-- BEGIN navbar-nav -->
+		
 		<!-- BEGIN navbar-nav -->
 		<ul class="navbar-nav navbar-right">
-			<li class="nav-item"><a href="#" data-toggle="search-bar"
-				class="nav-link"> <i class="fa fa-search nav-icon"></i>
-			</a></li>
-			<li>
-				<div class="navbar-header">
-					<a href="registerform.reg" class="navlogin"> SignUp </a>
-				</div>
-			</li>
-			<li>
-				<div class="navbar-header">
-					<a href="#inverse-modal" data-toggle="modal" class="navlogin">
-						Login </a>
-				</div>
-			</li>
+			<c:set var="auth" value="${user_auth}"/>
+				<c:choose>
+					<c:when test="${empty auth}">
+						<li class="nav-item"><a href="#" data-toggle="search-bar"
+							class="nav-link"> <i class="fa fa-search nav-icon"></i>
+						</a></li>
+						<li>
+							<div class="navbar-header">
+								<a href="registerform.reg" class="navlogin"> 회원가입 </a>
+							</div>
+						</li>
+						<li>
+							<div class="navbar-header">
+								<a href="#inverse-modal" data-toggle="modal" class="navlogin">
+									로그인&nbsp; </a>
+							</div>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="nav-item"><a href="#" data-toggle="search-bar"
+							class="nav-link"> <i class="fa fa-search nav-icon"></i>
+						</a></li>
+						<li>
+							<div class="navbar-header">
+								<a href="memberinfo.reg" class="navlogin">[${nick_name}] 님</a>
+							</div>
+						</li>
+						<li>
+							<div class="navbar-header">
+								<a href="#logout-modal" data-toggle="modal" class="navlogin">
+									<small>로그아웃</small> </a>
+							</div>
+						</li>
+					</c:otherwise>
+				</c:choose>
 		</ul>
 		<!-- END navbar-nav -->
-		<!-- END navbar-nav -->
+		
 		<!-- BEGIN navbar-search -->
 		<div class="navbar-search">
 			<form action="#" method="POST" name="navbar_search_form">

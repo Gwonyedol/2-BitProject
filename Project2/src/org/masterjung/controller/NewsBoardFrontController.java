@@ -13,11 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.masterjung.action.Action;
 import org.masterjung.action.Actionforward;
 import org.masterjung.service.newsboard.MoveNewsBoardAction;
+import org.masterjung.service.newsboard.NewsDetailAction;
+import org.masterjung.service.newsboard.NewsEditAction;
+import org.masterjung.service.newsboard.NewsEditOkAction;
+import org.masterjung.service.newsboard.NewsReplyDeleteAction;
+import org.masterjung.service.newsboard.NewsReplyUpdateAction;
+import org.masterjung.service.newsboard.NewsReplyWriteAction;
 import org.masterjung.service.newsboard.NewsWriteOkAction;
 
 
 @MultipartConfig(
-		location = "C:\\FrontAndBackend\\Web\\WebClientLabs\\해오라기\\gamecommunity2\\WebContent\\uploads",
+		location = "../../../../wtpwebapps/GameCommunityMVC/uploads",
 		maxFileSize = -1,
 		maxRequestSize = -1,
 		fileSizeThreshold = -1
@@ -25,9 +31,9 @@ import org.masterjung.service.newsboard.NewsWriteOkAction;
 @WebServlet("*.nb")
 public class NewsBoardFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
     public NewsBoardFrontController() {
+    	
         super();
     }
 
@@ -37,7 +43,6 @@ public class NewsBoardFrontController extends HttpServlet {
     	String requestURI = request.getRequestURI();
     	String contextPath = request.getContextPath();
     	String url_Command = requestURI.substring(contextPath.length());
-    	System.out.println(requestURI+"/"+contextPath);
     	Actionforward forward = new Actionforward();
     	Action action = null;
     	try {
@@ -50,6 +55,24 @@ public class NewsBoardFrontController extends HttpServlet {
     		forward.setPath("/WEB-INF/newsboard/newsWrite.jsp");
     	}else if(url_Command.equals("/writeOk.nb")) {
     		action = new NewsWriteOkAction();
+    		forward = action.execute(request, response);
+    	}else if(url_Command.equals("/newsDetail.nb")) {
+    		action = new NewsDetailAction();
+    		forward = action.execute(request, response);
+    	}else if(url_Command.equals("/editboard.nb")) {
+    		action = new NewsEditAction();
+    		forward = action.execute(request, response);
+    	}else if(url_Command.equals("/eidtOk.nb")) {
+    		action = new NewsEditOkAction();
+    		forward = action.execute(request, response);
+    	}else if(url_Command.equals("/Insert.nb")) {
+    		action = new NewsReplyWriteAction();
+    		forward = action.execute(request, response);
+    	}else if(url_Command.equals("/deletereply.nb")) {
+    		action = new NewsReplyDeleteAction();
+    		forward = action.execute(request, response);
+    	}else if(url_Command.equals("/updatereply.nb")) {
+    		action = new NewsReplyUpdateAction();
     		forward = action.execute(request, response);
     	}
     	if(forward != null) {

@@ -33,9 +33,9 @@
 				<p class="text-muted m-b-10">Here are some helpful links
 					instead:</p>
 				<p>
-					<a href="index.html">Home</a> <span class="link-divider"></span> <a
-						href="page_search_results.html">Search</a> <span
-						class="link-divider"></span> <a href="email_inbox.html">Email</a>
+					<a href="index.html">Home</a> <span class="link-divider">
+					</span> <a href="page_search_results.html">Search</a> 
+					<span class="link-divider"></span> <a href="email_inbox.html">Email</a>
 					<span class="link-divider"></span> <a href="calendar.html">Calendar</a>
 					<span class="link-divider"></span> <a href="settings.html">Settings</a>
 					<span class="link-divider"></span> <a href="helper.html">Helper</a>

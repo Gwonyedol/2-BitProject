@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="/WEB-INF/common/Head_top.jsp"></jsp:include>
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resource/css/newsmain.css" />
 
 <jsp:include page="/WEB-INF/common/Header_top.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/common/Sidebar_Left.jsp"></jsp:include>
 <!-- 콘텐츠 영역 시작-->
-
-
-
-
 <div class="card m-b-15">
 	<!-- BEGIN card -->
 	<div class="card m-b-15">
@@ -23,26 +23,26 @@
 			<div class="table-responsive">
 				<table class="table">
 					<tbody>
+						<c:forEach var="boardList" items="${requestScope.boardList}">
+							<tr>
+								<td class="list"><img src="${boardList.file_path}"
+									id="image" alt="" /></td>
+								<td><a id="headline"
+									href="newsDetail.nb?id=${boardList.id}">${boardList.title}<b  class ="count">
+									${boardList.reply_count}</b>
+								</a> <br>${boardList.date_created} | 조회 ${boardList.view_count}</td>
 
-						<tr>
-							<td class="" style="width: 500px; height: 261px"><img
-								src="i8262929111.jpg" style="width: 500px; height: 261px" alt="" /></td>
-							<td><a href="" style="font-size: 26px; color: black">[하드웨어]
-									밸브가 직접 만든 VR 헤드셋, '인덱스' </a> <br>2019.05.05 | 조회 9</td>
-
-						</tr>
-
-
+							</tr>
+						</c:forEach>
 
 					</tbody>
 
 				</table>
-				<p class="m-b-0" style="display: block; align: center">
+				<hr>
+				<p class="button-active">
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-primary active"
-						style="margin-left: 940px">
-						<a href="moveWrite.nb"
-							style="text-decoration: none; color: white">글쓰기</a>
+					<button type="button" class="btn btn-primary active" id="btn">
+						<a id="anker" href="moveWrite.nb">글쓰기</a>
 					</button>
 				</p>
 			</div>

@@ -13,8 +13,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.masterjung.dto.BoardDto;
-
-
+import org.masterjung.dto.join.BoardDetailDto;
+import org.masterjung.dto.join.BoardReplyDto;
 
 public class NewsDAO {
 	DataSource ds = null;
@@ -26,8 +26,43 @@ public class NewsDAO {
 		Context context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 	}
+
+	public List<BoardReplyDto> getNewsListAndReplyCount(int board_list_id) throws SQLException {
+		String sql = "select date_created , content , vote_count , last_updated , anonymity , refer , depth , step , id,board_list_id , title , view_count , nick_name , file_path , (select count(id) from reply where reply_id=b.id and enabled=1)count from board b where board_list_id=? and enabled=1 order by id desc;";
+		Connection conn = ds.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, board_list_id);
+		ResultSet rs = pstmt.executeQuery();
+		List<BoardReplyDto> boardList = new ArrayList<>();
+		
+		while (rs.next()) {
+			BoardReplyDto dto = new BoardReplyDto();
+			dto.setDate_created(rs.getDate("date_created"));
+			dto.setContent(rs.getString("content"));
+			dto.setVote_count(rs.getInt("vote_count"));
+			try {
+                dto.setLast_updated(rs.getDate("last_updated"));
+            }catch(Exception e1) {
+                dto.setLast_updated(rs.getDate("date_created"));
+            }			
+			dto.setAnonymity(rs.getInt("anonymity"));
+			dto.setRefer(rs.getInt("refer"));
+			dto.setDepth(rs.getInt("depth"));
+			dto.setStep(rs.getInt("step"));
+			dto.setId(rs.getInt("id"));
+			dto.setBoard_list_id(rs.getInt("board_list_id"));
+			dto.setTitle(rs.getString("title"));
+			dto.setView_count(rs.getInt("view_count"));
+			dto.setNick_name(rs.getString("nick_name"));
+			dto.setFile_path(rs.getString("file_path"));
+			dto.setReply_count(rs.getInt("count"));
+			boardList.add(dto);
+		}
+		return boardList;
+	}
+
 	public List<BoardDto> getNewsList() throws SQLException {
-		String sql = "select date_created, id, board_list_id, title, view_count, nick_name from board";
+		String sql = "select date_created, id, board_list_id, title, view_count, nick_name, file_path from board  where board_list_id = 3 order by id desc";
 		// POOL 연결 객체 얻어오기
 		Connection conn = ds.getConnection();
 		pstmt = conn.prepareStatement(sql);
@@ -43,25 +78,57 @@ public class NewsDAO {
 			news.setTitle(rs.getString("title"));
 			news.setView_count(rs.getInt("view_count"));
 			news.setNick_name(rs.getString("nick_name"));
+			news.setFile_path(rs.getString("file_path"));
 			boardList.add(news);
 		}
 
 		conn.close();
 		return boardList;
 	}
-	public int  InsertBoard(BoardDto boardDto) throws SQLException {
-		int resultrow=0;
+
+	public int InsertBoard(BoardDto boardDto) throws SQLException {
+		int resultrow = 0;
 		String sql = "insert into board(title,content,nick_name,board_list_id,file_path) values(?,?,?,?,?)";
 		Connection conn = ds.getConnection();
 		pstmt = conn.prepareStatement(sql);
 
-		pstmt.setString(1,boardDto.getTitle());
+		pstmt.setString(1, boardDto.getTitle());
 		pstmt.setString(2, boardDto.getContent());
-		pstmt.setString(3,boardDto.getNick_name());
-		pstmt.setInt(4,boardDto.getBoard_list_id());
+		pstmt.setString(3, boardDto.getNick_name());
+		pstmt.setInt(4, boardDto.getBoard_list_id());
 		pstmt.setString(5, boardDto.getFile_path());
-		resultrow= pstmt.executeUpdate();
+		resultrow = pstmt.executeUpdate();
 		conn.close();
 		return resultrow;
+	}
+
+	public int UpdateBoard(BoardDetailDto boardDto) throws SQLException {
+		int resultrow = 0;
+		boolean notUpload = isEmpty(boardDto.getFile_path());
+		String sql = notUpload ? 
+							"update board set title=?,content=?,nick_name=?,board_list_id=? where id=?" :
+							"update board set title=?,content=?,nick_name=?,board_list_id=?,file_path=? where id=?";
+		Connection conn = ds.getConnection();
+		pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, boardDto.getTitle());
+		pstmt.setString(2, boardDto.getContent());
+		pstmt.setString(3, boardDto.getNick_name());
+		pstmt.setInt(4, boardDto.getBoard_list_id());
+		if (notUpload) {
+			System.out.println("파일존재x2");
+			pstmt.setInt(5, boardDto.getId());
+		} else {
+			System.out.println("파일존재2");
+			pstmt.setString(5, boardDto.getFile_path());
+			pstmt.setInt(6, boardDto.getId());
+		}
+		resultrow = pstmt.executeUpdate();
+		conn.close();
+		return resultrow;
+	}
+
+	private boolean isEmpty(String param) {
+		return param == null || param.equals("");
 	}
 }

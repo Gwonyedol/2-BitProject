@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.masterjung.action.Action;
 import org.masterjung.action.Actionforward;
+import org.masterjung.service.qaboard.QaBoardDeleteOkAction;
+import org.masterjung.service.qaboard.QaDetailAction;
+import org.masterjung.service.qaboard.QaWriteEditAction;
+import org.masterjung.service.qaboard.QaWriteEditOkAction;
 import org.masterjung.service.qaboard.QaWriteOkAction;
 import org.masterjung.service.qaboard.QaboardAction;
 
@@ -30,11 +34,6 @@ public class QaBoardFrontController extends HttpServlet {
     	String contextPath = request.getContextPath();
     	String uriCommand = requestURI.substring(contextPath.length());
     	
-    	System.out.println("requestURI: " + requestURI);
-    	System.out.println("contextPath: " + contextPath);
-    	System.out.println("uri_Command>" + uriCommand+"<");
-    	
-    	
     	if(uriCommand.equals("/qaboard.qb")) {
        		action = new QaboardAction();
     		forward = action.execute(request, response);
@@ -48,7 +47,23 @@ public class QaBoardFrontController extends HttpServlet {
     		action = new QaWriteOkAction();
     		forward = action.execute(request, response);
     		
-    	}else {
+    	}else if(uriCommand.equals("/qadetail.qb")){
+    		action = new QaDetailAction();
+    		forward = action.execute(request, response);
+    	
+    	}else if(uriCommand.equals("/qawriteeditok.qb")){
+    		action = new QaWriteEditOkAction();
+    		forward = action.execute(request, response);
+    		
+    	}else if(uriCommand.equals("/qawritedit.qb")){
+    		action = new QaWriteEditAction();
+    		forward = action.execute(request, response);
+    		
+    	}else if(uriCommand.equals("/qadelteok.qb")){
+    		action = new QaBoardDeleteOkAction();
+    		forward = action.execute(request, response);
+    		
+    	}else{
        		forward = new Actionforward();
     		forward.setRedirect(false);
     		forward.setPath("/WEB-INF/page_404_error.jsp");

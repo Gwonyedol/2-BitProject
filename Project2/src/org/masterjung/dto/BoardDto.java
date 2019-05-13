@@ -22,6 +22,18 @@ public class BoardDto {
 	
 	public BoardDto(){};
 	
+	
+	
+	public BoardDto(int id, String title, String content, String file_path) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.file_path = file_path;
+	}
+
+
+
 	public BoardDto(int board_list_id, String nick_name, String create_ip, String title, String content) {
 		super();
 		this.board_list_id = board_list_id;

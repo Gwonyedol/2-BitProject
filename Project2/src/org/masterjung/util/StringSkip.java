@@ -5,7 +5,7 @@ public class StringSkip {
 	public String stringSkip(String beforeString) {
 		String stringSkip="";
 		if(beforeString.length()>20) {
-			stringSkip = beforeString.substring(0, 20) + "...";
+			stringSkip = beforeString.substring(0, 20) + " ...";
 		}else {
 			stringSkip = beforeString;
 		}
@@ -15,7 +15,7 @@ public class StringSkip {
 	public String stringSkip(String beforeString, int location) {
 		String stringSkip="";
 		if(beforeString.length()>location) {
-			stringSkip = beforeString.substring(0, location) + "...";
+			stringSkip = beforeString.substring(0, location) + " ...";
 		}else {
 			stringSkip = beforeString;
 		}

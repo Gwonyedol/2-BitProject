@@ -3,10 +3,11 @@ package org.masterjung.dto;
 import java.sql.Date;
 
 public class Reply_VoteDto {
-	int id;
-	int vote_id;
-	String reply_voter;
-	Date date_created;
+	private int id;
+	private int vote_id;
+	private String reply_voter;
+	private Date date_created;
+	
 	public int getId() {
 		return id;
 	}

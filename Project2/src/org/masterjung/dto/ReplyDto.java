@@ -3,20 +3,30 @@ package org.masterjung.dto;
 import java.sql.Date;
 
 public class ReplyDto {
-	int id;
-	int reply_id;
-	Date date_created;
-	Date last_updated;
-	String reply_content;
-	String r_nick_name;
-	int vote_count;
-	int refer;
-	int depth;
-	int step;
-	int enabled;
+	private int id;
+	private int reply_id;
+	private Date date_created;
+	private Date last_updated;
+	private String reply_content;
+	private String r_nick_name;
+	private int vote_count;
+	private int refer;
+	private int depth;
+	private int step;
+	private int enabled;
 	
 	public ReplyDto(){}
 	
+	public ReplyDto(int reply_id, String reply_content, String r_nick_name, int refer, int depth, int step) {
+		super();
+		this.reply_id = reply_id;
+		this.reply_content = reply_content;
+		this.r_nick_name = r_nick_name;
+		this.refer = refer;
+		this.depth = depth;
+		this.step = step;
+	}
+
 	public int getId() {
 		return id;
 	}

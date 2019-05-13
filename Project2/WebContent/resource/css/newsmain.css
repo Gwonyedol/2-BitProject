@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.list{
+	width: 500px; height: 261px
+}
+#image{
+	width: 500px; height: 261px
+}
+#headline{
+	font-size: 26px; color: black
+}
+#anker{
+	text-decoration:none; color: white
+}
+
+.button-active{
+	display: block; align: center;text-align:right
+}
+.count{
+	font-size: 15px;color:orange;margin-left:5px
+}

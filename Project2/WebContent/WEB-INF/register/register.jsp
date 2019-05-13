@@ -21,10 +21,11 @@
 						</div>
 						<!-- END register-brand -->
 						<h3 class="m-b-20">
-							<span>Sign Up</span>
+							<span>회원가입</span>
 						</h3>
-						<p class="m-b-20">One Admin ID is all you need to access all
-							the Admin services.</p>
+						<p class="m-b-20">
+							회원가입 완료 후 작성하신 <b>이메일</b>과 <b>비밀번호</b>로 로그인이 가능합니다
+						</p>
 						<!-- BEGIN register-form -->
 						<form action="register.reg" method="POST" name="register_form">
 							<!-- BEGIN row -->
@@ -32,27 +33,27 @@
 								<!-- BEGIN col12 -->
 								<div class="col-md-8">
 									<div class="form-group">
-										<label>Name <span class="text-danger">*</span></label> <input
+										<label>이름 <span class="text-danger">*</span></label> <input
 											type="text" class="form-control" value="" id="user_name"
 											name="user_name" />
 									</div>
 									<div class="form-group">
-										<label>Nick Name <span class="text-danger">*</span></label> <input
+										<label>닉네임 <span class="text-danger">*</span></label> <input
 											type="text" class="form-control" value="" id="nick_name"
 											name="nick_name" />
 									</div>
 									<div class="form-group">
-										<label>Phone Number <span class="text-danger">*</span></label>
+										<label>휴대폰 번호 <span class="text-danger">*</span></label>
 										<input type="text" class="form-control" value=""
 											id="phone_number" name="phone_number" />
 									</div>
 									<div class="form-group">
-										<label>Email Address <span class="text-danger">*</span></label>
+										<label>이메일 <span class="text-danger">*</span></label>
 										<input type="text" class="form-control" value="" id="email"
 											name="email" />
 									</div>
 									<div class="form-group">
-										<label>Password <span class="text-danger">*</span></label> <input
+										<label>비밀번호 <span class="text-danger">*</span></label> <input
 											type="password" class="form-control" value="" id="password"
 											name="password" />
 									</div>
@@ -71,9 +72,9 @@
 							</div>
 							<div class="d-flex align-items-center">
 								<button type="submit"
-									class="btn btn-primary width-200 btn-rounded">Sign Up</button>
-								<span class="m-l-20 text-white-transparent-5"> Already
-									have an Admin ID? &nbsp; <a href="page_login.html">Sign In</a>
+									class="btn btn-primary width-200 btn-rounded">회원가입</button>
+								<span class="m-l-20 text-white-transparent-5">
+								 	Already have an Admin ID? &nbsp; <a href="page_login.html">로그인</a>
 								</span>
 							</div>
 						</form>

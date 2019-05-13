@@ -21,5 +21,6 @@ $(function(){
 			qawrite.title.focus();
 	        return false;
 		}
-	}
+	}	
+	
 })

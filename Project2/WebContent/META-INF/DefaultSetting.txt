@@ -13,21 +13,25 @@ insert into user_auth(auth) values('기자회원');
 insert into user_auth(auth) values('관리자');
 select * from user_auth;
 
+
+
 create table user(
 	id bigint(20) not null, 
     email varchar(255) not null,
     password varchar(255) not null,
     nick_name varchar(30) not null,
-    phone_number bigint(20) not null,
+    phone_number bigint(11) zerofill not null,
     user_name  varchar(15) not null,
     user_address varchar(255) null,
     enabled bit(1) not null default 1, -- 1: 정상 0:블라인드처리
     create_ip varchar(255) null,
-    user_auth bigint(20) not null default 0,
+    user_auth bigint(20) not null default 1,
     user_image_path varchar(255) null,
     date_created datetime not null default current_timestamp,
     last_updated datetime not null default 0 on update current_timestamp
 );
+
+select * from user;
 
 alter table user add constraint pk_id primary key(id);
 alter table user modify column id bigint(20) auto_increment;
@@ -36,6 +40,7 @@ alter table user add constraint uq_user_name unique(user_name);
 alter table user add constraint uq_user_address unique(user_address);
 alter table user add constraint uq_user_image_path unique(user_image_path);
 alter table user add constraint fk_user_auth foreign key(user_auth) references user_auth(id);
+insert into user(email, password, nick_name, phone_number, user_name, user_auth) values('master@masterjung.org','masterjung9208!!','master',01037689208,'마스터',3);
 
 
 create table visit(
@@ -61,6 +66,8 @@ insert into category(category_name) values('이미지게시판');
 insert into category(category_name) values('동영상게시판');
 insert into category(category_name) values('게임정보게시판');
 
+select * from category;
+select * from board_list;
 create table board_list(
 	id bigint(20) not null,
     board_name varchar(255),
@@ -70,7 +77,12 @@ create table board_list(
 alter table board_list add constraint pk_id primary key(id);
 alter table board_list modify column id bigint(20) auto_increment;
 alter table board_list add constraint fk_category_id foreign key(category_id) references category(id);
-
+insert into board_list(board_name, category_id) values('질문메인1',1);
+insert into board_list(board_name, category_id) values('공략메인1',2);
+insert into board_list(board_name, category_id) values('뉴스메인1',3);
+insert into board_list(board_name, category_id) values('이미지메인1',4);
+insert into board_list(board_name, category_id) values('동영상메인1',5);
+insert into board_list(board_name, category_id) values('게임정보1',6);
 
 create table board(
 	id bigint(20) not null,
@@ -87,13 +99,15 @@ create table board(
     view_count int(11) not null default 0,
     vote_count int(11) not null default 0,
     title varchar(255) not null,
-	content longtext not null
+	content longtext not null,
+    file_path varchar(255) null
 );
-
+select * from board;
 alter table board add constraint pk_id primary key(id);
 alter table board modify column id bigint(20) auto_increment;
 alter table board add constraint fk_nick_name foreign key(nick_name) references user(nick_name) ON UPDATE CASCADE;
 alter table board add constraint fk_board_list_id foreign key(board_list_id) references board_list(id);
+
 
 create table content_vote(
 	id bigint(20) not null,

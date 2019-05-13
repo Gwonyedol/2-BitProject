@@ -19,6 +19,12 @@ public class UserDto {
 	
 	public UserDto(){}
 	
+	public UserDto(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
+
 	public UserDto(int id, String email, String password, String nick_name, String user_name, String user_address,
 			String created_ip) {
 		super();
