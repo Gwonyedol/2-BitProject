@@ -14,8 +14,8 @@ import org.masterjung.action.Actionforward;
 import org.masterjung.service.imageboard.ImageBoardAction;
 import org.masterjung.service.imageboard.ImageBoardDeleteAction;
 import org.masterjung.service.imageboard.ImageDetailAction;
-import org.masterjung.service.imageboard.ImageWriteEditAction;
-import org.masterjung.service.imageboard.ImageWriteEditOkAction;
+import org.masterjung.service.imageboard.ImageEditAction;
+import org.masterjung.service.imageboard.ImageEditOkAction;
 import org.masterjung.service.imageboard.ImageWriteOkAction;
 
 @WebServlet("*.ib")
@@ -47,21 +47,21 @@ public class ImageBoardFrontController extends HttpServlet {
 	    
 	   }else if(uriCommand.equals("/imagewrite.ib")){ //글쓰기 화면으로 이동
 	   forward = new Actionforward();
-	   forward.setRedirect(false);
 	   forward.setPath("/WEB-INF/imageboard/imagewrite.jsp");	   
 	   
 	   }else if(uriCommand.equals("/imagewriteok.ib")){ // 글쓰기 버튼 클릭
 		System.out.println("이미지 라잇오케이 컨트롤러 작동");
-      	action = new ImageWriteOkAction();
-      	System.out.println("ImageWriteOkAction 작동");
+      	action = new ImageWriteOkAction();	
    		forward = action.execute(request, response); 
    		
-	   }else if(uriCommand.equals("/imagewriteedit.ib")){ // 게시물 수정 화면으로 이동
-	  	action = new ImageWriteEditAction();
+	   }else if(uriCommand.equals("/imageedit.ib")){ // 게시물 수정 화면으로 이동
+		System.out.println("게시물 수정 컨트롤러 작동");
+	  	action = new ImageEditAction();
 		forward = action.execute(request, response);
 		
-	   }else if(uriCommand.equals("/imagewriteeditok.ib")){ // 게시물 수정 완료 버튼 클릭
-	  	action = new ImageWriteEditOkAction();
+	   }else if(uriCommand.equals("/imageeditok.ib")){ // 게시물 수정 완료 버튼 클릭
+		System.out.println("게시물 수정 완료 컨트롤러 작동");
+	  	action = new ImageEditOkAction();
 		forward = action.execute(request, response);
 		
 	   }else if(uriCommand.equals("/imagedelete.ib")){ // 게시물 삭제 버튼 클릭

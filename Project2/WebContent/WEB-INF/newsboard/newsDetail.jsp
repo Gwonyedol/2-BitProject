@@ -23,8 +23,8 @@
 			<a href="#">${boardId.title}</a>
 		</div>
 		<hr>
-		<div class="card-body" id="board-nav">Steam${boardId.nick_name}
-			| ${boardId.date_created} | 조회 ${boardId.view_count} | 댓글 0</div>
+		<div class="card-body" id="board-nav">${boardId.nick_name}
+			| ${boardId.date_created} | 조회 ${boardId.view_count} | 댓글 ${boardId.count}</div>
 
 		<div class="card-body" id="board-content">
 			<c:choose>
@@ -42,14 +42,16 @@
 </div>
 <p class="button-active">
 	&nbsp;&nbsp;&nbsp;
+	<c:if test="${sessionScope.nick_name == boardId.nick_name || sessionScope.user_auth==3}">
 	<button type="button" class="btn btn-primary active" id="btn">
 		<a id="anker" href="editboard.nb?id=${boardId.id}">수정</a>
 	</button>
 	<button type="button" class="btn btn-primary active" id="btn">
-		<a id="anker" href="#">삭제</a>
+		<a id="anker" href="deleteboard.nb?id=${ boardId.id}">삭제</a>
 	</button>
+	</c:if>
 	<button type="button" class="btn btn-primary active" id="btn">
-		<a id="anker" href="newboard.nb">목록</a>
+		<a id="anker" href="newboard.nb?page=${requestScope.page}">목록</a>
 	</button>
 </p>
 <div class="card m-b-15">
@@ -65,8 +67,7 @@
 				<c:forEach var = "reply" items="${requestScope.dto2}">
 					<b>${reply.r_nick_name}</b>&nbsp;<i>${reply.date_created}</i><br>
 					<p id="reply-content">${reply.reply_content} <c:if test="${sessionScope.nick_name == reply.r_nick_name}"><p>
-																				<a class ="update"href="updatereply.nb?id=${reply.id}&boardid=${board.id}">[수정]</a>
-																				 <a class ="update" href="deletereply.nb?id=${reply.id}&boardid=${board.id}">[삭제]</a></p></c:if>
+																				 <a class ="update" href="deletereply.nb?id=${reply.id}&boardid=${board.id}&page=${page}">[삭제]</a></p></c:if>
 					</p>
 					
 				</c:forEach>

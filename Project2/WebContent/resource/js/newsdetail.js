@@ -21,7 +21,7 @@ $(function(){
 		}else{
 			$.ajax({
 				url:"newsreply.najax",
-				data:{content:content, id:id, board_id:$.urlParam('id')},
+				data:{content:content, id:id, board_id:$.urlParam('id'),page:$.urlParam('page')},
 				dataType:"html",
 				type:"post",
 				success:function(data){

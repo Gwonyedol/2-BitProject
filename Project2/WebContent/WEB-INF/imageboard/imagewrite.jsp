@@ -40,7 +40,7 @@
 			
 			<div class="mb-3">			
 				<label for="writer">작성자</label>
-				<input type="text" name="nick_name" class="form-control" value="${imageList.nick_name}" readonly/>
+				<input type="text" name="nick_name" class="form-control" value="${requestScope.imageList.nick_name}" readonly/>
 			</div>		
 
 			<div class="mb-3">

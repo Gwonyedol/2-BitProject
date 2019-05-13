@@ -22,17 +22,18 @@ public class QaboardAction implements Action {
 		BoardDao dao = new BoardDao();
 		int totalListCount = dao.getCountContent(1);
 		List<BoardReplyDto> resultList = null;
-		
+		System.out.println("totalListCount : " +totalListCount);
 		
 		if(request.getParameter("cp")!=null) {
-			System.out.println("0번루트");
 			String cp = request.getParameter("cp");
 			int curPage = Integer.parseInt(cp);
 			pagination.setCurPage(curPage);
+		}else {
+			pagination.setPageSize(10);
+			pagination.setCurPage(1);
 		}
 		
 		if(request.getParameter("select")!=null) {
-			System.out.println("1번루트");
 			String select = request.getParameter("select");
 			int pageSize = Integer.parseInt(select);
 			pagination.setPageSize(pageSize);
@@ -42,9 +43,6 @@ public class QaboardAction implements Action {
 			endPageBlock = pagination.endPageBlock(pagination.getCurPage(), pagination.getPageSize(), totalPage);
 		
 		}else {
-			System.out.println("2번루트");
-			pagination.setPageSize(10);
-			pagination.setCurPage(1);
 			totalPage = pagination.totalPage(totalListCount, pagination.getPageSize());
 			startPageBlock = pagination.startPageBlock(pagination.getCurPage(), pagination.getPageSize());
 			endPageBlock = pagination.endPageBlock(startPageBlock, pagination.getPageSize(), totalPage);
@@ -52,6 +50,9 @@ public class QaboardAction implements Action {
 		
 		int printStart = pagination.printStart(pagination.getCurPage(), pagination.getPageSize());
 		int printEnd = pagination.printEnd(pagination.getCurPage(), pagination.getPageSize());
+		if(printEnd>totalListCount) {
+			printEnd=totalListCount;
+		}
 		resultList = dao.getContentList(1, printStart, printEnd);
 		request.setAttribute("curPage", pagination.getCurPage());
 		request.setAttribute("totalPage", totalPage);

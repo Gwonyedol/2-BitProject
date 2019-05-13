@@ -22,10 +22,12 @@ public class VideoBoardEditOkAction implements Action{
 		int id = Integer.parseInt(fid);
 		String title = request.getParameter("title");
 		String content = request.getParameter("editor1");
+		String upload = request.getParameter("upload");
 				
 		dto.setId(id);
 		dto.setTitle(title);
 		dto.setContent(content);
+		dto.setFile_path(upload);
 
 		dao.updateBoardContent(dto);
 		

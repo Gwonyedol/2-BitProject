@@ -44,17 +44,14 @@
     	<div class="col-1"></div>
 	</div>
 	<div class="row" id="write-button">	
+     	<div class="col-1"></div>	 
+     		 <input type="file" name="upload" id="upload"> <!-- 파일 업로드 -->
+		<div class="col-5"></div>
+		<div class="text-left"><button type="button" class="btn btn-secondary" id="cancel-btn">취소</button></div>
+		&nbsp;
+			<div class="text-right"><button type="submit" class="btn btn-primary" id="enter-btn">등록</button></div>
 		<div class="col-1"></div>
-		<div class="col-5">
-			<div class="text-left">
-			<a href="video.vb">
-			<button type="button" class="btn btn-secondary" id="cancel-btn">취소</button></a></div>
 		</div>
-		<div class="col-5">
-			<div class="text-right"><button type="submit" class="btn btn-primary" id="enter-btn">수정완료</button></div>
-		</div>
-		<div class="col-1"></div>
-	</div>
 </form>
 <!-- 콘텐츠영역 끝 -->
 <jsp:include page="/WEB-INF/common/Sidebar_Right.jsp"></jsp:include>

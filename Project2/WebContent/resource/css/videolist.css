@@ -16,6 +16,11 @@
 
   }
   
+  .type2 {
+      height: 250px;
+
+  }
+  
   
   
 .vdcard {
@@ -23,6 +28,7 @@
   transition: 0.3s;
   width: 385px;
   border-radius: 5px;
+  font-family: '맑은고딕';
 }
 
 .vdcard:hover {

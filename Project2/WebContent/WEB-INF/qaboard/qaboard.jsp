@@ -63,9 +63,9 @@
 			<tr>
 				<th class="text-center">#</th>
 				<th class="text-center">제목</th>
-				<th class="text-center"></i>&nbsp;추천수</th>
-				<th class="text-center"></th>
-				<th class="text-left">글쓴이</th>
+				<th class="text-center">조회수</th>
+				<th class="text-center">&nbsp;추천수</th>
+				<th class="text-center" colspan="2">글쓴이</th>
 				<th class="text-center">발행일</th>
 			</tr>
 		</thead>
@@ -74,7 +74,13 @@
 	<c:forEach var="qaboard" items="${resultList}" varStatus="status">
 		  <tr>
 	  		<td class="text-center">${qaboard.id}</td>
-			<td><a href="qadetail.qb?id=${qaboard.id}">${qaboard.title}</a> &nbsp;<span class="badge badge-primary badge-pill">${qaboard.reply_count}</span></td>
+			
+			<td><a href="qadetail.qb?id=${qaboard.id}">${qaboard.title}</a> 
+				<c:if test="${qaboard.reply_count>0}">
+					&nbsp;<span class="badge badge-primary badge-pill">${qaboard.reply_count}</span>
+				</c:if>
+			</td>
+			<td class="text-center"><i class="fas fa-eye"></i>&nbsp;${qaboard.view_count}</td>
 			<td class="text-center"><i class="far fa-thumbs-up"></i>&nbsp;${qaboard.vote_count}</td>
 			<td class="text-right"><img src="${qaboard.user_image_path }" id="qa_list_user_image_path" alt=" "/></td>
 			<td class="text-left">${qaboard.nick_name}</td>

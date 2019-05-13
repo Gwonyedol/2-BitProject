@@ -9,6 +9,8 @@
 	href="${pageContext.request.contextPath}/resource/css/videolist.css" />	
 <jsp:include page="/WEB-INF/common/Header_top.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/common/Sidebar_Left.jsp"></jsp:include>
+<c:set var="boardlist" value="${requestScope.videolist}" />
+
 
 <div class="row">
 	<div class="col-6">
@@ -30,100 +32,42 @@
 </div>
 	<hr>
 	
-<c:set var="boardlist" value="${requestScope.videolist}" />
-<!-- BEGIN card -->
-<div class="card ">
-	<!-- BEGIN card-header -->
-
-
-	<div class="card-header card-header-inverse">
-		<h4 class="card-header-title">POTG</h4>
-		<div class="card-header-btn">
-			<a href="#" data-toggle="card-expand" class="btn btn-success"><i
-				class="fa fa-expand"></i></a> <a href="#" data-toggle="card-refresh"
-				class="btn btn-warning"><i class="fa fa-redo"></i></a> <a href="#"
-				data-toggle="card-remove" class="btn btn-danger"><i
-				class="fa fa-trash-alt"></i></a>
-		</div>
-	</div>
-	<!-- END card-header -->
-	<div class="card-body">
-		<!-- BEGIN table -->
-		<table class ="type1">
-			<tbody>
-				<tr>
-					<td>
-						<div class="vdcard">
-							<img src="${pageContext.request.contextPath}/resource/img/potg2.png" alt="Avatar"
-								style="width: 340px; height: 240px; display: block; margin: 0px auto;"
-								id = "vdimg">
-							<div class="vdcontainer">
-								<h4>
-									<b>기후니님의 POTG</b>
-								</h4>
-								<p>2019.03.02</p>
-							</div>
-						</div>
-
-					</td>
-						<td>							
-						<div class="vdcard">
-<%-- 							<img src="${pageContext.request.contextPath}/upload/img_avatar2.png" alt="Avatar"
-								style="width: 340px; height: 240px; display: block; margin: 0px auto;"
-								id = "vdimg"> --%>
-							 <video width="340" height="240" controls>
-                            <source src="${pageContext.request.contextPath}/resource/img/오리사.mp4" type="video/mp4" style="display: block; margin: 0px auto;"
-								id = "vdimg"></video>
-							<div class="vdcontainer">
-								<h4>
-									<b>과즙뿜뿜동현이의 오리사</b>
-								</h4>
-								<p>2019.03.08</p>
-							</div>
-						</div>
-					</td>
-					</tr>
-
-
-			</tbody>
-		</table>
-		
-		
-		
-				<table id="datatables-default"
-			class="table table-striped table-td-valign-middle table-bordered bg-white">
-			<thead>
-				<tr>
-					<th width="5%">순번</th>
-					<th width="28%">제목</th>
-					<th width="4%">추천</th>
-					<th width="8%">작성일시</th>
-					<th width="8%">글쓴이</th>
-					<th width="8%">조회수</th>
-
-				</tr>
-			</thead>
-			<tbody>
-		
-					<c:forEach var="board" items="${boardlist}" varStatus="status">
-						<tr style="cursor:hand;" onclick="location.href='videoread.vb?id=${board.id}'">
-							<td>${status.count}</td>
-							<td>${board.title}</td>
-							<td>${board.vote_count}</td>
-							<td>${board.date_created}</td>
-							<td>${board.nick_name}</td>
-							<td>${board.view_count}</td>
-
-						</tr>
-					</c:forEach>
-
-			</tbody>
-		</table>
-		<!-- END table -->
-	</div>
-</div>
-
-
+			<table class="table m-b-0">
+								<tbody>
+								<c:forEach var="board" items="${boardlist}" varStatus="status">
+									<tr style="cursor:hand;" onclick="location.href='videoread.vb?id=${board.id}'">
+									
+										<td class = "type2" width="45%">	
+<%-- 										 <video width="350" height="220" muted>
+                           				 <source src="${pageContext.request.contextPath}/resource/img/오리사.mp4" type="video/mp4" style="display: block; margin: 0px auto;"
+										 id = "vdimg"></video> --%>
+										 
+												<c:choose>
+												<c:when test="${board.file_path=='upload/'}"></c:when>
+												<c:otherwise>
+												<video width="400" height="250" muted>
+                    							<source src="${board.file_path}" type="video/mp4" style="display: block; margin: 0px auto;"
+												></video>
+												</c:otherwise>
+												</c:choose> 
+												
+										</td>
+										
+										<td width="55%">
+										
+										<div style = "font-family: '맑은고딕'; font-size: 30px;">
+										${board.title}
+										</div>
+										<div style = "color : #505050; font-size: 13px;">
+										${board.nick_name} • 조회수 ${board.view_count} 회  • 추천수 ${board.vote_count} 회 • ${board.date_created} 
+										</div>
+										
+										</td>
+									</tr>
+								</c:forEach>
+								</tbody>				
+			</table>
+	
 
 <!-- END #content -->
 

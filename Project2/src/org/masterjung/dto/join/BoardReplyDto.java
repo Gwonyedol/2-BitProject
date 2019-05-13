@@ -21,7 +21,16 @@ public class BoardReplyDto {
 	private String content;
 	private String file_path;
 	private String user_image_path;
+	private int recommand;
 
+	
+	
+	public int getRecommand() {
+		return recommand;
+	}
+	public void setRecommand(int recommand) {
+		this.recommand = recommand;
+	}
 	public String getUser_image_path() {
 		return user_image_path;
 	}

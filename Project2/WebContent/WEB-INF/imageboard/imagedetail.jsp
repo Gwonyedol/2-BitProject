@@ -33,11 +33,10 @@
 <button type="button" class="btn btn-black m-b-5 m-r-3" id="new_content_button"
 			onclick="location.href='imagewrite.ib'">글쓰기</button> 
 <button type="button" class="btn btn-black m-b-5 m-r-3" id="new_content_button"
-			onclick="location.href='imagedelete.ib'">삭제하기</button> 			
+			onclick="location.href='imagedelete.ib?id=${requestScope.imageList.id}'">삭제하기</button> 			
 
 	<article>
-		<div class="container" role="main">			
-						
+		<div class="container" role="main">						
 			<div class="mb-3">
 				<label for="title">제목</label>
 				<input type="text" name="title" class="form-control" value="${requestScope.imageList.title}" readonly>
@@ -45,7 +44,7 @@
 			
 			<div class="mb-3">				
 				<label for="writer">작성자</label>
-				<input type="text" name="writer" class="form-control" value="${imageList.nick_name}" readonly/>
+				<input type="text" name="writer" class="form-control" value="${requestScope.imageList.nick_name}" readonly/>
 			</div>		
 
 			<div class="mb-3">

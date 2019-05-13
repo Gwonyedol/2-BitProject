@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/common/Head_top.jsp"></jsp:include>
@@ -5,6 +6,8 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resource/css/newswrite.css" />
 <script src="${pageContext.request.contextPath}/resource/js/newswrite.js" type="text/javascript"></script>
+
+
 
 <jsp:include page="/WEB-INF/common/Header_top.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/common/Sidebar_Left.jsp"></jsp:include>
@@ -41,19 +44,14 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td><label class="input-group-text">이름</label></td>
+					<td><label class="input-group-text">별명</label></td>
 					<td><input type="text" class="form-control"  value="${sessionScope.nick_name}"
-						readonly></td>
+						id="nick_name" name="nick_name" readonly></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td><label class="input-group-text">등급</label></td>
 					<td><input type="text" class="form-control" value="기자"
-						readonly></td>
-				</tr>
-				<tr>
-					<td><label class="input-group-text">날짜</label></td>
-					<td><input type="text" class="form-control" value="2019.05.09"
 						readonly></td>
 				</tr>
 			</table>
@@ -80,7 +78,7 @@
 		</div>
 
 		<div class="row justify-content-md-center">
-			<button type="submit" class="btn btn-outline-secondary">등록</button>
+			<button type="submit" class="btn btn-outline-secondary" id="submit"disabled>등록</button>
 		</div>
 	</form>
 </div>

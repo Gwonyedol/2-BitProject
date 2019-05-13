@@ -13,6 +13,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.masterjung.dto.BoardDto;
+import org.masterjung.dto.ReplyDto;
+import org.masterjung.dto.Reply_VoteDto;
 import org.masterjung.dto.join.BoardDetailDto;
 import org.masterjung.dto.join.BoardReplyDto;
 
@@ -26,9 +28,29 @@ public class NewsDAO {
 		Context context = new InitialContext();
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 	}
+	  public int getTotalCount() throws SQLException{
+		    int total = 0;
+		     
+		    try {
+		      conn = ds.getConnection();
+		       
+		      String sql = "select count(*) from board where enabled=1 and board_list_id=3";
+		      pstmt = conn.prepareStatement(sql);
+		       
+		      rs = pstmt.executeQuery();
+		      if(rs.next()){
+		        total = rs.getInt(1);
+		      }
+		    } catch (Exception e){
+		      e.printStackTrace();
+		    } finally {
+		      conn.close();
+		    }
+		    return total;
+		  }
 
-	public List<BoardReplyDto> getNewsListAndReplyCount(int board_list_id) throws SQLException {
-		String sql = "select date_created , content , vote_count , last_updated , anonymity , refer , depth , step , id,board_list_id , title , view_count , nick_name , file_path , (select count(id) from reply where reply_id=b.id and enabled=1)count from board b where board_list_id=? and enabled=1 order by id desc;";
+	public List<BoardReplyDto> getNewsListAndReplyCount(int board_list_id, int startRow, int endRow) throws SQLException {
+		String sql = "select date_created , content , vote_count , last_updated , anonymity , refer , depth , step , id,board_list_id , title , view_count , nick_name , file_path , (select count(id) from reply where reply_id=b.id and enabled=1)count from board b where board_list_id=? and enabled=1 order by id desc limit "+startRow+","+endRow;
 		Connection conn = ds.getConnection();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, board_list_id);
@@ -130,5 +152,16 @@ public class NewsDAO {
 
 	private boolean isEmpty(String param) {
 		return param == null || param.equals("");
+	}
+	public int ReturnReplyId() throws SQLException {
+		String sql = "select max(id) as max from reply";
+		Connection conn = ds.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		int result =0;
+		if(rs.next()) {
+			result= rs.getInt("max");
+		}
+		return result;
 	}
 }

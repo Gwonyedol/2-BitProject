@@ -5,8 +5,8 @@
 <jsp:include page="/WEB-INF/common/Head_top.jsp"></jsp:include>
 	<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/qaboard.css"/>
-	<script src="${pageContext.request.contextPath}/resource/js/qaboard-scroll.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/resource/js/qaboard.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resource/js/qaboard-scroll.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/resource/js/qaboard-img.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/resource/js/qaboard-ajax.js" type="text/javascript"></script>
 <jsp:include page="/WEB-INF/common/Header_top.jsp"></jsp:include>
@@ -90,9 +90,9 @@
 		<div class="col-1" id="qa_detail_vote">
 			<div class="card text-center bg-light mb-3">
 				<div class="card-body" id="qa_detail_vote_body">
-					<h3><small class="text-muted"><i class="fas fa-chevron-up"></i></small></h3>
-					<h3>${requestScope.result.vote_count}</h3>
-					<h3><small class="text-muted"><i class="fas fa-chevron-down"></i></small></h3>
+					<h3 id='like'><small class="text-muted"><i class="fas fa-chevron-up"></i></small></h3>
+					<h3 id='recommand_content'>${requestScope.result.vote_count}</h3>
+					<h3 id='dislike'><small class="text-muted"><i class="fas fa-chevron-down"></i></small></h3>
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.masterjung.action.Action;
 import org.masterjung.action.Actionforward;
+import org.masterjung.dao.BoardDao;
 import org.masterjung.dao.videoboard.VideoDao;
 import org.masterjung.dto.BoardDto;
 
@@ -15,7 +16,7 @@ public class VideoBoardAction implements Action {
 
 	@Override
 	public Actionforward execute(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		VideoDao dao = new VideoDao(); //비디오 리스트만 비디오 다오 사용함..
 		List<BoardDto> videolist;
 		Actionforward forward = new Actionforward();
@@ -24,6 +25,8 @@ public class VideoBoardAction implements Action {
 		try {
 			
 			videolist = dao.getVideoList();
+			
+			
 			request.setAttribute("videolist", videolist);
 			System.out.println(videolist.size());
 

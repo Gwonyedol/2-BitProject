@@ -13,18 +13,19 @@
 
 <script>
 $(function(){
-  	$('#password, #nick_name, #phone_number, #user_name, #user_address').change(function(){
+/*   	$('#password, #nick_name, #phone_number, #user_name, #user_address').change(function(){
 		alert("안녕");
   		if(!$('#password')){
 			alert("안녕");
 			$("#edit")
 		      .prop("disabled", true);
+		} */
+		var email = "<%=(String)session.getAttribute("email")%>";
+		if(email != 'test'){
+			$('#auth').css("visibility", "hidden");
 		}
 		
 	});  
-
-	
-});
 </script>
 
 <c:set var="user" value="${requestScope.userdto}" />
@@ -41,7 +42,8 @@ $(function(){
 		<li>
 			<div class="field">User image</div>
 			<div class="value">
-				            <img src="<c:choose><c:when test ="${user.user_image_path != '/upload/'}">${user.user_image_path}</c:when>    
+				            <img src="<c:choose><c:when test ="${user.user_image_path != 'upload/'}">${user.user_image_path}</c:when>
+				            					    <c:when test ="${user.user_image_path == null}">upload/500x261.jpg</c:when>
                                                                                                           <c:otherwise>upload/500x261.jpg</c:otherwise></c:choose>" style="width: 100px; height: 100px"
                 id="previewImage"  name ="previewImage"/>
 			</div>
@@ -108,8 +110,8 @@ $(function(){
 				<a href="javascript:openAddrPop();" class="btn btn-default" id="addrPopBtn">주소검색</a>
 			</div>
 		</li>
-		<li>
-			<div class="field">User auth</div>
+		<li id = "auth">
+			<div class="field" >User auth</div>
 			<div class="value">
 				<div class="form-group">
 					<select class="selectpicker form-control" data-style="btn-default"

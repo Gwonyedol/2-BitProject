@@ -29,24 +29,23 @@
 
 <h2 align="center">게시글 수정하기</h2><hr>
 
-<form action="imagewriteeditok.ib?id=${requestScope.imageList.id}" enctype="multipart/form-data" method="post">
+<form action="imageeditok.ib?id=${requestScope.imageList.id}" enctype="multipart/form-data" method="post">
 	<article>
 		<div class="container" role="main">			
 						
 			<div class="mb-3">
 				<label for="title">제목</label>
-				<input type="text" name="title" class="form-control" placeholder="제목을 입력해 주세요">
+				<input type="text" name="title" class="form-control" value="${requestScope.imageList.title}">
 			</div>			
 			
 			<div class="mb-3">
-				<c:set var="writer" value="${imageList.nick_name}" />
 				<label for="writer">작성자</label>
-				<input type="text" name="writer" class="form-control" readonly="<c:out value="${writer}"/>">
+				<input type="text" name="writer" class="form-control" value="${requestScope.imageList.nick_name}" readonly/>
 			</div>		
 
 			<div class="mb-3">
 				<label for="content">내용</label>
-				<textarea class="form-control" name="editor1" rows="5" placeholder="내용을 입력해 주세요" ></textarea>
+				<textarea class="form-control" name="editor1" rows="5">${requestScope.imageList.content}</textarea>
 			</div>			
 							
 			<!-- 커버이미지 들어오는 부분 (임시로 이미지를 넣어줬다)-->

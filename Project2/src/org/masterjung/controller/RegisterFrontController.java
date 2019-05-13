@@ -20,7 +20,7 @@ import org.masterjung.service.register.MemberEditViewAction;
 import org.masterjung.service.register.MemberinfoAction;
 
 @MultipartConfig(
-        location = "C:\\FrontendBackend\\WebJSP\\JSPLab\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\GameCommunityMVC\\uploads",
+        location = "C:\\FrontendBackend\\WebJSP\\JSPLab\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\GameCommunityMVC\\upload",
         maxFileSize = -1,
         maxRequestSize = -1,
         fileSizeThreshold = -1

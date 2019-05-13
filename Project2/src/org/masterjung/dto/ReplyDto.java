@@ -17,6 +17,12 @@ public class ReplyDto {
 	
 	public ReplyDto(){}
 	
+	public ReplyDto(int reply_id, int vote_count) {
+		super();
+		this.reply_id = reply_id;
+		this.vote_count = vote_count;
+	}
+
 	public ReplyDto(int reply_id, String reply_content, String r_nick_name, int refer, int depth, int step) {
 		super();
 		this.reply_id = reply_id;

@@ -32,8 +32,36 @@ $(function(){
 					console.log("오류");
 				}
 				
-			})//ajax 끝
+			});//ajax 끝
+			
 		} //else 끝
-	}); // #newMember 
+	}); // 
+	
+	let reply_id = $("#reply_id").html().replace("#","");
+	console.log("reply_id" + reply_id);
+	element = document.getElementById('like');
+	element.addEventListener('click', ()=>{
+		console.log("작동");
+		$.ajax({
+			url:"QaRecommand.qajax",
+			data:{
+				reply_id:reply_id
+			},
+			dataType:"html",
+			type:"POST",
+			success:(data)=>{
+				console.log(data);
+			},
+			error:()=>{
+				console.log(data);
+			}
+		})
+		
+		
+	}, false)
+
+	
+	
+	
 	
 });//	function() 끝

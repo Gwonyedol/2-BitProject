@@ -9,7 +9,7 @@
 <jsp:include page="/WEB-INF/common/Header_top.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/common/Sidebar_Left.jsp"></jsp:include>
 <!-- 콘텐츠 영역 시작-->
-<form name="qawrite" action="videowriteok.vb" method="POST">
+<form name="qawrite" action="videowriteok.vb" enctype="multipart/form-data" method="POST">
 	<div class="row text-center">
 		<div class="col-1"></div>
 			<div class="col-10">

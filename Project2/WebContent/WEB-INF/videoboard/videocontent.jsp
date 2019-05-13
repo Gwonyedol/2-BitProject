@@ -65,6 +65,15 @@
 							id="eye_align"><i class="fas fa-eye"></i>&nbsp;${requestScope.result.view_count}</span>
 					</div>
 					<hr>
+			<c:choose>
+				<c:when test="${requestScope.result.file_path=='upload/'}"></c:when>
+				<c:otherwise>
+					<video width="540" height="320" controls>
+                    <source src="${requestScope.result.file_path}" type="video/mp4" style="display: block; margin: 0px auto;"
+					></video>
+				</c:otherwise>
+			</c:choose>
+			
 					${requestScope.result.content}
 				</div>
 
@@ -100,7 +109,7 @@
 							class="text-inverse"><b>코멘트</b></span>
 					</div>
 					<hr>
-					<p>sunha &nbsp;| 언니 반가워요~^0^
+					<p>sunha &nbsp;| 예돌아 안녕~^0^
 					<p>
 						<!-- 코멘트 내용 불러오는곳 -->
 					<form>

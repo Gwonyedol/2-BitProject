@@ -47,7 +47,7 @@
 				</tr>
 				<tr>
 					<td><label class="input-group-text">이름</label></td>
-					<td><input type="text" class="form-control"  value="장지훈"
+					<td><input type="text" class="form-control"  value="${dto.nick_name}"
 						readonly></td>
 					<td></td>
 				</tr>

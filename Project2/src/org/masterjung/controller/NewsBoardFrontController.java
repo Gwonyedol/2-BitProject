@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.masterjung.action.Action;
 import org.masterjung.action.Actionforward;
 import org.masterjung.service.newsboard.MoveNewsBoardAction;
+import org.masterjung.service.newsboard.NewsDeleteAction;
+import org.masterjung.service.newsboard.NewsDeleteOkAction;
 import org.masterjung.service.newsboard.NewsDetailAction;
 import org.masterjung.service.newsboard.NewsEditAction;
 import org.masterjung.service.newsboard.NewsEditOkAction;
@@ -74,6 +76,12 @@ public class NewsBoardFrontController extends HttpServlet {
     	}else if(url_Command.equals("/updatereply.nb")) {
     		action = new NewsReplyUpdateAction();
     		forward = action.execute(request, response);
+    	}else if(url_Command.equals("/deleteboardok.nb")) {
+    		action = new NewsDeleteOkAction();
+    		forward = action.execute(request, response);    		
+    	}else if(url_Command.equals("/deleteboard.nb")) {
+    		action = new NewsDeleteAction();
+    		forward = action.execute(request, response); 
     	}
     	if(forward != null) {
     		if(forward.isRedirect()) { //true
@@ -87,6 +95,7 @@ public class NewsBoardFrontController extends HttpServlet {
     		e.getStackTrace();
     	}
     }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}

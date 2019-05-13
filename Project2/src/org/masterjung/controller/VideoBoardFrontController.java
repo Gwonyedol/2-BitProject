@@ -1,11 +1,14 @@
 package org.masterjung.controller;
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.masterjung.action.Action;
 import org.masterjung.action.Actionforward;
 import org.masterjung.service.videoboard.VideoBoardAction;
@@ -14,6 +17,14 @@ import org.masterjung.service.videoboard.VideoBoardEditAction;
 import org.masterjung.service.videoboard.VideoBoardEditOkAction;
 import org.masterjung.service.videoboard.VideoBoardReadAction;
 import org.masterjung.service.videoboard.VideoBoardWriteAction;
+
+
+@MultipartConfig(
+        location   = "../../../../wtpwebapps/GameCommunityMVC/upload",
+		maxFileSize = -1,
+		maxRequestSize = -1,
+		fileSizeThreshold = -1
+)
 @WebServlet("*.vb")
 public class VideoBoardFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -60,10 +71,12 @@ public class VideoBoardFrontController extends HttpServlet {
        		action = new VideoBoardDeleteAction();
     		forward = action.execute(request, response);
     		
-    	}else if(uriCommand.equals("/videodelete.vb")){ // 게시물 댓글 달기
-    		
     	}
-    	
+//    	else if(uriCommand.equals("/videoreplyok.vb")){ // 게시물 댓글 달기
+//    		action = new VideoBaordReplyWriteAction();
+//    		forward = action.execute(request, response);
+//    	}
+//    	
     	
     	
     	if(forward != null) {

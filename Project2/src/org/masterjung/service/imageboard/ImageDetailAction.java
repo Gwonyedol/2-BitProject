@@ -31,7 +31,6 @@ public class ImageDetailAction implements Action {
 			BoardDetailDto dto = dao.getBoardDetailById(id);
 			
 			request.setAttribute("imageList", dto);
-			System.out.println("이미지 리스트는" + dto.toString());
 			
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/imageboard/imagedetail.jsp");

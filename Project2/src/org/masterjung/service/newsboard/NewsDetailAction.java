@@ -22,10 +22,12 @@ public class NewsDetailAction implements Action {
 		try {
 			forward = new Actionforward();
 			boardDto = dao.getBoardDetailById(Integer.parseInt(request.getParameter("id")));
+			boardDto.setView_count(boardDto.getView_count()+1);
+			dao.updateViewCount(Integer.parseInt(request.getParameter("id")), boardDto.getView_count());
 			request.setAttribute("boardId", boardDto);
-
-			List<ReplyJoinReplyVoteDto> boardReplyList = dao.getReplyListById(Integer.parseInt(request.getParameter("id")));
 			
+			List<ReplyJoinReplyVoteDto> boardReplyList = dao.getReplyListById(Integer.parseInt(request.getParameter("id")));
+			request.setAttribute("page",request.getParameter("page"));
 			request.setAttribute("dto2", boardReplyList);
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/newsboard/newsDetail.jsp");

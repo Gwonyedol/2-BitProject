@@ -20,9 +20,10 @@
 	<li class="setting-title">GENERAL</li>
 	<li>
 		<div class="field">User image</div>
-		<div class="value"><img src="<c:choose><c:when test ="${user.user_image_path != null}">${user.user_image_path}</c:when>	
-																										  <c:otherwise>uploads/500x261.jpg</c:otherwise></c:choose>" style="width: 100px; height: 100px"
-				id="previewImage" /></div>
+		<div class="value"><img src="<c:choose><c:when test ="${user.user_image_path != 'upload/'}">${user.user_image_path}</c:when>
+				            					    <c:when test ="${user.user_image_path == null}">upload/500x261.jpg</c:when>
+                                                                                                          <c:otherwise>upload/500x261.jpg</c:otherwise></c:choose>" style="width: 100px; height: 100px"
+                id="previewImage"  name ="previewImage"/></div>
 	</li>
 	<li>
 		<div class="field">Name</div>

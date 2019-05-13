@@ -17,6 +17,7 @@ import org.masterjung.dto.ReplyDto;
 import org.masterjung.dto.join.BoardDetailDto;
 import org.masterjung.dto.join.BoardReplyDto;
 import org.masterjung.dto.join.ReplyJoinReplyVoteDto;
+import org.masterjung.util.GetIp;
 import org.masterjung.util.SqlDate;
 import org.masterjung.util.StringSkip;
 
@@ -27,6 +28,8 @@ public class BoardDao {
 	Context context;
 	StringSkip stringSkip;
 	SqlDate sqldate;
+	GetIp ip;
+	
 	
 	public BoardDao() {
 		conn = null;	
@@ -35,6 +38,7 @@ public class BoardDao {
 			ds = (DataSource)context.lookup("java:comp/env/jdbc/mysql");
 			stringSkip = new StringSkip();
 			sqldate = new SqlDate();
+			ip = new GetIp();
 		} catch (NamingException e) {
 			System.out.println("memodao.java -> 기본생성자 오류 : " +e.getMessage());
 		}
@@ -460,6 +464,7 @@ public class BoardDao {
 		}
 		return resultrow;
 	}
+	
 	// 댓글 삭제
 	public int deleteFakeBoardreply(int reply_id) {
 		int resultrow = 0;
@@ -519,12 +524,13 @@ public class BoardDao {
 	
 	
 	//게시판 컨텐츠 select / 페이징 변수 추가
-	public List<BoardReplyDto> getContentList(int board_list_id, int startPageBlock, int endPageBlock){
+	public List<BoardReplyDto> getContentList(int board_list_id, int printStart, int printEnd){
 		List<BoardReplyDto> boardList = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("select date_created, content, vote_count, last_updated, anonymity, refer, depth, step, id,board_list_id, title, view_count, nick_name, file_path, "); 
 		sql.append("(select count(id) from reply where reply_id=b.id and enabled=1) count, ");
-		sql.append("(select user_image_path from user where nick_name=b.nick_name) user_image_path ");
+		sql.append("(select user_image_path from user where nick_name=b.nick_name) user_image_path, ");
+		sql.append("(select count(*) from content_vote where c_vote_id=b.id) recommand ");
 		sql.append("from board b where board_list_id=? and enabled=1 order by id desc ");
 		sql.append("limit ?,?");
 		PreparedStatement pstmt = null;
@@ -534,8 +540,8 @@ public class BoardDao {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, board_list_id);
-			pstmt.setInt(2, startPageBlock);
-			pstmt.setInt(3, endPageBlock);
+			pstmt.setInt(2, printStart);
+			pstmt.setInt(3, printEnd);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -560,6 +566,7 @@ public class BoardDao {
 				dto.setFile_path(rs.getString("file_path"));
 				dto.setReply_count(rs.getInt("count"));
 				dto.setUser_image_path(rs.getString("user_image_path"));
+				dto.setRecommand(rs.getInt("recommand"));
 				boardList.add(dto);
 			}
 		}catch(Exception e) {
@@ -575,4 +582,132 @@ public class BoardDao {
 		}
 		return boardList;
 	}
+	
+	// 방문자 ip create
+	public int createVisitor() {
+		int resultrow = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into visit(visit_ip) values(?)";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ip.getIp());
+			resultrow = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			resultrow = -1;
+			System.out.println("createVisitor() 오류1 - "+e.getMessage());
+			
+		}finally {
+			try {
+				if(conn!=null) {conn.close();}
+				if(pstmt!=null) {pstmt.close();}
+			} catch (SQLException e) {
+				System.out.println("createVisitor() 오류2 - "+e.getMessage());
+			} 
+		}
+		return resultrow;
+	}
+	
+	// view_count UPDATE
+	public int updateViewCount(int boardid, int view_count) {
+		int resultrow = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update board set view_count=? where id=?";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, view_count);
+			pstmt.setInt(2, boardid);
+			resultrow = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			resultrow = -1;
+			System.out.println("updateViewCount() 오류1 - "+e.getMessage());
+			
+		}finally {
+			try {
+				if(conn!=null) {conn.close();}
+				if(pstmt!=null) {pstmt.close();}
+			} catch (SQLException e) {
+				System.out.println("updateViewCount() 오류2 - "+e.getMessage());
+			} 
+		}
+		return resultrow;
+	}
+	
+	//답글 갯수 세기(글번호로)
+	public int view_Count(int board_id) {
+		String sql = "select view_count from board where id=?";
+		int view_Count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				view_Count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			System.out.println("view_Count에러 : " +e.getMessage());
+		}
+		return view_Count;
+	}
+	
+	//추천 갯수 세기(글번호로)
+	public int count_ContentVote(int boardid) {
+		
+		String sql = "select count(*) from content_vote where c_vote_id=?";
+		int vote_Count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardid);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vote_Count = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			System.out.println("count_ContentVote에러 : " +e.getMessage());
+		}
+		return vote_Count;
+	}
+	
+	// vote_count INSERT
+	public int insertVoteCount(int bodrdid, String content_voter) {
+		int resultrow = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into content_vote(c_vote_id, content_voter) values(?,?)";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bodrdid);
+			pstmt.setString(2, content_voter);
+			resultrow = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			resultrow = -1;
+			System.out.println("updateVoteCount() 오류1 - "+e.getMessage());
+			
+		}finally {
+			try {
+				if(conn!=null) {conn.close();}
+				if(pstmt!=null) {pstmt.close();}
+			} catch (SQLException e) {
+				System.out.println("updateVoteCount() 오류2 - "+e.getMessage());
+			} 
+		}
+		return resultrow;
+	}
+	
 } //클래스 끝 

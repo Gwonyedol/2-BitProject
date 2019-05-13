@@ -33,12 +33,12 @@ public class Pagination {
 	
 	public int printStart(int currentPage, int pageSize) {
 		int printStart = currentPage * pageSize -(pageSize -1);
-		return printStart;
+		return printStart-1;
 	}
 	
 	public int printEnd(int currentPage, int pageSize) {
 		int printEnd = currentPage * pageSize;
-		return printEnd;
+		return printEnd-1;
 	}
 	
 	
